@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 19:33:45 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 21:56:44 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int main(int argc, char **argv)
 {
-	t_vars	*vars;
+	t_vars	*mlx_data;
 
 	(void)argc;
 	(void)argv;
-	vars = 0;
-	if (init(&vars) || !vars)
-		exit_prog(0, vars);
-	set_hooks(vars);
-	mlx_loop(vars->mlx);
-	exit_prog(0, vars);
+	mlx_data = init();
+	if (!mlx_data)
+		exit_prog(KEY_ESC, mlx_data);
+	set_hooks(mlx_data);
+	mlx_loop(mlx_data->mlx);
+	exit_prog(KEY_ESC, mlx_data);
 	return (EXIT_SUCCESS);
 }

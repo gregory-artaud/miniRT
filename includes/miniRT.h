@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 19:08:49 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/17 22:06:30 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,25 @@ typedef struct  s_vars {
         void    *win;
 		int		win_w;
 		int		win_h;
+		int		save;
 }               t_vars;
 
 /*
 ** init.c
 */
-int		init(t_vars **vars);
+t_vars	*init(void);
 void	set_hooks(t_vars *vars);
 /*
 ** keyboard_hook.c
 */
-int	key_pressed(int keycode, t_vars *vars);
+int		key_pressed(int keycode, t_vars *vars);
 /*
 **
 */
-int	exit_prog(int keycode, t_vars *vars);
+int		exit_prog(int keycode, t_vars *vars);
+/*
+** render.c
+*/
+int		render(t_vars *vars);
 
 #endif

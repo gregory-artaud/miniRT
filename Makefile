@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/17 19:36:23 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/17 22:08:20 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC_DIR		= src/
 FILES		= 	miniRT.c \
 				src/exit_prog.c \
 				src/init.c \
-				src/keyboard_hook.c
+				src/keyboard_hook.c \
+				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
 
 all: $(NAME)
