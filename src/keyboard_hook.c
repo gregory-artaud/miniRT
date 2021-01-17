@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
+/*   keyboard_hook.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
-/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
+/*   Created: 2021/01/17 19:06:24 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/17 19:07:09 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_int.h"
+#include "miniRT.h"
 
-int	mlx_destroy_display(t_xvar *xvar)
+/*
+** key_hook entry point
+*/
+int	key_pressed(int keycode, t_vars *vars)
 {
-	XCloseDisplay(xvar->display);
+	if (keycode == KEY_ESC)
+		exit_prog(keycode, vars);
+	return (0);
 }
