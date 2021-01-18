@@ -6,36 +6,41 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/17 22:08:20 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/18 14:33:57 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-OS			= linux
+OS			= macos
 NAME		= miniRT
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -O3 -I $(DEPS_DIR)
 LIB_DIR	= lib
 ifeq ($(OS), linux)
 	LFLAGS		= -L$(LIB_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd
-	MLX_DIR		=	$(LIB_DIR)/mlx_linux
+	MLX_DIR		= $(LIB_DIR)/mlx_linux
+	NORME		= ~/.norminette/norminette.rb
 else
-	LFLAGS		= -Llib/libft -lft -Llib/mlx_macos -lmlx -lm
+	LFLAGS		= -L$(LIB_DIR) -lft -lmlx  -lm -framework OpenGL -framework AppKit
 	MLX_DIR		=	$(LIB_DIR)/mlx_macos
+	NORME		= norminette
 endif
 DEPS_DIR	= includes
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
 					libft/libft.h \
 					mlx.h \
-					miniRT.h)
+					mini_rt.h \
+					algebra.h)
 LIBFT		= libft.a
 LIBFT_DIR	= $(LIB_DIR)/libft
 MLX			= *.a
 SRC_DIR		= src/
-FILES		= 	miniRT.c \
+FILES		= 	mini_rt.c \
 				src/exit_prog.c \
 				src/init.c \
 				src/keyboard_hook.c \
-				src/render.c
+				src/render.c \
+				src/ray_tracing.c \
+				src/rt_file_parser.c
 OBJ 		= $(FILES:%.c=%.o)
 
 all: $(NAME)
@@ -64,5 +69,8 @@ fclean: clean
 	make -sC $(LIBFT_DIR) fclean
 
 re: fclean all
+
+norme:
+	$(NORME) $(FILES) $(DEPS)
 
 .PHONY: clean fclean all re

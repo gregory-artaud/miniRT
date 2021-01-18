@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   rt_file_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 21:56:44 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/01/18 14:13:31 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/18 14:42:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "mini_rt.h"
 
-int main(int argc, char **argv)
+int	detect_rt(char *file)
 {
-	t_vars	*mlx_data;
-
-	(void)argc;
-	(void)argv;
-	mlx_data = init();
-	if (!mlx_data)
-		exit_prog(KEY_ESC, mlx_data);
-	set_hooks(mlx_data);
-	mlx_loop(mlx_data->mlx);
-	exit_prog(KEY_ESC, mlx_data);
-	return (EXIT_SUCCESS);
+	return (!ft_memcmp(file + ft_strlen(file) - 3, ".rt", 3));
 }

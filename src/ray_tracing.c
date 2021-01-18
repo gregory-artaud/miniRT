@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   ray_tracing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/18 14:42:48 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/01/18 12:57:44 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/18 14:42:43 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	shade(void)
+int		trace(t_ray *ray, t_scene *scene)
 {
-	return ;
+	(void)ray;
+	(void)scene;
+	return (0);
 }
 
-int		render(t_data *data)
+t_ray	*get_ray(t_camera *cam, int x, int y)
 {
-	int		x;
-	int		y;
 	t_ray	*ray;
 
-	x = -1;
-	while (++x < data->mlx->win_w)
-	{
-		y = -1;
-		while (++y < data->mlx->win_h)
-		{
-			ray = get_ray(data->scene->current_cam, x, y);
-			if (trace(ray, data->scene))
-				shade();
-			free(ray);
-		}
-	}
-	return (0);
+	(void)cam;
+	(void)x;
+	(void)y;
+	if (!(ray = (t_ray *)malloc(sizeof(t_ray))))
+		return (NULL);
+	return (ray);
 }
