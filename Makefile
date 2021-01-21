@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/21 18:54:35 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/21 21:31:56 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ CFLAGS		= -Wall -Werror -Wextra -O3 -I $(DEPS_DIR)
 LIB_DIR	= lib
 ifeq ($(OS), linux)
 	LFLAGS		= -L$(LIB_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd
-	MLX_DIR		=	$(LIB_DIR)/mlx_linux
+	MLX_DIR		= $(LIB_DIR)/mlx_linux
+	NORME		= ~/.norminette/norminette.rb
 else
-	LFLAGS		= -Llib/libft -lft -Llib/mlx_macos -lmlx -lm
+	LFLAGS		= -L$(LIB_DIR) -lft -lmlx  -lm -framework OpenGL -framework AppKit
 	MLX_DIR		=	$(LIB_DIR)/mlx_macos
+	NORME		= norminette
 endif
 DEPS_DIR	= includes
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
