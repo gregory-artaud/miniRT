@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 21:56:44 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/01/21 17:57:25 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/21 19:52:13 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "scene.h"
 
-int main(int argc, char **argv)
+t_scene			*init_scene(void)
 {
-	t_vars	*mlx_data;
+	t_scene		*scene;
 
-	(void)argc;
-	(void)argv;
-	mlx_data = init();
-	if (!mlx_data)
-		exit_prog(KEY_ESC, mlx_data);
-	set_hooks(mlx_data);
-	mlx_loop(mlx_data->mlx);
-	exit_prog(KEY_ESC, mlx_data);
-	return (EXIT_SUCCESS);
+	if (!(scene = (t_scene *)malloc(sizeof(t_scene))))
+		return (NULL);
+	scene->r_w = 960;
+	scene->r_h = 540;
+	return (scene);
+}
+
+void			free_scene(t_scene *scene)
+{
+	free(scene);
+	return ;
 }

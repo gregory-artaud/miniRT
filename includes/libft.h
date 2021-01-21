@@ -6,13 +6,14 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:57:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/14 23:58:21 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 18:31:32 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "get_next_line.h"

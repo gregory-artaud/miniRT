@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_prog.c                                        :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/17 19:08:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/21 21:23:06 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/21 19:44:22 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_rt.h"
+#ifndef SCENE_H
+# define SCENE_H
 
-int	exit_prog(t_data *data)
+# include <stdlib.h>
+
+typedef struct	s_scene
 {
-	if (data)
-		free_data(data);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
+	int			r_w;
+	int			r_h;
+}				t_scene;
+t_scene			*init_scene(void);
+void			free_scene(t_scene *scene);
+#endif

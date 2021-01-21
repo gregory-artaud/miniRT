@@ -1,49 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   mini_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 22:06:30 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 21:23:19 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINI_RT_H
+# define MINI_RT_H
 
 # include "mlx.h"
 # include "libft.h"
 # include <X11/X.h>
+# include "scene.h"
 
 # define KEY_ESC 65307
-# define WIN_NAME "miniRT"
 
-typedef struct  s_vars {
-        void    *mlx;
-        void    *win;
-		int		win_w;
-		int		win_h;
-		int		save;
-}               t_vars;
+typedef struct	s_mlx
+{
+	void		*mlx;
+	void		*win;
+	int			save;
+}				t_mlx;
+typedef struct	s_data
+{
+	t_mlx		*mlx;
+	t_scene		*scene;
+}				t_data;
 
-/*
-** init.c
-*/
-t_vars	*init(void);
-void	set_hooks(t_vars *vars);
-/*
-** keyboard_hook.c
-*/
-int		key_pressed(int keycode, t_vars *vars);
-/*
-**
-*/
-int		exit_prog(int keycode, t_vars *vars);
-/*
-** render.c
-*/
-int		render(t_vars *vars);
+void			error(char *s);
+t_data			*init_data(void);
+void			free_data(t_data *data);
+void			set_hooks(t_data *vars);
+int				key_pressed(int keycode, t_data *data);
+int				exit_prog(t_data *data);
+int				render(t_data *data);
 
 #endif

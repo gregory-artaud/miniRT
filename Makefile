@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/17 22:08:20 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/21 18:54:35 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,17 +26,20 @@ DEPS_DIR	= includes
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
 					libft/libft.h \
 					mlx.h \
-					miniRT.h)
+					scene.h \
+					mini_rt.h)
 LIBFT		= libft.a
 LIBFT_DIR	= $(LIB_DIR)/libft
 MLX			= *.a
 SRC_DIR		= src/
-FILES		= 	miniRT.c \
+FILES		= 	mini_rt.c \
+				src/scene/scene.c \
 				src/exit_prog.c \
 				src/init.c \
 				src/keyboard_hook.c \
 				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
+NORME		= ~/.norminette/norminette.rb
 
 all: $(NAME)
 
@@ -64,5 +67,8 @@ fclean: clean
 	make -sC $(LIBFT_DIR) fclean
 
 re: fclean all
+
+norme:
+	$(NORME) mini_rt.c src/ includes/
 
 .PHONY: clean fclean all re

@@ -6,31 +6,31 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 22:13:26 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 18:56:51 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "mini_rt.h"
 
-int		draw_pixel(int x, int y, t_vars *vars)
+int		draw_pixel(int x, int y, t_data *data)
 {
 	(void)x;
 	(void)y;
-	(void)vars;
+	(void)data;
 	return (0);
 }
 
-int		render(t_vars *vars)
+int		render(t_data *data)
 {
 	int		x;
 	int		y;
 
 	x = -1;
-	while (++x < vars->win_w)
+	while (++x < data->scene->r_h)
 	{
 		y = -1;
-		while (++y < vars->win_h)
-			draw_pixel(x, y, vars);
+		while (++y < data->scene->r_w)
+			draw_pixel(x, y, data);
 	}
 	return (0);
 }

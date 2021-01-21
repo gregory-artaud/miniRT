@@ -6,42 +6,75 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/17 21:59:21 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/21 21:17:42 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "mini_rt.h"
 
-void	set_hooks(t_vars *vars)
+void	set_hooks(t_data *data)
 {
-	mlx_hook(vars->win, KeyPress, KeyPressMask, key_pressed, vars);
-	mlx_hook(vars->win, ClientMessage, ButtonReleaseMask, exit_prog, vars);
-	mlx_loop_hook(vars->mlx, render, vars);
+	mlx_hook(data->mlx->win, KeyPress, KeyPressMask, key_pressed, data);
+	mlx_hook(data->mlx->win, ClientMessage, ButtonReleaseMask, exit_prog, data);
+	//mlx_loop_hook(data->mlx, render, data);
 	return ;
 }
 
-t_vars	*init(void)
+void	free_mlx(t_mlx *mlx)
 {
-	t_vars	*vars;
+	if (!mlx)
+		return ;
+	if (mlx->win)
+		mlx_destroy_window(mlx->mlx, mlx->win);
+	if (mlx->mlx)
+	{
+		mlx_destroy_display(mlx->mlx);
+		free(mlx->mlx);
+	}
+	free(mlx);
+	return ;
+}
 
-	if (!(vars = (t_vars*) malloc(sizeof(t_vars))))
+void	*init_mlx(t_scene *scene)
+{
+	t_mlx	*mlx;
+
+	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))))
 		return (NULL);
-	if (!(vars->mlx = mlx_init()))
+	if (!(mlx->mlx = mlx_init()) ||
+		!(mlx->win = mlx_new_window(mlx->mlx, scene->r_w,
+									scene->r_h, "miniRT")))
 	{
-		mlx_destroy_display(vars->mlx);
-		free(vars->mlx);
-		free(vars);
+		free_mlx(mlx);
 		return (NULL);
 	}
-	mlx_get_screen_size(vars->mlx, &(vars->win_w), &(vars->win_h));
-	vars->win_w /= 2;
-	vars->win_h /= 2;
-	if (!(vars->win = mlx_new_window(vars->mlx, vars->win_w, vars->win_h, WIN_NAME)))
+	mlx->save = 0;
+	return (mlx);
+}
+
+void	free_data(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->scene)
+		free_scene(data->scene);
+	if (data->mlx)
+		free_mlx(data->mlx);
+	free(data);
+	return ;
+}
+
+t_data	*init_data(void)
+{
+	t_data	*data;
+
+	if (!(data = (t_data*)malloc(sizeof(t_data))))
+		return (NULL);
+	if (!(data->scene = init_scene()) ||
+		!(data->mlx = init_mlx(data->scene)))
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		free(vars->mlx);
-		free(vars);
+		free_data(data);
 		return (NULL);
 	}
-	return (vars);
+	return (data);
 }
