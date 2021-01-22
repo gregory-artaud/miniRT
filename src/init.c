@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 11:44:25 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 19:47:14 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ void	free_data(t_data *data)
 	return ;
 }
 
-t_data	*init_data(void)
+t_data	*init_data(char *file)
 {
 	t_data	*data;
 
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
 		return (NULL);
 	if (!(data->scene = init_scene()) ||
+		fill_scene(data->scene, file) ||
 		!(data->mlx = init_mlx(data->scene)))
 	{
 		free_data(data);

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/21 21:29:40 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 22:23:18 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ void	error(char *s)
 	exit(EXIT_FAILURE);
 }
 
-void	run(int save)
+void	run(int save, char *file)
 {
 	t_data	*data;
 
-	if (!(data = init_data()))
+	if (!(data = init_data(file)))
 		error("Error at initialization.\n");
 	data->mlx->save = save;
+	//print_scene(data->scene);
 	set_hooks(data);
 	mlx_loop(data->mlx->mlx);
 	free_data(data);
@@ -45,6 +46,6 @@ int		main(int argc, char **argv)
 			error("Second argument can only be '-save'.\n");
 	if (ft_memcmp(argv[1] + ft_strlen(argv[1]) - 3, ".rt", 4))
 		error("First argument must be a valid .rt file.\n");
-	run(save);
+	run(save, argv[1]);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/22 11:43:43 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/22 22:22:08 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ CFLAGS		= -Wall -Werror -Wextra -O3 \
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
 					libft/libft.h \
 					scene.h \
-					mini_rt.h)
+					mini_rt.h \
+					objects.h)
 DEPS		+= $(addprefix $(LIB_DIR)/, \
 					libft/libft.h \
 					mlx_linux/mlx.h)
@@ -40,6 +41,11 @@ DEPS		+= $(addprefix $(LIB_DIR)/, \
 MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= 	mini_rt.c \
+				src/objects/init_vect.c \
+				src/objects/init_sp.c \
+				src/objects/init_object.c \
+				src/objects/init_c.c \
+				src/objects/init_l.c \
 				src/scene/scene.c \
 				src/exit_prog.c \
 				src/init.c \

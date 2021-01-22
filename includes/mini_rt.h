@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 11:31:40 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 19:46:50 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "scene.h"
+# include "objects.h"
 
 # define KEY_ESC 65307
 
@@ -34,7 +35,7 @@ typedef struct	s_data
 }				t_data;
 
 void			error(char *s);
-t_data			*init_data(void);
+t_data			*init_data(char *file);
 void			free_data(t_data *data);
 void			set_hooks(t_data *vars);
 int				key_pressed(int keycode, t_data *data);

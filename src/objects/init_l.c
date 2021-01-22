@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   init_l.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 19:55:47 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/01/22 22:04:15 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/22 22:11:16 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "objects.h"
 
-# include <stdlib.h>
-# include "libft.h"
-# include "objects.h"
-
-typedef struct	s_scene
+t_light			*init_l(t_vect *pos, double lum, t_vect *color)
 {
-	int			r_w;
-	int			r_h;
-	t_list		*obj;
-}				t_scene;
-t_scene			*init_scene(void);
-int				fill_scene(t_scene *scene, char *file);
-void			free_scene(t_scene *scene);
-void			print_scene(t_scene *scene);
-#endif
+	t_light		*l;
+
+	if (!(l = (t_light *)malloc(sizeof(t_light))))
+		return (NULL);
+	l->pos = pos;
+	l->lum = lum;
+	l->color = color;
+	return (l);
+}
+
+void			free_l(t_light *l)
+{
+	free(l->pos);
+	free(l->color);
+	free(l);
+	return ;
+}
