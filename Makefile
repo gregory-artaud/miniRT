@@ -6,18 +6,21 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/21 21:31:56 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/22 11:23:19 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 OS			= linux
 NAME		= miniRT
+NORME		= ~/.norminette/norminette.rb
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -O3 -I $(DEPS_DIR)
 LIB_DIR	= lib
+LIBFT_DIR	= $(LIB_DIR)/libft
+LIBFT		= $(LIBFT_DIR)/libft.a
 ifeq ($(OS), linux)
-	LFLAGS		= -L$(LIB_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd
 	MLX_DIR		= $(LIB_DIR)/mlx_linux
+	LFLAGS		= -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd
 	NORME		= ~/.norminette/norminette.rb
 else
 	LFLAGS		= -L$(LIB_DIR) -lft -lmlx  -lm -framework OpenGL -framework AppKit
@@ -30,9 +33,7 @@ DEPS		= 	$(addprefix $(DEPS_DIR)/, \
 					mlx.h \
 					scene.h \
 					mini_rt.h)
-LIBFT		= libft.a
-LIBFT_DIR	= $(LIB_DIR)/libft
-MLX			= *.a
+MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= 	mini_rt.c \
 				src/scene/scene.c \
@@ -41,20 +42,17 @@ FILES		= 	mini_rt.c \
 				src/keyboard_hook.c \
 				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
-NORME		= ~/.norminette/norminette.rb
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) lib/lib*.a $(LFLAGS) -o $@
+	$(CC) $(CFLAGS) $? $(LFLAGS) -o $@
 
 $(MLX):
 	make -sC $(MLX_DIR)
-	@cp $(MLX_DIR)/$(MLX) $(LIB_DIR)
 
 $(LIBFT):
 	make -sC $(LIBFT_DIR)
-	@cp $(LIBFT_DIR)/$(LIBFT) $(LIB_DIR)
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
