@@ -6,15 +6,14 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/22 11:23:19 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/22 11:33:07 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 OS			= linux
 NAME		= miniRT
 NORME		= ~/.norminette/norminette.rb
-CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -O3 -I $(DEPS_DIR)
+DEPS_DIR	= includes
 LIB_DIR	= lib
 LIBFT_DIR	= $(LIB_DIR)/libft
 LIBFT		= $(LIBFT_DIR)/libft.a
@@ -27,12 +26,17 @@ else
 	MLX_DIR		=	$(LIB_DIR)/mlx_macos
 	NORME		= norminette
 endif
-DEPS_DIR	= includes
+CC			= gcc
+CFLAGS		= -Wall -Werror -Wextra -O3 \
+				-I $(DEPS_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
 					libft/libft.h \
-					mlx.h \
 					scene.h \
 					mini_rt.h)
+DEPS		+= $(addprefix $(LIB_DIR)/, \
+					libft/libft.h \
+					mlx_linux/mlx.h)
+
 MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= 	mini_rt.c \
@@ -69,6 +73,6 @@ fclean: clean
 re: fclean all
 
 norme:
-	$(NORME) mini_rt.c src/ includes/
+	$(NORME) mini_rt.c src/ 
 
 .PHONY: clean fclean all re

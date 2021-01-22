@@ -6,16 +6,17 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/21 21:23:19 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/22 11:31:40 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINI_RT_H
 # define MINI_RT_H
 
+# include <stdio.h>
+# include <X11/X.h>
 # include "mlx.h"
 # include "libft.h"
-# include <X11/X.h>
 # include "scene.h"
 
 # define KEY_ESC 65307
