@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/22 11:33:07 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/22 11:43:43 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,10 @@ FILES		= 	mini_rt.c \
 				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
 
-all: $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $? $(LFLAGS) -o $@
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $^ $(LIBFT) $(MLX) $(LFLAGS) -o $@
 
 $(MLX):
 	make -sC $(MLX_DIR)
@@ -73,6 +73,6 @@ fclean: clean
 re: fclean all
 
 norme:
-	$(NORME) mini_rt.c src/ 
+	$(NORME) mini_rt.c src/ includes/
 
 .PHONY: clean fclean all re
