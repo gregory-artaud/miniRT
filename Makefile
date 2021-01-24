@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/22 22:22:08 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/01/23 21:53:46 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ else
 endif
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -O3 \
-				-I $(DEPS_DIR) -I $(LIBFT_DIR) -I $(MLX_DIR)
+				-I ./$(DEPS_DIR) -I ./$(LIBFT_DIR) -I ./$(MLX_DIR)
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
 					libft/libft.h \
 					scene.h \
@@ -46,8 +46,14 @@ FILES		= 	mini_rt.c \
 				src/objects/init_object.c \
 				src/objects/init_c.c \
 				src/objects/init_l.c \
+				src/objects/init_ray.c \
 				src/scene/scene.c \
+				src/scene/scene_utils.c \
 				src/exit_prog.c \
+				src/parsing.c \
+				src/ray_tracing.c \
+				src/ray_tracing_utils.c \
+				src/print.c \
 				src/init.c \
 				src/keyboard_hook.c \
 				src/render.c

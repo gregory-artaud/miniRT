@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 19:47:14 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 21:56:26 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	set_hooks(t_data *data)
 {
 	mlx_hook(data->mlx->win, KeyPress, KeyPressMask, key_pressed, data);
 	mlx_hook(data->mlx->win, ClientMessage, ButtonReleaseMask, exit_prog, data);
-	mlx_loop_hook(data->mlx->mlx, render, data);
+	//mlx_loop_hook(data->mlx->mlx, render, data);
 	return ;
 }
 
@@ -57,7 +57,7 @@ void	free_data(t_data *data)
 	if (!data)
 		return ;
 	if (data->scene)
-		free_scene(data->scene);
+		free_scene(data->scene, free_object);
 	if (data->mlx)
 		free_mlx(data->mlx);
 	free(data);

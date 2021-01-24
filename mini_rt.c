@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 22:23:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/23 22:08:29 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	run(int save, char *file)
 	data->mlx->save = save;
 	//print_scene(data->scene);
 	set_hooks(data);
+	render(data);
 	mlx_loop(data->mlx->mlx);
 	free_data(data);
 	return ;

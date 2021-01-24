@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 11:46:50 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/01/24 01:42:22 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,36 @@ int		draw_pixel(int x, int y, t_data *data)
 	return (0);
 }
 
+
+
+int		intersect(t_ray *ray, t_list *obj)
+{
+	(void)ray;
+	(void)obj;
+	return (0);
+}
+
 int		render(t_data *data)
 {
 	int		x;
 	int		y;
+	t_ray	*r;
 
 	x = -1;
 	while (++x < data->scene->r_w)
 	{
 		y = -1;
 		while (++y < data->scene->r_h)
-			draw_pixel(x, y, data);
+		{
+			r = gen_ray(x, y, data);
+			if (r)
+			{
+				//printf("%d, %d : %lf, %lf, %lf\n", x, y, r->dir->x, r->dir->y, r->dir->z);
+				if (intersect(r, data->scene->obj))
+					mlx_pixel_put(data->mlx->mlx, data->mlx->win, x, y, 0xFFFFFFFF);
+				free_ray(r);
+			}
+		}
 	}
 	return (0);
 }

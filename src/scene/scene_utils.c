@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   scene_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/23 22:52:53 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/01/23 20:18:26 by gartaud           #+#    #+#             */
+/*   Updated: 2021/01/23 22:42:45 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include "scene.h"
 
-# include <stdlib.h>
-# include "objects.h"
-# include "libft.h"
-
-typedef struct	s_scene
+t_camera		*get_camera(t_scene *scene)
 {
-	int			r_w;
-	int			r_h;
-	t_camera	*current_cam;
-	t_list		*obj;
-}				t_scene;
-t_scene			*init_scene(void);
-void			free_scene(t_scene *scene, void (*del)(void *));
-void			print_scene(t_scene *scene);
-#endif
+	t_list	*node;
+	
+	print_scene(scene);
+	if (!scene || !scene->obj || !scene->obj->content)
+		return (NULL);
+	node = scene->obj;
+	while (node)
+	{
+		if (is_camera(node->content) && ((t_camera *)(node->content))->is_used)
+			return (node->content);
+		node = node->next;
+	}
+	return (NULL);
+}
