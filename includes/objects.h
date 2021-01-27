@@ -74,7 +74,7 @@ int				is_camera(t_object *obj);
 int				is_sphere(t_object *obj);
 t_vect			*dup_vect(t_vect *u);
 t_vect			*minus_vect(t_vect *u, t_vect *v);
-double			v_lenght(t_vect *u);
+double			v_length(t_vect *u);
 void			normalize(t_vect *u);
 double			v_dot(t_vect *u, t_vect *v);
 

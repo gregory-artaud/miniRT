@@ -25,6 +25,8 @@ t_ray	*init_ray(t_vect *pos, t_vect *dir)
 
 void	free_ray(t_ray *ray)
 {
+	if (!ray)
+		return ;
 	free(ray->pos);
 	free(ray->dir);
 	free(ray);

@@ -45,7 +45,7 @@ t_vect			*minus_vect(t_vect *u, t_vect *v)
 	return (w);
 }
 
-double			v_lenght(t_vect *u)
+double			v_length(t_vect *u)
 {
 	if (!u)
 		return (0);
@@ -58,7 +58,7 @@ void			normalize(t_vect *u)
 
 	if (!u)
 		return ;
-	norme = v_lenght(u);
+	norme = v_length(u);
 	u->x /= norme;
 	u->y /= norme;
 	u->z /= norme;
