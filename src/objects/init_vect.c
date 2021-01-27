@@ -45,15 +45,29 @@ t_vect			*minus_vect(t_vect *u, t_vect *v)
 	return (w);
 }
 
+double			v_lenght(t_vect *u)
+{
+	if (!u)
+		return (0);
+	return (sqrt((u->x * u->x) + (u->y * u->y) + (u->z * u->z)));
+}
+
 void			normalize(t_vect *u)
 {
 	double	norme;
 
 	if (!u)
 		return ;
-	norme = sqrt((u->x * u->x) + (u->y * u->y) + (u->z * u->z));
+	norme = v_lenght(u);
 	u->x /= norme;
 	u->y /= norme;
 	u->z /= norme;
 	return ;
+}
+
+double			v_dot(t_vect *u, t_vect *v)
+{
+	if (!u || !v)
+		return (0);
+	return (u->x * v->x + u->y * v->y + u->z * v->z);
 }

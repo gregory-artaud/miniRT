@@ -39,6 +39,7 @@ typedef struct	s_data
 }				t_data;
 
 void			print_c(t_camera *c);
+void			print_sp(t_sphere *sp);
 void			error(char *s);
 t_data			*init_data(char *file);
 void			free_data(t_data *data);

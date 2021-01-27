@@ -14,7 +14,7 @@
 
 void	error(char *s)
 {
-	printf(s);
+	printf("%s", s);
 	exit(EXIT_FAILURE);
 }
 

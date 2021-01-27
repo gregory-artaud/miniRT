@@ -21,13 +21,22 @@ int				fill_scene(t_scene *scene, char *file)
 	(void)file;
 	scene->r_w = 300;
 	scene->r_h = 300;
-	// sphere
+	// sphere 1
 	obj = init_object();
 	obj->id = ft_strdup("sp");
-	v1 = init_vect(0, 0, -50);
+	v1 = init_vect(0, 0, -2);
 	v2 = init_vect(255, 0, 0);
 	obj->obj = init_sp(v1, 1, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// sphere 2
+	/*
+	obj = init_object();
+	obj->id = ft_strdup("sp");
+	v1 = init_vect(1, 0, -2);
+	v2 = init_vect(255, 0, 0);
+	obj->obj = init_sp(v1, 0.5, v2);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	*/
 	// camera
 	obj = init_object();
 	obj->id = ft_strdup("c");
