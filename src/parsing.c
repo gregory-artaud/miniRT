@@ -19,7 +19,7 @@ int				fill_scene(t_scene *scene, char *file)
 	t_vect		*v2;
 
 	(void)file;
-	scene->r_w = 300;
+	scene->r_w = 500;
 	scene->r_h = 300;
 	// sphere 1
 	obj = init_object();

@@ -50,7 +50,7 @@ t_vect			*get_dir(t_scene *scene, t_camera *c, int x, int y);
 t_camera		*get_camera(t_scene *scene);
 int				exit_prog(t_data *data);
 double			deg2rad(double deg);
-t_ray			*gen_ray(int x, int y, t_data *data);
+t_ray			*gen_cam_ray(int x, int y, t_data *data);
 int				render(t_data *data);
 
 #endif

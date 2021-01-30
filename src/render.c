@@ -67,7 +67,7 @@ int		render(t_data *data)
 		y = -1;
 		while (++y < data->scene->r_h)
 		{
-			r = gen_ray(x, y, data);
+			r = gen_cam_ray(x, y, data);
 			if (r)
 			{
 				if (intersect(r, data->scene->obj))

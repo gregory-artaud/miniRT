@@ -34,7 +34,7 @@ t_vect	*get_dir(t_scene *scene, t_camera *c, int x, int y)
 	return (dir);
 }
 
-t_ray	*gen_ray(int x, int y, t_data *data)
+t_ray	*gen_cam_ray(int x, int y, t_data *data)
 {
 	t_vect		*pos;
 	t_vect		*dir;
