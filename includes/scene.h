@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/23 22:52:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 18:16:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ typedef struct	s_scene
 t_scene			*init_scene(void);
 void			free_scene(t_scene *scene, void (*del)(void *));
 void			print_scene(t_scene *scene);
+void			print_obj(void *ptr);
 #endif

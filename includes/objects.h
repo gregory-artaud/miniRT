@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/24 01:05:41 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 17:34:15 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,12 @@ void			free_object(void *ptr);
 int				is_camera(t_object *obj);
 int				is_sphere(t_object *obj);
 t_vect			*dup_vect(t_vect *u);
-t_vect			*minus_vect(t_vect *u, t_vect *v);
+t_vect			*v_minus(t_vect *u, t_vect *v);
 double			v_length(t_vect *u);
 void			normalize(t_vect *u);
 double			v_dot(t_vect *u, t_vect *v);
+t_vect			*v_mult(double k, t_vect *u);
+t_vect			*obj_get_color(t_object *obj);
+int				c_to_hex(t_vect *c);
 
 #endif
