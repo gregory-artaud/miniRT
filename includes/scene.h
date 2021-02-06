@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/02 18:16:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 18:05:03 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_scene
 	int			r_w;
 	int			r_h;
 	t_camera	*current_cam;
+	t_light		*ambiant;
 	t_list		*obj;
 }				t_scene;
 t_scene			*init_scene(void);

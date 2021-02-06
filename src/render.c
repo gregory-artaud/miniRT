@@ -6,90 +6,122 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/02 18:37:52 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/06 16:01:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-int		solve_quadratic(double a, double b, double c, double *sol)
+void	put_in_range(t_vect *u, double min, double max)
 {
-	double d;
-
-	d = b * b - 4 * a * c;
-	if (d < 0)
-		return (0);
-	*sol = (-b - sqrt(d)) / (2 * a);
-	return (1);
+	u->x = fmax(fmin(u->x, max), min);
+	u->y = fmax(fmin(u->y, max), min);
+	u->z = fmax(fmin(u->z, max), min);
+	return ;
 }
 
-t_vect	*get_intersection(t_ray *r, double b, double c)
+t_vect	*calc_diffuse(t_vect *c, t_vect *shad_ray, t_light *l, t_vect *normal)
 {
-	t_vect	*v;
-	double	t;
-
-	if (!solve_quadratic(1, b, c, &t))
-		return (NULL);
-	v = v_mult(t, r->dir);
-	normalize(v);
-	return (v);
-}
-
-t_vect	*intersect_sp(t_ray *ray, t_sphere *sp)
-{
-	double	b;
-	double	c;
-	double	r_pos_ln;
-	double	sp_pos_ln;
 	t_vect	*tmp;
+	t_vect	*res;
 
-	if (!ray || !sp)
-		return (0);
-	r_pos_ln = v_length(ray->pos);
-	sp_pos_ln = v_length(sp->pos);
-	tmp = v_minus(ray->pos, sp->pos);
-	b = 2 * v_dot(ray->dir, tmp);
-	c = r_pos_ln * r_pos_ln;
-	c += sp_pos_ln * sp_pos_ln;
-	c -= sp->diameter * sp->diameter / 4;
-	c -= 2 * v_dot(ray->pos, sp->pos);
+	tmp = v_mult(K_D * l->lum * v_dot(shad_ray, normal) / 255, l->color);
+	res = v_add(c, tmp);
+	free(c);
 	free(tmp);
-	return (get_intersection(ray, b, c));
+	return (res);
 }
 
-t_vect	*intersect(t_ray *ray, t_list *lst, t_object **obj)
+t_vect	*calc_specular(t_vect *v, t_vect *normal, t_light *l, t_vect *shad_ray)
 {
-	t_list		*node;
-	t_object	*tmp;
-	t_vect		*hit;
+	t_vect	*h;
+	t_vect	*res;
 
-	node = lst;
-	while (node && node->content)
-	{
-		tmp = (t_object *)(node->content);
-		if (!ft_memcmp(tmp->id, "sp", 3))
-			if ((hit = intersect_sp(ray, (t_sphere *)tmp->obj)))
-			{
-				*obj = tmp;
-				return (hit);
-			}
-		node = node->next;
-	}
+	h = v_bisect(shad_ray, v);
+	res = v_mult(K_D * l->lum * pow(v_dot(normal, h), N_S) / 255, l->color);
+	free(h);
+	return (res);
+}
+
+int		is_ray_blocked(t_vect *ray, t_list *lst)
+{
+	(void)ray;
+	(void)lst;
 	return (0);
 }
 
-t_vect	*trace(t_ray *r, t_list *lst)
+t_vect	*calc_light(t_vect *v, t_vect *hit, t_vect *normal, t_scene *scene)
+{
+	t_vect		*c;
+	t_list		*node;
+	t_object	*obj;
+	t_vect		*shad_ray;
+	t_vect		*tmp;
+
+	(void)v;
+	node = scene->obj;
+	c = v_mult(K_A * scene->ambiant->lum / 255, scene->ambiant->color);
+	while (node && node->content)
+	{
+		obj = (t_object *)node->content;
+		if (!ft_memcmp(obj->id, "l", 2))
+		{
+			shad_ray = v_minus(((t_light *)obj->obj)->pos, hit);
+			if (!is_ray_blocked(shad_ray, scene->obj))
+			{
+				c = calc_diffuse(c, shad_ray, (t_light *)obj->obj, normal);
+				tmp = calc_specular(v, normal, (t_light *)obj->obj, shad_ray);
+				v_fadd(c, tmp);
+			}
+		}
+		node = node->next;
+	}
+	return (c);
+}
+
+t_vect	*shade(t_ray *r, t_vect *hit, t_object *obj, t_scene *scene)
+{
+	t_vect	*normal;
+	t_vect	*c;
+	t_vect	*contrib;
+	t_vect	*tmp;
+	t_vect	*tmp2;
+
+	normal = get_normal(hit, obj);
+	tmp = v_mult(EPSILON, normal);
+	tmp2 = v_add(hit, tmp);
+	free(tmp);
+	free(hit);
+	hit = tmp2;
+	tmp = v_mult(-1, r->dir);
+	contrib = calc_light(tmp, hit, normal, scene);
+	free(tmp);
+	free(tmp2);
+	tmp = obj_get_color(obj);
+	//printf("contrib : %lf%%, %lf%%, %lf%%\n", contrib->x * 100,
+	//									contrib->y * 100,
+	//									contrib->z * 100);	
+	c = init_vect(tmp->x * contrib->x, tmp->y * contrib->y,
+					tmp->z * contrib->z);
+	free(normal);
+	free(contrib);
+	put_in_range(c, 0, 255);
+	return (c);
+}
+
+t_vect	*trace(t_ray *r, t_scene *scene)
 {
 	t_vect		*c;
 	t_vect		*hit;
 	t_object	*obj;
 
-	//c = init_vect(0, 0, 0);
-	hit = intersect(r, lst, &obj);
+	if (!r)
+		return (init_vect(0, 0, 0));
+	hit = intersect(r, scene->obj, &obj);
 	if (!hit)
 		return(init_vect(0, 0, 0));
-	c = dup_vect(obj_get_color(obj));
-	free(hit);
+	//c = obj_get_color(obj);
+	c = shade(r, hit, obj, scene);
 	return (c);
 }
 
@@ -97,11 +129,13 @@ int		render(t_data *data)
 {
 	int		x;
 	int		y;
+	double	progress;
 	t_ray	*r;
 	t_vect	*c;
 
 	if (!data)
 		return (EXIT_FAILURE);
+	progress = 0;
 	x = -1;
 	while (++x < data->scene->r_w)
 	{
@@ -109,13 +143,16 @@ int		render(t_data *data)
 		while (++y < data->scene->r_h)
 		{
 			r = gen_cam_ray(x, y, data);
-			if (!r)
-				return (EXIT_FAILURE);
-			c = trace(r, data->scene->obj);
+			c = trace(r, data->scene);
+			//if (c->x != 0.0 || c->y != 0 || c->z != 0)
+			//	printf("c : %lf, %lf, %lf\n", c->x, c->y, c->z);
 			mlx_pixel_put(data->mlx->mlx, data->mlx->win, x, y, c_to_hex(c));
-			free_ray(r);
 			free(c);
+			free_ray(r);
 		}
+		progress += 1.0 / (double)data->scene->r_w * 100;
+		if (SHOW_PROGRESS)
+			printf("%.1lf%%\n", progress);
 	}
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

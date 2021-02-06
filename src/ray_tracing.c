@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/02 18:36:16 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/02 18:58:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,25 @@ t_ray	*gen_cam_ray(int x, int y, t_data *data)
 		return (NULL);
 	}
 	return (init_ray(pos, dir));
+}
+
+t_vect	*intersect(t_ray *ray, t_list *lst, t_object **obj)
+{
+	t_list		*node;
+	t_object	*tmp;
+	t_vect		*hit;
+
+	node = lst;
+	while (node && node->content)
+	{
+		tmp = (t_object *)(node->content);
+		if (!ft_memcmp(tmp->id, "sp", 3))
+			if ((hit = intersect_sp(ray, (t_sphere *)tmp->obj)))
+			{
+				*obj = tmp;
+				return (hit);
+			}
+		node = node->next;
+	}
+	return (0);
 }

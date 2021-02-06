@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/02 18:11:35 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/05 18:31:11 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,24 @@ int		c_to_hex(t_vect *c)
 	hex *= 16 * 16;
 	hex += c->z;
 	return (hex);
+}
+
+int		solve_quadratic(double a, double b, double c, double *sol)
+{
+	double d;
+
+	d = b * b - 4 * a * c;
+	if (d < 0)
+		return (0);
+	*sol = (-b - sqrt(d)) / (2 * a);
+	return (1);
+}
+
+t_vect	*get_normal(t_vect *hit, t_object *obj)
+{
+	if (!obj)
+		return (NULL);
+	if (!ft_memcmp(obj->id, "sp", 3))
+		return (get_normal_sp(hit, (t_sphere *)obj->obj));
+	return (NULL);
 }

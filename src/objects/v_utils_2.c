@@ -1,25 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_vect.c                                        :+:      :+:    :+:   */
+/*   v_utils_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 18:38:33 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/05 20:03:38 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/02/06 15:46:26 by gartaud           #+#    #+#             */
+/*   Updated: 2021/02/06 15:49:31 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_vect			*init_vect(double x, double y, double z)
+t_vect			*v_add(t_vect *u, t_vect *v)
+{
+	return (init_vect(u->x + v->x,
+						u->y + v->y,
+						u->z + v->z));
+}
+
+void			v_fadd(t_vect *u, t_vect *v)
+{
+	u->x += v->x;
+	u->y += v->y;
+	u->z += v->z;
+	free(v);
+	return ;
+}
+
+t_vect			*dup_vect(t_vect *u)
 {
 	t_vect	*v;
 
-	if (!(v = (t_vect *)malloc(sizeof(t_vect))))
+	if (!u)
 		return (NULL);
-	v->x = x;
-	v->y = y;
-	v->z = z;
+	v = init_vect(u->x, u->y, u->z);
 	return (v);
+}
+
+t_vect			*v_bisect(t_vect *u, t_vect *v)
+{
+	t_vect	*res;
+
+	res = v_add(u, v);
+	normalize(res);
+	return (res);
 }
