@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/02 18:58:46 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 18:39:11 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "mini_rt.h"
 
-t_vect	*get_cam_dir(t_scene *scene, t_camera *c, int x, int y)
+t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 {
 	t_vect	*dir;
 	t_vect	*tmp;
@@ -35,7 +35,7 @@ t_vect	*get_cam_dir(t_scene *scene, t_camera *c, int x, int y)
 	return (dir);
 }
 
-t_ray	*gen_cam_ray(int x, int y, t_data *data)
+t_ray	*gen_primary_ray(int x, int y, t_data *data)
 {
 	t_vect		*pos;
 	t_vect		*dir;
@@ -44,7 +44,7 @@ t_ray	*gen_cam_ray(int x, int y, t_data *data)
 	if (!(cam = data->scene->current_cam) ||
 		!(pos = dup_vect(cam->pos)))
 		return (NULL);
-	if (!(dir = get_cam_dir(data->scene, cam, x, y)))
+	if (!(dir = primary_ray_dir(data->scene, cam, x, y)))
 	{
 		free(pos);
 		return (NULL);
@@ -52,23 +52,54 @@ t_ray	*gen_cam_ray(int x, int y, t_data *data)
 	return (init_ray(pos, dir));
 }
 
+t_ray	*gen_shadow_ray(t_vect *ori, t_vect *target)
+{
+	t_vect	*dir;
+	t_vect	*pos;
+
+	if (!ori || !target)
+		return (NULL);
+	dir = v_minus(target, ori);
+	normalize(dir);
+	pos = dup_vect(ori);
+	return (init_ray(pos, dir));
+}
+
+double	intersect_obj(t_ray *r, t_object *obj)
+{
+	if (!r || !obj)
+		return (INFINITY);
+	if (is_sphere(obj))
+		return (intersect_sp(r, (t_sphere *)obj->obj));
+	return (INFINITY);
+}
+
 t_vect	*intersect(t_ray *ray, t_list *lst, t_object **obj)
 {
+	double		t;
+	double		t_min;
 	t_list		*node;
 	t_object	*tmp;
-	t_vect		*hit;
 
+	*obj = NULL;
+	if (!ray)
+		return (NULL);
 	node = lst;
+	t_min = INFINITY;
+	t = INFINITY;
 	while (node && node->content)
 	{
-		tmp = (t_object *)(node->content);
-		if (!ft_memcmp(tmp->id, "sp", 3))
-			if ((hit = intersect_sp(ray, (t_sphere *)tmp->obj)))
-			{
-				*obj = tmp;
-				return (hit);
-			}
+		tmp = (t_object *)node->content;
+		if (ray)
+			t = intersect_obj(ray, tmp);
+		if (t < t_min)
+		{
+			t_min = t;
+			*obj = tmp;
+		}
 		node = node->next;
 	}
-	return (0);
+	if (!obj)
+		return (NULL);
+	return (v_mult(t_min, ray->dir));
 }

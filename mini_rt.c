@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/06 14:33:45 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:19:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	run(int save, char *file)
 	data->mlx->save = save;
 	//print_scene(data->scene);
 	set_hooks(data);
+	printf("Rendering...\n");
 	if (render(data))
 		error("Error during rendering.\n");
 	printf("Image rendered !\n");

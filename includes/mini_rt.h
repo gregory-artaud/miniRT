@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/06 16:00:54 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 20:48:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@
 #  define M_PI 3.14159265358979323846
 # endif
 # define KEY_ESC 65307
-# define SHOW_PROGRESS 0
-# define K_A 5
-# define K_D 1
-# define K_S 1
-# define N_S 1
+# define K_A 1
+# define K_D 2
+# define K_S 0.5
+# define N_S 50
 
 typedef struct	s_mlx
 {
@@ -55,7 +54,8 @@ t_vect			*get_dir(t_scene *scene, t_camera *c, int x, int y);
 t_camera		*get_camera(t_scene *scene);
 int				exit_prog(t_data *data);
 double			deg2rad(double deg);
-t_ray			*gen_cam_ray(int x, int y, t_data *data);
+t_ray			*gen_primary_ray(int x, int y, t_data *data);
+t_ray			*gen_shadow_ray(t_vect *pos, t_vect *target);
 int				render(t_data *data);
 t_vect			*intersect(t_ray *ray, t_list *lst, t_object **obj);
 

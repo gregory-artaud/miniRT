@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/06 15:49:59 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/09 19:38:17 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ FILES		= 	mini_rt.c \
 				src/objects/obj_utils.c \
 				src/objects/v_utils.c \
 				src/objects/v_utils_2.c \
+				src/objects/v_utils_3.c \
 				src/scene/scene.c \
 				src/scene/scene_utils.c \
 				src/exit_prog.c \
@@ -61,8 +62,19 @@ FILES		= 	mini_rt.c \
 				src/keyboard_hook.c \
 				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
+DEFAULT		= default.rt
+VFLAGS		= --leak-check=full --track-origins=yes
 
-all: $(LIBFT) $(MLX) $(NAME)
+all: clean $(LIBFT) $(MLX) $(NAME)
+
+run: all
+	./$(NAME) $(DEFAULT)
+
+ml: all
+	valgrind ./$(NAME) $(DEFAULT)
+
+mlf: all
+	valgrind $(VFLAGS) ./$(NAME) $(DEFAULT)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ $(LIBFT) $(MLX) $(LFLAGS) -o $@

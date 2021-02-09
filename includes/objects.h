@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/06 15:49:42 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 20:09:43 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void			free_l(t_light *l);
 void			free_object(void *ptr);
 int				is_camera(t_object *obj);
 int				is_sphere(t_object *obj);
+int				is_light(t_object *obj);
 t_vect			*dup_vect(t_vect *u);
 t_vect			*v_minus(t_vect *u, t_vect *v);
 double			v_length(t_vect *u);
@@ -83,10 +84,13 @@ t_vect			*v_mult(double k, t_vect *u);
 t_vect			*v_add(t_vect *u, t_vect *v);
 t_vect			*obj_get_color(t_object *obj);
 int				c_to_hex(t_vect *c);
-t_vect			*intersect_sp(t_ray *ray, t_sphere *sp);
+double			intersect_sp(t_ray *ray, t_sphere *sp);
 int				solve_quadratic(double a, double b, double c, double *sol);
-t_vect			*get_normal(t_vect *hit, t_object *obj);
-t_vect			*get_normal_sp(t_vect *hit, t_sphere *sp);
+t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj);
+t_vect			*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp);
 void			v_fadd(t_vect *u, t_vect *v);
 t_vect			*v_bisect(t_vect *u, t_vect *v);
+double			v_cmp(t_vect *u, t_vect *v);
+t_vect			*v_vmult(t_vect *u, t_vect *v);
+void			translate(t_vect *u, double k, t_vect *v);
 #endif

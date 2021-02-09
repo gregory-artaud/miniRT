@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 22:12:41 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:31:44 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void		free_object(void *ptr)
 	obj = (t_object *)ptr;
 	if (!obj)
 		return ;
-	if (!ft_strncmp(obj->id, "sp", 2))
+	if (is_sphere(obj))
 		free_sp(obj->obj);
-	else if (!ft_strncmp(obj->id, "c", 1))
+	else if (is_camera(obj))
 		free_c(obj->obj);
-	else if (!ft_strncmp(obj->id, "l", 1))
+	else if (is_light(obj))
 		free_l(obj->obj);
 	free(obj->id);
 	free(obj);

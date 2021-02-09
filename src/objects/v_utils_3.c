@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_c.c                                           :+:      :+:    :+:   */
+/*   v_utils_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 19:20:31 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 15:23:50 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/02/09 19:36:08 by gartaud           #+#    #+#             */
+/*   Updated: 2021/02/09 20:08:55 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_camera		*init_c(t_vect *pos, t_vect *ori, double fov)
+t_vect	*v_vmult(t_vect *u, t_vect *v)
 {
-	t_camera	*c;
+	t_vect	*w;
 
-	if (!(c = (t_camera *)malloc(sizeof(t_camera))))
+	if (!u || !v)
 		return (NULL);
-	c->pos = pos;
-	c->ori = ori;
-	c->fov = fov;
-	c->is_used = 0;
-	return (c);
+	w = dup_vect(u);
+	w->x *= v->x;
+	w->y *= v->y;
+	w->z *= v->z;
+	return (w);
 }
 
-void			free_c(t_camera *c)
+void	translate(t_vect *u, double k, t_vect *v)
 {
-	free(c->pos);
-	free(c->ori);
-	free(c);
+	u->x += k * v->x;
+	u->y += k * v->y;
+	u->z += k * v->z;
 	return ;
-}
-
-int				is_camera(t_object *obj)
-{
-	if (!obj)
-		return (0);
-	return (!ft_memcmp(obj->id, "c", 2));
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:04:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/22 22:11:16 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:25:26 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ void			free_l(t_light *l)
 	free(l->color);
 	free(l);
 	return ;
+}
+
+int				is_light(t_object *obj)
+{
+	return (!ft_memcmp(obj->id, "l", 2));
 }

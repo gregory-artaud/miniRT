@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/06 15:56:26 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 21:00:51 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,30 @@ int				fill_scene(t_scene *scene, char *file)
 	// sphere 1
 	obj = init_object();
 	obj->id = ft_strdup("sp");
-	v1 = init_vect(0, 0, -3);
+	v1 = init_vect(0, -1, -2);
 	v2 = init_vect(255, 0, 0);
-	obj->obj = init_sp(v1, 1, v2);
+	obj->obj = init_sp(v1, 1.7, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 2
 	obj = init_object();
 	obj->id = ft_strdup("sp");
 	v1 = init_vect(1, 0, -2);
 	v2 = init_vect(0, 0, 255);
-	obj->obj = init_sp(v1, 0.5, v2);
+	obj->obj = init_sp(v1, 1.5, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 3
 	obj = init_object();
 	obj->id = ft_strdup("sp");
-	v1 = init_vect(-1, 0, -2);
-	v2 = init_vect(0, 255, 0);
+	v1 = init_vect(-1.5, 0, -2);
+	v2 = init_vect(200, 40, 220);
 	obj->obj = init_sp(v1, 0.6, v2);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// sphere 4
+	obj = init_object();
+	obj->id = ft_strdup("sp");
+	v1 = init_vect(-1, 0, -1.6);
+	v2 = init_vect(0, 255, 0);
+	obj->obj = init_sp(v1, 0.1, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// camera
 	obj = init_object();
@@ -55,14 +62,14 @@ int				fill_scene(t_scene *scene, char *file)
 	// light
 	obj = init_object();
 	obj->id = ft_strdup("l");
-	v1 = init_vect(0, 3, -2);
+	v1 = init_vect(0, 0, -1);
 	v2 = init_vect(255, 255, 255);
-	obj->obj = init_l(v1, 0.6, v2);
+	obj->obj = init_l(v1, 0.9, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// ambiant light
 	v1 = init_vect(0, 0, 0);
 	v2 = init_vect(255, 255, 255);
-	l = init_l(v1, 0.2, v2);
+	l = init_l(v1, 0.3, v2);
 	scene->ambiant = l;
 	return (EXIT_SUCCESS);
 }

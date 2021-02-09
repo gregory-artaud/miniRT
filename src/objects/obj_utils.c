@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/05 18:31:11 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:39:54 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 t_vect	*obj_get_color(t_object *obj)
 {
+	t_vect	*tmp;
+
+	tmp = NULL;
 	if (!obj)
 		return (NULL);
-	if (!ft_memcmp(obj->id, "sp", 3))
-		return (((t_sphere *)obj->obj)->color);
-	return (NULL);
+	if (is_sphere(obj))
+		tmp = ((t_sphere *)obj->obj)->color;
+	return (dup_vect(tmp));
 }
 
 int		c_to_hex(t_vect *c)
@@ -47,14 +50,18 @@ int		solve_quadratic(double a, double b, double c, double *sol)
 	if (d < 0)
 		return (0);
 	*sol = (-b - sqrt(d)) / (2 * a);
+	if (*sol <= 0)
+		*sol = (-b + sqrt(d)) / (2 * a);
+	if (*sol <= 0)
+		return (0);
 	return (1);
 }
 
-t_vect	*get_normal(t_vect *hit, t_object *obj)
+t_vect	*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 {
 	if (!obj)
 		return (NULL);
-	if (!ft_memcmp(obj->id, "sp", 3))
-		return (get_normal_sp(hit, (t_sphere *)obj->obj));
+	if (is_sphere(obj))
+		return (get_normal_sp(ray, hit, (t_sphere *)obj->obj));
 	return (NULL);
 }
