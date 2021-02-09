@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/09 19:38:17 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/09 23:12:21 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,11 @@ FILES		= 	mini_rt.c \
 				src/objects/init_l.c \
 				src/objects/init_ray.c \
 				src/objects/obj_utils.c \
+				src/objects/obj_utils_2.c \
 				src/objects/v_utils.c \
 				src/objects/v_utils_2.c \
 				src/objects/v_utils_3.c \
+				src/objects/l_utils.c \
 				src/scene/scene.c \
 				src/scene/scene_utils.c \
 				src/exit_prog.c \

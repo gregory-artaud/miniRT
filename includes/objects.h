@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 20:09:43 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 23:15:19 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include "libft.h"
 
 # define EPSILON 1e-5
+# define K_A 0.3
+# define K_D 1.6
+# define K_S 2.0
+# define N_S 25
 
 typedef struct	s_object
 {
@@ -93,4 +97,7 @@ t_vect			*v_bisect(t_vect *u, t_vect *v);
 double			v_cmp(t_vect *u, t_vect *v);
 t_vect			*v_vmult(t_vect *u, t_vect *v);
 void			translate(t_vect *u, double k, t_vect *v);
+void			put_in_range(t_vect *u, double min, double max);
+t_vect			*intersect(t_ray *ray, t_list *lst, t_object **obj);
+int				is_ray_blocked(t_ray *ray, t_list *lst);
 #endif
