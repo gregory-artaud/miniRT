@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 18:39:11 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 02:52:32 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 	tmp->y = fov * ((double)y * (-2.0 / h) + (1.0 + h) / h);
 	tmp->z = -1;
 	dir = v_minus(tmp, c->pos);
-	// cam2world matrix multiplication
 	normalize(dir);
+	//printf("avant dir: %lf, %lf, %lf\n", dir->x, dir->y, dir->z);
+	apply_matrix(dir, c->matrix);
+	//printf("apres dir: %lf, %lf, %lf\n\n", dir->x, dir->y, dir->z);
 	free(tmp);
 	return (dir);
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 23:01:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 03:04:14 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int				fill_scene(t_scene *scene, char *file)
 	// sphere 1
 	obj = init_object();
 	obj->id = ft_strdup("sp");
-	v1 = init_vect(2, -1, -3);
-	v2 = init_vect(255, 1, 1);
-	obj->obj = init_sp(v1, 1.3, v2);
+	v1 = init_vect(1, 0, -2);
+	v2 = init_vect(255, 0, 0);
+	obj->obj = init_sp(v1, 1, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 2
 	obj = init_object();
 	obj->id = ft_strdup("sp");
-	v1 = init_vect(1, 0, -2);
-	v2 = init_vect(1, 1, 255);
+	v1 = init_vect(0, 1, -2);
+	v2 = init_vect(0, 0, 255);
 	obj->obj = init_sp(v1, 0.7, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 3
@@ -46,16 +46,16 @@ int				fill_scene(t_scene *scene, char *file)
 	// sphere 4
 	obj = init_object();
 	obj->id = ft_strdup("sp");
-	v1 = init_vect(0.3, 0.05, -1.3);
+	v1 = init_vect(0, 0, -1.5);
 	v2 = init_vect(0, 255, 0);
-	obj->obj = init_sp(v1, 0.05, v2);
+	obj->obj = init_sp(v1, 0.1, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// camera
 	obj = init_object();
 	obj->id = ft_strdup("c");
 	v1 = init_vect(0, 0, 0);
 	v2 = init_vect(0, 0, 0);
-	obj->obj = init_c(v1, v2, 75);
+	obj->obj = init_c(v1, v2, 90);
 	((t_camera *)obj->obj)->is_used = 1;
 	scene->current_cam = obj->obj;
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 23:15:19 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 01:21:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_camera
 {
 	t_vect		*pos;
 	t_vect		*ori;
+	double		matrix[3][3];
 	double		fov;
 	int			is_used;
 }				t_camera;
@@ -100,4 +101,7 @@ void			translate(t_vect *u, double k, t_vect *v);
 void			put_in_range(t_vect *u, double min, double max);
 t_vect			*intersect(t_ray *ray, t_list *lst, t_object **obj);
 int				is_ray_blocked(t_ray *ray, t_list *lst);
+void			v_cos(t_vect *u);
+void			v_sin(t_vect *u);
+void			apply_matrix(t_vect *u, double m[3][3]);
 #endif

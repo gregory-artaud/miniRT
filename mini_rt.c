@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 16:19:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 02:39:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ void	error(char *s)
 	exit(EXIT_FAILURE);
 }
 
+void	print_matrix(double m[3][3])
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < 3)
+	{
+		printf("[ ");
+		j = -1;
+		while (++j < 3)
+			printf("%3.1lf ", m[i][j]);
+		printf("]\n");
+	}
+}
+
 void	run(int save, char *file)
 {
 	t_data	*data;
@@ -26,6 +42,7 @@ void	run(int save, char *file)
 		error("Error at initialization.\n");
 	data->mlx->save = save;
 	//print_scene(data->scene);
+	print_matrix(data->scene->current_cam->matrix);
 	set_hooks(data);
 	printf("Rendering...\n");
 	if (render(data))
