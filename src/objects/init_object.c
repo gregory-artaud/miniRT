@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 15:31:44 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 17:16:51 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void		free_object(void *ptr)
 		free_c(obj->obj);
 	else if (is_light(obj))
 		free_l(obj->obj);
+	else if (is_plan(obj))
+		free_pl(obj->obj);
 	free(obj->id);
 	free(obj);
 	return ;

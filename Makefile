@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/09 23:12:21 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/15 17:08:54 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,14 +41,15 @@ DEPS		+= $(addprefix $(LIB_DIR)/, \
 MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= 	mini_rt.c \
+				src/objects/matrix.c \
 				src/objects/init_vect.c \
 				src/objects/init_sp.c \
+				src/objects/init_pl.c \
 				src/objects/init_object.c \
 				src/objects/init_c.c \
 				src/objects/init_l.c \
 				src/objects/init_ray.c \
 				src/objects/obj_utils.c \
-				src/objects/obj_utils_2.c \
 				src/objects/v_utils.c \
 				src/objects/v_utils_2.c \
 				src/objects/v_utils_3.c \

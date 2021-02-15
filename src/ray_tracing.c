@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 15:53:25 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 16:58:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ double	intersect_obj(t_ray *r, t_object *obj)
 		return (INFINITY);
 	if (is_sphere(obj))
 		return (intersect_sp(r, (t_sphere *)obj->obj));
+	if (is_plan(obj))
+		return (intersect_pl(r, (t_plan *)obj->obj));
 	return (INFINITY);
 }
 

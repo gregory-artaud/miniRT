@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 20:03:17 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/06 15:46:47 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 18:12:38 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			normalize(t_vect *u)
 double			v_dot(t_vect *u, t_vect *v)
 {
 	if (!u || !v)
-		return (0);
+		return (-1);
 	return (u->x * v->x + u->y * v->y + u->z * v->z);
 }
 

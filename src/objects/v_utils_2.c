@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 15:46:26 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 18:08:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 17:44:51 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ void			v_fadd(t_vect *u, t_vect *v)
 {
 	if (!v)
 		return ;
-	u->x += v->x;
-	u->y += v->y;
-	u->z += v->z;
+	if (u)
+	{
+		u->x += v->x;
+		u->y += v->y;
+		u->z += v->z;
+	}
 	free(v);
 	return ;
 }

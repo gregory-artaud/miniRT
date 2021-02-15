@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 18:15:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/23 20:23:04 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 18:26:57 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,21 @@ void	free_ray(t_ray *ray)
 	free(ray->dir);
 	free(ray);
 	return ;
+}
+
+int		is_ray_blocked(t_ray *ray, t_list *lst, t_light *l)
+{
+	double		to_light;
+	double		t;
+	t_vect		*tmp;
+	t_object	*obj;
+
+	tmp = v_minus(ray->pos, l->pos);
+	to_light = v_length(tmp);
+	free(tmp);
+	obj = NULL;
+	t = intersect(ray, lst, &obj);
+	if (!obj)
+		return (0);
+	return (t < to_light);
 }

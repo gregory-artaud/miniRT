@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 23:05:40 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 18:00:48 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_vect	*obj_get_color(t_object *obj)
 		return (NULL);
 	if (is_sphere(obj))
 		tmp = ((t_sphere *)obj->obj)->color;
+	if (is_plan(obj))
+		tmp = ((t_plan *)obj->obj)->color;
 	return (dup_vect(tmp));
 }
 
@@ -63,6 +65,8 @@ t_vect	*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 		return (NULL);
 	if (is_sphere(obj))
 		return (get_normal_sp(ray, hit, (t_sphere *)obj->obj));
+	if (is_plan(obj))
+		return (get_normal_pl(ray, hit, (t_plan *)obj->obj));
 	return (NULL);
 }
 
