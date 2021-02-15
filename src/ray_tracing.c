@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/10 02:52:32 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 15:53:25 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 				((double)x * (2.0 / w) + ((1.0 - 1.0 * w) / w));
 	tmp->y = fov * ((double)y * (-2.0 / h) + (1.0 + h) / h);
 	tmp->z = -1;
-	dir = v_minus(tmp, c->pos);
-	normalize(dir);
+	dir = dup_vect(tmp);
 	//printf("avant dir: %lf, %lf, %lf\n", dir->x, dir->y, dir->z);
 	apply_matrix(dir, c->matrix);
 	//printf("apres dir: %lf, %lf, %lf\n\n", dir->x, dir->y, dir->z);
+	normalize(dir);
 	free(tmp);
 	return (dir);
 }
@@ -76,7 +76,7 @@ double	intersect_obj(t_ray *r, t_object *obj)
 	return (INFINITY);
 }
 
-t_vect	*intersect(t_ray *ray, t_list *lst, t_object **obj)
+double	intersect(t_ray *ray, t_list *lst, t_object **obj)
 {
 	double		t;
 	double		t_min;
@@ -85,7 +85,7 @@ t_vect	*intersect(t_ray *ray, t_list *lst, t_object **obj)
 
 	*obj = NULL;
 	if (!ray)
-		return (NULL);
+		return (INFINITY);
 	node = lst;
 	t_min = INFINITY;
 	t = INFINITY;
@@ -102,6 +102,6 @@ t_vect	*intersect(t_ray *ray, t_list *lst, t_object **obj)
 		node = node->next;
 	}
 	if (!obj)
-		return (NULL);
-	return (v_mult(t_min, ray->dir));
+		return (INFINITY);
+	return (t_min);
 }

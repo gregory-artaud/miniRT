@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/10 01:21:08 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 15:27:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ double			v_cmp(t_vect *u, t_vect *v);
 t_vect			*v_vmult(t_vect *u, t_vect *v);
 void			translate(t_vect *u, double k, t_vect *v);
 void			put_in_range(t_vect *u, double min, double max);
-t_vect			*intersect(t_ray *ray, t_list *lst, t_object **obj);
-int				is_ray_blocked(t_ray *ray, t_list *lst);
+double			intersect(t_ray *ray, t_list *lst, t_object **obj);
+int				is_ray_blocked(t_ray *ray, t_list *lst, t_light *l);
 void			v_cos(t_vect *u);
 void			v_sin(t_vect *u);
 void			apply_matrix(t_vect *u, double m[3][3]);

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 19:36:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/10 01:30:30 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 15:52:15 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,12 @@ void	v_sin(t_vect *u)
 
 void	apply_matrix(t_vect *u, double m[3][3])
 {
-	u->x = m[0][0] * u->x + m[0][1] * u->y + m[0][2] * u->z;
-	u->y = m[1][0] * u->x + m[1][1] * u->y + m[1][2] * u->z;
-	u->z = m[2][0] * u->x + m[2][1] * u->y + m[2][2] * u->z;
+	t_vect	*tmp;
+
+	tmp = dup_vect(u);
+	u->x = m[0][0] * tmp->x + m[0][1] * tmp->y + m[0][2] * tmp->z;
+	u->y = m[1][0] * tmp->x + m[1][1] * tmp->y + m[1][2] * tmp->z;
+	u->z = m[2][0] * tmp->x + m[2][1] * tmp->y + m[2][2] * tmp->z;
+	free(tmp);
 	return ;
 }
