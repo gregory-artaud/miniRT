@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 18:42:13 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 20:13:01 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int				fill_scene(t_scene *scene, char *file)
 	v3 = init_vect(0, 255, 128);
 	obj->obj = init_pl(v1, v2, v3);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
-	// camera
+	// camera 1
 	obj = init_object();
 	obj->id = ft_strdup("c");
 	v1 = init_vect(1, 1, 0);
@@ -92,6 +92,14 @@ int				fill_scene(t_scene *scene, char *file)
 	obj->obj = init_c(v1, v2, 90);
 	((t_camera *)obj->obj)->is_used = 1;
 	scene->current_cam = obj->obj;
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// camera 1
+	obj = init_object();
+	obj->id = ft_strdup("c");
+	v1 = init_vect(0, 0.2, 0);
+	v2 = init_vect(0, 0, 0);
+	obj->obj = init_c(v1, v2, 90);
+	((t_camera *)obj->obj)->is_used = 0;
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// light 1
 	obj = init_object();
@@ -117,7 +125,7 @@ int				fill_scene(t_scene *scene, char *file)
 	// ambiant light
 	v1 = init_vect(0, 0, 0);
 	v2 = init_vect(255, 255, 255);
-	l = init_l(v1, 0.5, v2);
+	l = init_l(v1, 0.4, v2);
 	scene->ambiant = l;
 	return (EXIT_SUCCESS);
 }

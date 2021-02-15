@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 23:15:14 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 20:05:14 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define M_PI 3.14159265358979323846
 # endif
 # define KEY_ESC 65307
+# define KEY_NEXT_CAM 99
 
 typedef struct	s_mlx
 {
@@ -53,6 +54,7 @@ double			deg2rad(double deg);
 t_ray			*gen_primary_ray(int x, int y, t_data *data);
 t_ray			*gen_shadow_ray(t_vect *pos, t_vect *target);
 int				render(t_data *data);
+void			next_cam(t_data *data);
 t_vect			*parse_lights(t_ray *ray, t_vect *hit, t_vect *normal,
 								t_scene *scene);
 

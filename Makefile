@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/15 17:08:54 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/15 20:05:39 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ FILES		= 	mini_rt.c \
 				src/print.c \
 				src/init.c \
 				src/keyboard_hook.c \
+				src/next_cam.c \
 				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
 DEFAULT		= default.rt
