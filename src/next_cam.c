@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:40:30 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 20:11:25 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 12:07:39 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ t_camera	*get_next_cam(t_list *lst, t_camera *current)
 	obj = NULL;
 	node = go_to_current(lst, current);
 	if (!node)
-		return (current);
+		return (NULL);
 	node = node->next;
 	while (node && node->content)
 	{
-		obj = (t_object *)obj->obj;
+		obj = (t_object *)node->content;
 		if (is_camera(obj) && !((t_camera *)obj->obj)->is_used)
 			return ((t_camera *)obj->obj);
 		node = node->next;
@@ -48,12 +48,12 @@ t_camera	*get_next_cam(t_list *lst, t_camera *current)
 	node = lst;
 	while (node && node->content)
 	{
-		obj = (t_object *)obj->obj;
+		obj = (t_object *)node->content;
 		if (is_camera(obj) && !((t_camera *)obj->obj)->is_used)
 			return ((t_camera *)obj->obj);
 		node = node->next;
 	}
-	return (current);
+	return (NULL);
 }
 
 void		next_cam(t_data *data)
@@ -61,12 +61,17 @@ void		next_cam(t_data *data)
 	t_camera	*cam;
 
 	cam = get_next_cam(data->scene->obj, data->scene->current_cam);
-	if (cam == data->scene->current_cam)
+	if (!cam || cam == data->scene->current_cam)
+	{
+		printf("Next camera not found !\n");
 		return ;
+	}
 	data->scene->current_cam->is_used = 0;
 	cam->is_used = 1;
 	data->scene->current_cam = cam;
+	printf("Camera switched !\nRendering...\n");
 	if (render(data))
 		error("Error during rendering.\n");
+	printf("Image rendered !\n");
 	return ;
 }

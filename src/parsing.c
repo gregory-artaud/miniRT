@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 20:13:01 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 12:08:26 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,22 @@ int				fill_scene(t_scene *scene, char *file)
 	v1 = init_vect(1, 1, 0);
 	v2 = init_vect(-0.15, 0.2, 0);
 	obj->obj = init_c(v1, v2, 90);
-	((t_camera *)obj->obj)->is_used = 1;
-	scene->current_cam = obj->obj;
+	((t_camera *)obj->obj)->is_used = 0;
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
-	// camera 1
+	// camera 2
 	obj = init_object();
 	obj->id = ft_strdup("c");
 	v1 = init_vect(0, 0.2, 0);
 	v2 = init_vect(0, 0, 0);
+	obj->obj = init_c(v1, v2, 90);
+	((t_camera *)obj->obj)->is_used = 1;
+	scene->current_cam = obj->obj;
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// camera 3
+	obj = init_object();
+	obj->id = ft_strdup("c");
+	v1 = init_vect(-1, 1, 0);
+	v2 = init_vect(-0.15, -0.2, 0);
 	obj->obj = init_c(v1, v2, 90);
 	((t_camera *)obj->obj)->is_used = 0;
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
