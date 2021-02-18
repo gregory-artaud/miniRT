@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 17:17:33 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 13:16:25 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 # define EPSILON 1e-6
 # define K_A 0.3
-# define K_D 1.6
-# define K_S 2.0
+# define K_D 1.5
+# define K_S 0.5
 # define N_S 25
 
 typedef struct	s_object

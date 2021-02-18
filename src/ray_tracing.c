@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 16:58:08 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 13:04:50 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@ t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 
 	h = (double)scene->r_h;
 	w = (double)scene->r_w;
-	fov = tan(deg2rad(c->fov) / 2);
+	fov = tan(deg2rad(c->fov) / 2.0);
 	tmp = init_vect(0, 0, 0);
 	tmp->x = fov * (w / h) *
 				((double)x * (2.0 / w) + ((1.0 - 1.0 * w) / w));
 	tmp->y = fov * ((double)y * (-2.0 / h) + (1.0 + h) / h);
 	tmp->z = -1;
 	dir = dup_vect(tmp);
-	//printf("avant dir: %lf, %lf, %lf\n", dir->x, dir->y, dir->z);
 	apply_matrix(dir, c->matrix);
-	//printf("apres dir: %lf, %lf, %lf\n\n", dir->x, dir->y, dir->z);
 	normalize(dir);
 	free(tmp);
 	return (dir);

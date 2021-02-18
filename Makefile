@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/15 20:05:39 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/17 12:30:40 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,15 +69,15 @@ OBJ 		= $(FILES:%.c=%.o)
 DEFAULT		= default.rt
 VFLAGS		= --leak-check=full --track-origins=yes
 
-all: clean $(LIBFT) $(MLX) $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
 
-run: all
+run: clean all
 	./$(NAME) $(DEFAULT)
 
-ml: all
+ml: clean all
 	valgrind ./$(NAME) $(DEFAULT)
 
-mlf: all
+mlf: clean all
 	valgrind $(VFLAGS) ./$(NAME) $(DEFAULT)
 
 $(NAME): $(OBJ)
