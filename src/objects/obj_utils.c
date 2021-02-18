@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 18:00:48 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 14:15:29 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ t_vect	*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 
 void	put_in_range(t_vect *u, double min, double max)
 {
-	u->x = fmax(fmin(u->x, max), min);
-	u->y = fmax(fmin(u->y, max), min);
-	u->z = fmax(fmin(u->z, max), min);
+	u->x = floor(fmax(fmin(u->x, max), min));
+	u->y = floor(fmax(fmin(u->y, max), min));
+	u->z = floor(fmax(fmin(u->z, max), min));
 	return ;
 }

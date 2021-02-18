@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 20:05:14 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 12:10:59 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft.h"
 # include "objects.h"
 # include "scene.h"
+# include "bmp.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
@@ -37,12 +38,13 @@ typedef struct	s_data
 {
 	t_mlx		*mlx;
 	t_scene		*scene;
+	t_bmp		*bmp;
 }				t_data;
 
 void			print_c(t_camera *c);
 void			print_sp(t_sphere *sp);
 void			error(char *s);
-t_data			*init_data(char *file);
+t_data			*init_data(char *file, int save);
 void			free_data(t_data *data);
 void			set_hooks(t_data *vars);
 int				key_pressed(int keycode, t_data *data);

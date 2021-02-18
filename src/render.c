@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 15:22:35 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 14:52:34 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ void	draw(t_data *data, int x, int y, t_vect *c)
 {
 	if (!c)
 		return ;
-	mlx_pixel_put(data->mlx->mlx, data->mlx->win, x, y, c_to_hex(c));
+	if (!data->mlx->save)
+		mlx_pixel_put(data->mlx->mlx, data->mlx->win, x, y, c_to_hex(c));
+	else
+		bmp_pixel_put(data->bmp, c_to_hex(c));
 	free(c);
 	return ;
 }
@@ -93,18 +96,18 @@ int		render(t_data *data)
 
 	if (!data)
 		return (EXIT_FAILURE);
-	x = -1;
-	while (++x < data->scene->r_w)
+	y = -1;
+	while (++y < data->scene->r_h)
 	{
-		y = -1;
-		while (++y < data->scene->r_h)
+		x = -1;
+		while (++x < data->scene->r_w)
 		{
 			r = gen_primary_ray(x, y, data);
 			c = trace(r, data->scene);
 			draw(data, x, y, c);
 			free_ray(r);
 		}
-		print_progress(x, data->scene->r_w);
+		print_progress(y, data->scene->r_h);
 	}
 	return (EXIT_SUCCESS);
 }

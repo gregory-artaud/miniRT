@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/17 12:30:40 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/18 13:30:46 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -O3 \
 				-I ./$(DEPS_DIR) -I ./$(LIBFT_DIR) -I ./$(MLX_DIR)
 DEPS		= 	$(addprefix $(DEPS_DIR)/, \
-					libft/libft.h \
+					bmp.h \
 					scene.h \
 					mini_rt.h \
 					objects.h)
@@ -41,6 +41,10 @@ DEPS		+= $(addprefix $(LIB_DIR)/, \
 MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= 	mini_rt.c \
+				src/bmp/init_bmp.c \
+				src/bmp/init_bmp_utils.c \
+				src/bmp/bmp_pixel_put.c \
+				src/bmp/bmp_export.c \
 				src/objects/matrix.c \
 				src/objects/init_vect.c \
 				src/objects/init_sp.c \
@@ -67,12 +71,19 @@ FILES		= 	mini_rt.c \
 				src/render.c
 OBJ 		= $(FILES:%.c=%.o)
 DEFAULT		= default.rt
+IMG			= image.bmp
 VFLAGS		= --leak-check=full --track-origins=yes
 
 all: $(LIBFT) $(MLX) $(NAME)
 
 run: clean all
 	./$(NAME) $(DEFAULT)
+
+save: clean all
+	./$(NAME) $(DEFAULT) --save
+
+mlfs: clean all
+	valgrind $(VFLAGS) ./$(NAME) $(DEFAULT) --save
 
 ml: clean all
 	valgrind ./$(NAME) $(DEFAULT)
@@ -94,6 +105,7 @@ $(LIBFT):
 
 clean:
 	rm -f $(OBJ)
+	#rm -f $(IMG)
 	make -sC $(LIBFT_DIR) clean
 	make -sC $(MLX_DIR) clean
 
