@@ -6,11 +6,11 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/17 13:04:50 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 19:13:43 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "mini_rt.h"
+#include "mini_rt.h"
 
 t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 {
@@ -92,8 +92,7 @@ double	intersect(t_ray *ray, t_list *lst, t_object **obj)
 	while (node && node->content)
 	{
 		tmp = (t_object *)node->content;
-		if (ray)
-			t = intersect_obj(ray, tmp);
+		t = intersect_obj(ray, tmp);
 		if (t < t_min)
 		{
 			t_min = t;

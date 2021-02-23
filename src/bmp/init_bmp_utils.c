@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:38:20 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 15:33:40 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 20:34:39 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ t_bfh	*init_bfh(t_scene *scene)
 		return (NULL);
 	bfh->type = ft_strdup("BM");
 	w_adjust = scene->r_w;
-	//w_adjust += 4 - (w_adjust % 4);
-	bfh->size = scene->r_h * w_adjust * 4 + 54;
+	if (w_adjust % 4)
+		w_adjust += 4 - (w_adjust % 4);
+	bfh->size = scene->r_h * w_adjust * 3 + 54;
 	bfh->reserved = 0;
 	bfh->offset = 54;
 	return (bfh);

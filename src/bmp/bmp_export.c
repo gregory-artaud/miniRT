@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:17:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 15:35:22 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 20:38:07 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,29 @@ int		write_header(int fd, t_bmp *bmp)
 	return (err);
 }
 
+void	fill_row(unsigned char *map, int *i, t_bmp *bmp)
+{
+	int		w_adjust;
+
+	w_adjust = bmp->bih->w;
+	if (w_adjust % 4)
+		w_adjust += 4 - (w_adjust % 4);
+	printf("w_adjust: %d, w: %d\n", w_adjust, bmp->bih->w);
+	while (((*i / 3) % w_adjust) > bmp->bih->w)
+		ft_bzero(map + (*i)++, 3);
+	return ;
+}
+
 int		write_image(int fd, t_bmp *bmp)
 {
-	int		nb_bytes;
-	t_list	*node;
-	int		pxl;
-	int		i;
-	char	*map;
+	int				nb_bytes;
+	t_list			*node;
+	int				pxl;
+	int				i;
+	unsigned char	*map;
 
-	nb_bytes = bmp->bih->h * bmp->bih->w * 4;
-	if (!(map = malloc(sizeof(char) * nb_bytes)))
+	nb_bytes = bmp->bfh->size - 54;
+	if (!(map = malloc(sizeof(unsigned char) * nb_bytes)))
 		return (EXIT_FAILURE);
 	ft_bzero(map, nb_bytes);
 	i = 0;
@@ -53,10 +66,9 @@ int		write_image(int fd, t_bmp *bmp)
 	{
 		pxl = *((int *)node->content);
 		map[i++] = (pxl & 255);
-		map[i++] = (pxl & 255 << 8) >> 8;
-		map[i++] = (pxl & 255 << 16) >> 16;
-		map[i++] = 0;
-		//printf("%2.2d %2.2d %2.2d\n", map[i - 4], map[i - 3], map[i - 2]);
+		map[i++] = (pxl & (255 << 8)) >> 8;
+		map[i++] = (pxl & (255 << 16)) >> 16;
+		fill_row(map, &i, bmp);
 		node = node->next;
 	}
 	i = write(fd, map, nb_bytes);

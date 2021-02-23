@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:40:38 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 16:45:15 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 19:15:51 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			free_sp(t_sphere *sp)
 	return ;
 }
 
-double	intersect_sp(t_ray *ray, t_sphere *sp)
+double			intersect_sp(t_ray *ray, t_sphere *sp)
 {
 	double	b;
 	double	c;
@@ -56,7 +56,7 @@ double	intersect_sp(t_ray *ray, t_sphere *sp)
 	return (i);
 }
 
-t_vect	*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp)
+t_vect			*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp)
 {
 	t_vect	*n;
 	t_vect	*to_center;
@@ -74,7 +74,7 @@ t_vect	*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp)
 	return (n);
 }
 
-int		is_sphere(t_object *obj)
+int				is_sphere(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "sp", 3));
 }

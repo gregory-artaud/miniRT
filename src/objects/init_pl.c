@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/17 12:28:16 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 19:16:03 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		free_pl(t_plan *pl)
 	return ;
 }
 
-double	intersect_pl(t_ray *ray, t_plan *pl)
+double		intersect_pl(t_ray *ray, t_plan *pl)
 {
 	double	denom;
 	double	res;
@@ -60,7 +60,7 @@ double	intersect_pl(t_ray *ray, t_plan *pl)
 	return (res);
 }
 
-t_vect	*get_normal_pl(t_ray *ray, t_vect *hit, t_plan *pl)
+t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plan *pl)
 {
 	(void)ray;
 	(void)hit;

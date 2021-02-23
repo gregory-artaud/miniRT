@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 14:52:34 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 19:12:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_vect	*trace(t_ray *r, t_scene *scene)
 	hit = dup_vect(r->pos);
 	v_fadd(hit, v_mult(t, r->dir));
 	if (!hit)
-		return(init_vect(0, 0, 0));
+		return (init_vect(0, 0, 0));
 	c = shade(r, hit, obj, scene);
 	free(hit);
 	return (c);

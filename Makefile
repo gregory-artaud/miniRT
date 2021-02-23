@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/18 13:30:46 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/23 18:26:35 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,7 @@ $(LIBFT):
 
 clean:
 	rm -f $(OBJ)
-	#rm -f $(IMG)
+	rm -f $(IMG)
 	make -sC $(LIBFT_DIR) clean
 	make -sC $(MLX_DIR) clean
 

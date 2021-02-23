@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 15:21:58 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 20:35:17 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				fill_scene(t_scene *scene, char *file)
 	t_vect		*v3;
 
 	(void)file;
-	scene->r_w = 500;
+	scene->r_w = 501;
 	scene->r_h = 300;
 	// sphere 1
 	obj = init_object();

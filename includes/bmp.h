@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:39:51 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 13:26:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/23 19:17:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <fcntl.h>
 # include "scene.h"
-
 # define SAVE_FILE "image.bmp"
 # define ACCESS_RIGHTS 0777
+
 typedef	struct	s_bfh
 {
 	char		*type;
