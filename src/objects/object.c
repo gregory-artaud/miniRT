@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 16:50:06 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 18:30:36 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void			free_object(void *ptr)
 		free_c(obj->obj);
 	else if (is_light(obj))
 		free_l(obj->obj);
-	else if (is_plan(obj))
+	else if (is_plane(obj))
 		free_pl(obj->obj);
+	else if (is_square(obj))
+		free_sq(obj->obj);
 	free(obj->id);
 	free(obj);
 	return ;
@@ -49,8 +51,10 @@ static double	intersect_obj(t_ray *r, t_object *obj)
 		return (INFINITY);
 	if (is_sphere(obj))
 		return (intersect_sp(r, (t_sphere *)obj->obj));
-	if (is_plan(obj))
+	if (is_plane(obj))
 		return (intersect_pl(r, (t_plan *)obj->obj));
+	if (is_square(obj))
+		return (intersect_sq(r, (t_square *)obj->obj));
 	return (INFINITY);
 }
 
@@ -89,7 +93,9 @@ t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 		return (NULL);
 	if (is_sphere(obj))
 		return (get_normal_sp(ray, hit, (t_sphere *)obj->obj));
-	if (is_plan(obj))
+	if (is_plane(obj))
 		return (get_normal_pl(ray, hit, (t_plan *)obj->obj));
+	if (is_square(obj))
+		return (get_normal_sq(ray, hit, (t_square *)obj->obj));
 	return (NULL);
 }

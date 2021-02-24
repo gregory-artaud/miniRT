@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 18:08:16 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 18:28:50 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ int				fill_scene(t_scene *scene, char *file)
 	(void)file;
 	scene->r_w = 900;
 	scene->r_h = 600;
+	// square 1
+	obj = init_object();
+	obj->id = ft_strdup("sq");
+	v1 = init_vect(0, 0, -2);
+	v2 = init_vect(0.5, 0, 0);
+	v3 = init_vect(255, 255, 0);
+	obj->obj = init_sq(v1, v2, 0.4, v3);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 1
 	obj = init_object();
 	obj->id = ft_strdup("sp");

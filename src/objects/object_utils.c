@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 16:49:57 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 18:29:33 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ t_vect	*obj_get_color(t_object *obj)
 		return (NULL);
 	if (is_sphere(obj))
 		tmp = ((t_sphere *)obj->obj)->color;
-	if (is_plan(obj))
+	if (is_plane(obj))
 		tmp = ((t_plan *)obj->obj)->color;
+	if (is_square(obj))
+		tmp = ((t_square *)obj->obj)->pl->color;
 	return (dup_vect(tmp));
 }
 

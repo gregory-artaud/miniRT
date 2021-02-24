@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 17:56:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 18:19:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,17 @@ void			free_sp(t_sphere *sp);
 */
 t_plan			*init_pl(t_vect *pos, t_vect *ori, t_vect *color);
 void			free_pl(t_plan *pl);
-int				is_plan(t_object *obj);
+int				is_plane(t_object *obj);
 t_vect			*get_normal_pl(t_ray *ray, t_vect *hit, t_plan *pl);
 double			intersect_pl(t_ray *ray, t_plan *pl);
+/*
+** Square
+*/
+double			intersect_sq(t_ray *ray, t_square *sq);
+t_square		*init_sq(t_vect *pos, t_vect *ori, double size, t_vect *color);
+t_vect			*get_normal_sq(t_ray *ray, t_vect *hit, t_square *sq);
+int				is_square(t_object *obj);
+void			free_sq(t_square *sq);
 /*
 ** Matrix
 */

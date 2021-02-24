@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pl.c                                          :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:16:03 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 18:19:01 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plan *pl)
 	return (dup_vect(pl->normal));
 }
 
-int		is_plan(t_object *obj)
+int		is_plane(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "pl", 3));
 }
