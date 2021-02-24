@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:40:30 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/17 12:07:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:56:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_list		*go_to_current(t_list *lst, t_camera *current)
+static t_list		*go_to_current(t_list *lst, t_camera *current)
 {
 	t_list		*node;
 	t_object	*obj;
@@ -28,7 +28,7 @@ t_list		*go_to_current(t_list *lst, t_camera *current)
 	return (NULL);
 }
 
-t_camera	*get_next_cam(t_list *lst, t_camera *current)
+static t_camera		*get_next_cam(t_list *lst, t_camera *current)
 {
 	t_object	*obj;
 	t_list		*node;
@@ -56,7 +56,7 @@ t_camera	*get_next_cam(t_list *lst, t_camera *current)
 	return (NULL);
 }
 
-void		next_cam(t_data *data)
+void				next_cam(t_data *data)
 {
 	t_camera	*cam;
 

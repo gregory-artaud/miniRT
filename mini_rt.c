@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 12:19:26 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 17:02:00 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_matrix(double m[3][3])
 	}
 }
 
-void	run(int save, char *file)
+static void	run(int save, char *file)
 {
 	t_data	*data;
 
@@ -55,7 +55,7 @@ void	run(int save, char *file)
 	return ;
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	int		save;
 

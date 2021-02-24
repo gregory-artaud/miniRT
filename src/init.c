@@ -6,22 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:16:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 17:01:16 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	set_hooks(t_data *data)
-{
-	if (!data->mlx->win)
-		return ;
-	mlx_hook(data->mlx->win, KeyPress, KeyPressMask, key_pressed, data);
-	mlx_hook(data->mlx->win, ClientMessage, ButtonReleaseMask, exit_prog, data);
-	return ;
-}
-
-void	free_mlx(t_mlx *mlx)
+static void	free_mlx(t_mlx *mlx)
 {
 	if (!mlx)
 		return ;
@@ -36,7 +27,7 @@ void	free_mlx(t_mlx *mlx)
 	return ;
 }
 
-void	*init_mlx(t_scene *scene, int save)
+static void	*init_mlx(t_scene *scene, int save)
 {
 	t_mlx	*mlx;
 
@@ -59,7 +50,7 @@ void	*init_mlx(t_scene *scene, int save)
 	return (mlx);
 }
 
-void	free_data(t_data *data)
+void		free_data(t_data *data)
 {
 	if (!data)
 		return ;
@@ -73,7 +64,7 @@ void	free_data(t_data *data)
 	return ;
 }
 
-t_data	*init_data(char *file, int save)
+t_data		*init_data(char *file, int save)
 {
 	t_data	*data;
 

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/17 13:16:25 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 17:56:39 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,61 +17,13 @@
 # include <stdlib.h>
 # include <math.h>
 # include "libft.h"
+# include "objects_def.h"
 
 # define EPSILON 1e-6
-# define K_A 0.3
+# define K_A 0.1
 # define K_D 1.5
-# define K_S 0.5
-# define N_S 25
-
-typedef struct	s_object
-{
-	char		*id;
-	void		*obj;
-}				t_object;
-
-typedef struct	s_vect
-{
-	double		x;
-	double		y;
-	double		z;
-}				t_vect;
-
-typedef struct	s_ray
-{
-	t_vect		*pos;
-	t_vect		*dir;
-}				t_ray;
-
-typedef struct	s_sphere
-{
-	t_vect		*pos;
-	t_vect		*color;
-	double		diameter;
-}				t_sphere;
-
-typedef struct	s_plan
-{
-	t_vect		*pos;
-	t_vect		*normal;
-	t_vect		*color;
-}				t_plan;
-
-typedef struct	s_light
-{
-	t_vect		*pos;
-	t_vect		*color;
-	double		lum;
-}				t_light;
-
-typedef struct	s_camera
-{
-	t_vect		*pos;
-	t_vect		*ori;
-	double		matrix[3][3];
-	double		fov;
-	int			is_used;
-}				t_camera;
+# define K_S 0.9
+# define N_S 30
 
 t_object		*init_object(void);
 void			free_object(void *ptr);

@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/24 16:39:24 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/24 18:07:38 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ OS			= linux
 NAME		= miniRT
 NORME		= ~/.norminette/norminette.rb
 DEPS_DIR	= includes
-LIB_DIR	= lib
+LIB_DIR		= lib
 LIBFT_DIR	= $(LIB_DIR)/libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 ifeq ($(OS), linux)
@@ -29,15 +29,10 @@ endif
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -O3 \
 				-I ./$(DEPS_DIR) -I ./$(LIBFT_DIR) -I ./$(MLX_DIR)
-DEPS		= 	$(addprefix $(DEPS_DIR)/, \
-					bmp.h \
-					scene.h \
-					mini_rt.h \
-					objects.h)
+DEPS		= $(shell find includes *.h -type f 2> /dev/null)
 DEPS		+= $(addprefix $(LIB_DIR)/, \
 					libft/libft.h \
 					mlx_linux/mlx.h)
-
 MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= $(shell find src *.c -type f)

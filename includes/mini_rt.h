@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 12:10:59 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:51:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ void			free_data(t_data *data);
 void			set_hooks(t_data *vars);
 int				key_pressed(int keycode, t_data *data);
 int				fill_scene(t_scene *scene, char *file);
-t_vect			*get_dir(t_scene *scene, t_camera *c, int x, int y);
-t_camera		*get_camera(t_scene *scene);
 int				exit_prog(t_data *data);
-double			deg2rad(double deg);
 t_ray			*gen_primary_ray(int x, int y, t_data *data);
 t_ray			*gen_shadow_ray(t_vect *pos, t_vect *target);
 int				render(t_data *data);

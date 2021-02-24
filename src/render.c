@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:12:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:47:48 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	print_progress(int x, int end)
+static void		print_progress(int x, int end)
 {
 	double	old;
 	double	progress;
@@ -34,7 +34,7 @@ void	print_progress(int x, int end)
 	return ;
 }
 
-t_vect	*shade(t_ray *r, t_vect *hit, t_object *obj, t_scene *scene)
+static t_vect	*shade(t_ray *r, t_vect *hit, t_object *obj, t_scene *scene)
 {
 	t_vect	*tmp;
 	t_vect	*l;
@@ -56,7 +56,7 @@ t_vect	*shade(t_ray *r, t_vect *hit, t_object *obj, t_scene *scene)
 	return (c);
 }
 
-t_vect	*trace(t_ray *r, t_scene *scene)
+static t_vect	*trace(t_ray *r, t_scene *scene)
 {
 	t_vect		*c;
 	t_vect		*hit;
@@ -75,7 +75,7 @@ t_vect	*trace(t_ray *r, t_scene *scene)
 	return (c);
 }
 
-void	draw(t_data *data, int x, int y, t_vect *c)
+static void		draw(t_data *data, int x, int y, t_vect *c)
 {
 	if (!c)
 		return ;
@@ -87,7 +87,7 @@ void	draw(t_data *data, int x, int y, t_vect *c)
 	return ;
 }
 
-int		render(t_data *data)
+int				render(t_data *data)
 {
 	int		x;
 	int		y;

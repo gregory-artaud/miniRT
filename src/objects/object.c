@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_object.c                                      :+:      :+:    :+:   */
+/*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 17:16:51 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:50:06 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_object	*init_object(void)
+t_object		*init_object(void)
 {
 	t_object	*obj;
 
@@ -23,7 +23,7 @@ t_object	*init_object(void)
 	return (obj);
 }
 
-void		free_object(void *ptr)
+void			free_object(void *ptr)
 {
 	t_object	*obj;
 
@@ -41,4 +41,55 @@ void		free_object(void *ptr)
 	free(obj->id);
 	free(obj);
 	return ;
+}
+
+static double	intersect_obj(t_ray *r, t_object *obj)
+{
+	if (!r || !obj)
+		return (INFINITY);
+	if (is_sphere(obj))
+		return (intersect_sp(r, (t_sphere *)obj->obj));
+	if (is_plan(obj))
+		return (intersect_pl(r, (t_plan *)obj->obj));
+	return (INFINITY);
+}
+
+double			intersect(t_ray *ray, t_list *lst, t_object **obj)
+{
+	double		t;
+	double		t_min;
+	t_list		*node;
+	t_object	*tmp;
+
+	*obj = NULL;
+	if (!ray)
+		return (INFINITY);
+	node = lst;
+	t_min = INFINITY;
+	t = INFINITY;
+	while (node && node->content)
+	{
+		tmp = (t_object *)node->content;
+		t = intersect_obj(ray, tmp);
+		if (t < t_min)
+		{
+			t_min = t;
+			*obj = tmp;
+		}
+		node = node->next;
+	}
+	if (!obj)
+		return (INFINITY);
+	return (t_min);
+}
+
+t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
+{
+	if (!obj)
+		return (NULL);
+	if (is_sphere(obj))
+		return (get_normal_sp(ray, hit, (t_sphere *)obj->obj));
+	if (is_plan(obj))
+		return (get_normal_pl(ray, hit, (t_plan *)obj->obj));
+	return (NULL);
 }

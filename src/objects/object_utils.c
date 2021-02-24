@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_utils.c                                        :+:      :+:    :+:   */
+/*   object_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:15:14 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:49:57 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,6 @@ int		solve_quadratic(double a, double b, double c, double *sol)
 	if (*sol <= 0)
 		return (0);
 	return (1);
-}
-
-t_vect	*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
-{
-	if (!obj)
-		return (NULL);
-	if (is_sphere(obj))
-		return (get_normal_sp(ray, hit, (t_sphere *)obj->obj));
-	if (is_plan(obj))
-		return (get_normal_pl(ray, hit, (t_plan *)obj->obj));
-	return (NULL);
 }
 
 void	put_in_range(t_vect *u, double min, double max)

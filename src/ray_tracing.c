@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:13:43 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 16:55:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
+static t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 {
 	t_vect	*dir;
 	t_vect	*tmp;
@@ -22,7 +22,7 @@ t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 
 	h = (double)scene->r_h;
 	w = (double)scene->r_w;
-	fov = tan(deg2rad(c->fov) / 2.0);
+	fov = tan(c->fov * M_PI / 360.0);
 	tmp = init_vect(0, 0, 0);
 	tmp->x = fov * (w / h) *
 				((double)x * (2.0 / w) + ((1.0 - 1.0 * w) / w));
@@ -35,7 +35,7 @@ t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 	return (dir);
 }
 
-t_ray	*gen_primary_ray(int x, int y, t_data *data)
+t_ray			*gen_primary_ray(int x, int y, t_data *data)
 {
 	t_vect		*pos;
 	t_vect		*dir;
@@ -52,7 +52,7 @@ t_ray	*gen_primary_ray(int x, int y, t_data *data)
 	return (init_ray(pos, dir));
 }
 
-t_ray	*gen_shadow_ray(t_vect *ori, t_vect *target)
+t_ray			*gen_shadow_ray(t_vect *ori, t_vect *target)
 {
 	t_vect	*dir;
 	t_vect	*pos;
@@ -63,44 +63,4 @@ t_ray	*gen_shadow_ray(t_vect *ori, t_vect *target)
 	normalize(dir);
 	pos = dup_vect(ori);
 	return (init_ray(pos, dir));
-}
-
-double	intersect_obj(t_ray *r, t_object *obj)
-{
-	if (!r || !obj)
-		return (INFINITY);
-	if (is_sphere(obj))
-		return (intersect_sp(r, (t_sphere *)obj->obj));
-	if (is_plan(obj))
-		return (intersect_pl(r, (t_plan *)obj->obj));
-	return (INFINITY);
-}
-
-double	intersect(t_ray *ray, t_list *lst, t_object **obj)
-{
-	double		t;
-	double		t_min;
-	t_list		*node;
-	t_object	*tmp;
-
-	*obj = NULL;
-	if (!ray)
-		return (INFINITY);
-	node = lst;
-	t_min = INFINITY;
-	t = INFINITY;
-	while (node && node->content)
-	{
-		tmp = (t_object *)node->content;
-		t = intersect_obj(ray, tmp);
-		if (t < t_min)
-		{
-			t_min = t;
-			*obj = tmp;
-		}
-		node = node->next;
-	}
-	if (!obj)
-		return (INFINITY);
-	return (t_min);
 }
