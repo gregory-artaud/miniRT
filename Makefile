@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/02/23 18:26:35 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/02/24 16:39:24 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,35 +40,7 @@ DEPS		+= $(addprefix $(LIB_DIR)/, \
 
 MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
-FILES		= 	mini_rt.c \
-				src/bmp/init_bmp.c \
-				src/bmp/init_bmp_utils.c \
-				src/bmp/bmp_pixel_put.c \
-				src/bmp/bmp_export.c \
-				src/objects/matrix.c \
-				src/objects/init_vect.c \
-				src/objects/init_sp.c \
-				src/objects/init_pl.c \
-				src/objects/init_object.c \
-				src/objects/init_c.c \
-				src/objects/init_l.c \
-				src/objects/init_ray.c \
-				src/objects/obj_utils.c \
-				src/objects/v_utils.c \
-				src/objects/v_utils_2.c \
-				src/objects/v_utils_3.c \
-				src/objects/l_utils.c \
-				src/scene/scene.c \
-				src/scene/scene_utils.c \
-				src/exit_prog.c \
-				src/parsing.c \
-				src/ray_tracing.c \
-				src/ray_tracing_utils.c \
-				src/print.c \
-				src/init.c \
-				src/keyboard_hook.c \
-				src/next_cam.c \
-				src/render.c
+FILES		= $(shell find src *.c -type f)
 OBJ 		= $(FILES:%.c=%.o)
 DEFAULT		= default.rt
 IMG			= image.bmp
