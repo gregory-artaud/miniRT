@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:17:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 20:38:07 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 15:51:01 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ int		write_header(int fd, t_bmp *bmp)
 	return (err);
 }
 
-void	fill_row(unsigned char *map, int *i, t_bmp *bmp)
+void	fill_row(unsigned char *map, long int *i, t_bmp *bmp)
 {
 	int		w_adjust;
+	int		w_bytes;
 
-	w_adjust = bmp->bih->w;
-	if (w_adjust % 4)
-		w_adjust += 4 - (w_adjust % 4);
-	printf("w_adjust: %d, w: %d\n", w_adjust, bmp->bih->w);
-	while (((*i / 3) % w_adjust) > bmp->bih->w)
-		ft_bzero(map + (*i)++, 3);
+	w_bytes = bmp->bih->w * 3;
+	if (!((w_bytes) % 4))
+		return ;
+	w_adjust = 4 - (w_bytes % 4) + w_bytes;
+	while ((*i % w_adjust) >= w_bytes)
+		map[(*i)++] = 0;
 	return ;
 }
 
@@ -53,13 +54,12 @@ int		write_image(int fd, t_bmp *bmp)
 	int				nb_bytes;
 	t_list			*node;
 	int				pxl;
-	int				i;
+	long int		i;
 	unsigned char	*map;
 
 	nb_bytes = bmp->bfh->size - 54;
-	if (!(map = malloc(sizeof(unsigned char) * nb_bytes)))
+	if (!(map = ft_calloc(nb_bytes, sizeof(unsigned char))))
 		return (EXIT_FAILURE);
-	ft_bzero(map, nb_bytes);
 	i = 0;
 	node = bmp->pxl;
 	while (node && node->content)

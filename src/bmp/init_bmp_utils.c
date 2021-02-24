@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:38:20 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 20:34:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 14:54:56 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 t_bfh	*init_bfh(t_scene *scene)
 {
 	t_bfh	*bfh;
-	int		w_adjust;
+	int		pad;
 
 	if (!(bfh = malloc(sizeof(t_bfh))))
 		return (NULL);
 	bfh->type = ft_strdup("BM");
-	w_adjust = scene->r_w;
-	if (w_adjust % 4)
-		w_adjust += 4 - (w_adjust % 4);
-	bfh->size = scene->r_h * w_adjust * 3 + 54;
+	if (scene->r_w * 3 % 4)
+		pad = 4 - (scene->r_w * 3 % 4);
+	else
+		pad = 0;
+	bfh->size = scene->r_h * (scene->r_w * 3 + pad) + 54;
 	bfh->reserved = 0;
 	bfh->offset = 54;
 	return (bfh);
