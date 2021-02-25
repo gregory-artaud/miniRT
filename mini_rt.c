@@ -6,19 +6,19 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 17:02:00 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 01:59:57 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void	error(char *s)
+void		error(char *s)
 {
 	printf("%s", s);
 	exit(EXIT_FAILURE);
 }
 
-void	print_matrix(double m[3][3])
+void		print_matrix(double m[3][3])
 {
 	int		i;
 	int		j;
