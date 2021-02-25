@@ -6,18 +6,18 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 18:19:01 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 19:30:37 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_plan		*init_pl(t_vect *pos, t_vect *ori, t_vect *color)
+t_plane		*init_pl(t_vect *pos, t_vect *ori, t_vect *color)
 {
-	t_plan	*pl;
+	t_plane	*pl;
 	double	matrix[3][3];
 
-	if (!(pl = malloc(sizeof(t_plan))))
+	if (!(pl = malloc(sizeof(t_plane))))
 		return (NULL);
 	pl->pos = pos;
 	pl->color = color;
@@ -30,7 +30,7 @@ t_plan		*init_pl(t_vect *pos, t_vect *ori, t_vect *color)
 	return (pl);
 }
 
-void		free_pl(t_plan *pl)
+void		free_pl(t_plane *pl)
 {
 	if (!pl)
 		return ;
@@ -41,7 +41,7 @@ void		free_pl(t_plan *pl)
 	return ;
 }
 
-double		intersect_pl(t_ray *ray, t_plan *pl)
+double		intersect_pl(t_ray *ray, t_plane *pl)
 {
 	double	denom;
 	double	res;
@@ -60,7 +60,7 @@ double		intersect_pl(t_ray *ray, t_plan *pl)
 	return (res);
 }
 
-t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plan *pl)
+t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plane *pl)
 {
 	(void)ray;
 	(void)hit;

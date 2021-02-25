@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 18:28:50 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 01:48:39 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int				fill_scene(t_scene *scene, char *file)
 	t_vect		*v1;
 	t_vect		*v2;
 	t_vect		*v3;
+	t_vect		*v4;
 
 	(void)file;
 	scene->r_w = 900;
@@ -26,10 +27,19 @@ int				fill_scene(t_scene *scene, char *file)
 	// square 1
 	obj = init_object();
 	obj->id = ft_strdup("sq");
-	v1 = init_vect(0, 0, -2);
+	v1 = init_vect(1, 1, -2);
 	v2 = init_vect(0.5, 0, 0);
 	v3 = init_vect(255, 255, 0);
 	obj->obj = init_sq(v1, v2, 0.4, v3);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// triangle 1
+	obj = init_object();
+	obj->id = ft_strdup("tr");
+	v1 = init_vect(-1, 1, -2);
+	v2 = init_vect(-1.5, 1, -2);
+	v3 = init_vect(-1, 0.5, -2);
+	v4 = init_vect(0, 255, 255);
+	obj->obj = init_tr(v1, v2, v3, v4);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 1
 	obj = init_object();

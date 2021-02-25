@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 18:19:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 01:53:00 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ void			free_sp(t_sphere *sp);
 /*
 ** Plan
 */
-t_plan			*init_pl(t_vect *pos, t_vect *ori, t_vect *color);
-void			free_pl(t_plan *pl);
+t_plane			*init_pl(t_vect *pos, t_vect *ori, t_vect *color);
+void			free_pl(t_plane *pl);
 int				is_plane(t_object *obj);
-t_vect			*get_normal_pl(t_ray *ray, t_vect *hit, t_plan *pl);
-double			intersect_pl(t_ray *ray, t_plan *pl);
+t_vect			*get_normal_pl(t_ray *ray, t_vect *hit, t_plane *pl);
+double			intersect_pl(t_ray *ray, t_plane *pl);
 /*
 ** Square
 */
@@ -74,6 +74,16 @@ t_square		*init_sq(t_vect *pos, t_vect *ori, double size, t_vect *color);
 t_vect			*get_normal_sq(t_ray *ray, t_vect *hit, t_square *sq);
 int				is_square(t_object *obj);
 void			free_sq(t_square *sq);
+/*
+** Triangle
+*/
+double			intersect_tr(t_ray *ray, t_triangle *tr);
+t_triangle		*init_tr(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *color);
+t_vect			*get_normal_tr(t_ray *ray, t_vect *hit, t_triangle *tr);
+int				is_triangle(t_object *obj);
+void			free_tr(t_triangle *tr);
+t_plane			*find_plane(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *color);
+int				is_outside(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *hit);
 /*
 ** Matrix
 */
@@ -98,4 +108,5 @@ void			normalize(t_vect *u);
 double			v_dot(t_vect *u, t_vect *v);
 t_vect			*v_mult(double k, t_vect *u);
 t_vect			*v_add(t_vect *u, t_vect *v);
+t_vect			*v_prod(t_vect *u, t_vect *v);
 #endif

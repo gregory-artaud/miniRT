@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 17:55:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 18:12:31 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 01:50:02 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,21 @@ typedef struct	s_plan
 	t_vect		*pos;
 	t_vect		*normal;
 	t_vect		*color;
-}				t_plan;
+}				t_plane;
 
 typedef struct	s_square
 {
-	t_plan		*pl;
+	t_plane		*pl;
 	double		size;
 }				t_square;
+
+typedef struct	s_triangle
+{
+	t_plane		*plan;
+	t_vect		*p1;
+	t_vect		*p2;
+	t_vect		*p3;
+}				t_triangle;
 
 typedef struct	s_light
 {

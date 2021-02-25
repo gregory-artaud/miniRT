@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 18:13:40 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 18:41:15 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 00:35:41 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ double			intersect_sq(t_ray *ray, t_square *sq)
 	hit = dup_vect(ray->pos);
 	v_fadd(hit, v_mult(t, ray->dir));
 	tmp = v_minus(hit, sq->pl->pos);
+	free(hit);
 	edge = sq->size / 2.0;
 	if (fabs(tmp->x) < edge && fabs(tmp->y) < edge && fabs(tmp->z) < edge)
+	{
+		free(tmp);
 		return (t);
+	}
+	free(tmp);
 	return (INFINITY);
 }
 
