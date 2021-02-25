@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 18:37:49 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 18:58:38 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				fill_scene(t_scene *scene, char *file)
 	// plan 1
 	obj = init_object();
 	obj->id = ft_strdup("pl");
-	v1 = init_vect(0, -0.9, 0);
+	v1 = init_vect(0, 1.0, 0);
 	v2 = init_vect(0, 0, 0);
 	v3 = init_vect(0, 255, 0);
 	obj->obj = init_pl(v1, v2, v3);

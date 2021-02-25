@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_ray.c                                         :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 18:15:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 18:26:57 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 19:02:55 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int		is_ray_blocked(t_ray *ray, t_list *lst, t_light *l)
 	t = intersect(ray, lst, &obj);
 	if (!obj)
 		return (0);
-	return (t < to_light);
+	return (t + EPSILON < to_light);
 }
