@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 16:47:48 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 01:56:00 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int				render(t_data *data)
 	y = -1;
 	while (++y < data->scene->r_h)
 	{
-		x = -1;
-		while (++x < data->scene->r_w)
+		x = data->scene->r_w;
+		while (x-- > 0)
 		{
 			r = gen_primary_ray(x, y, data);
 			c = trace(r, data->scene);
