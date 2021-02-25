@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 20:11:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 18:37:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_vect	*obj_get_color(t_object *obj)
 		tmp = ((t_square *)obj->obj)->pl->color;
 	if (is_triangle(obj))
 		tmp = ((t_triangle *)obj->obj)->plan->color;
+	if (is_circle(obj))
+		tmp = ((t_circle *)obj->obj)->pl->color;
 	return (dup_vect(tmp));
 }
 

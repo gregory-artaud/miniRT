@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 17:55:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:50:02 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 18:22:49 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ typedef struct	s_square
 	t_plane		*pl;
 	double		size;
 }				t_square;
+
+typedef struct	s_circle
+{
+	t_plane		*pl;
+	double		radius;
+}				t_circle;
 
 typedef struct	s_triangle
 {

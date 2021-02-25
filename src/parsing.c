@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:48:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 18:37:49 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ int				fill_scene(t_scene *scene, char *file)
 	v3 = init_vect(-1, 0.5, -2);
 	v4 = init_vect(0, 255, 255);
 	obj->obj = init_tr(v1, v2, v3, v4);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// circle 1
+	obj = init_object();
+	obj->id = ft_strdup("ci");
+	v1 = init_vect(0, 0.5, -2);
+	v2 = init_vect(0.5, 0.2, 0);
+	v3 = init_vect(255, 0, 255);
+	obj->obj = init_ci(v1, v2, 0.4, v3);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// sphere 1
 	obj = init_object();

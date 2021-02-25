@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:53:00 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 18:24:36 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ t_square		*init_sq(t_vect *pos, t_vect *ori, double size, t_vect *color);
 t_vect			*get_normal_sq(t_ray *ray, t_vect *hit, t_square *sq);
 int				is_square(t_object *obj);
 void			free_sq(t_square *sq);
+/*
+** Circle
+*/
+double			intersect_ci(t_ray *ray, t_circle *ci);
+t_circle		*init_ci(t_vect *pos, t_vect *ori, double radius, t_vect *color);
+t_vect			*get_normal_ci(t_ray *ray, t_vect *hit, t_circle *ci);
+int				is_circle(t_object *obj);
+void			free_ci(t_circle *ci);
 /*
 ** Triangle
 */

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 20:12:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 18:36:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void			free_object(void *ptr)
 		free_sq(obj->obj);
 	else if (is_triangle(obj))
 		free_tr(obj->obj);
+	else if (is_circle(obj))
+		free_ci(obj->obj);
 	free(obj->id);
 	free(obj);
 	return ;
@@ -59,6 +61,8 @@ static double	intersect_obj(t_ray *r, t_object *obj)
 		return (intersect_sq(r, (t_square *)obj->obj));
 	if (is_triangle(obj))
 		return (intersect_tr(r, (t_triangle *)obj->obj));
+	if (is_circle(obj))
+		return (intersect_ci(r, (t_circle *)obj->obj));
 	return (INFINITY);
 }
 
@@ -103,5 +107,7 @@ t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 		return (get_normal_sq(ray, hit, (t_square *)obj->obj));
 	if (is_triangle(obj))
 		return (get_normal_tr(ray, hit, (t_triangle *)obj->obj));
+	if (is_circle(obj))
+		return (get_normal_ci(ray, hit, (t_circle *)obj->obj));
 	return (NULL);
 }
