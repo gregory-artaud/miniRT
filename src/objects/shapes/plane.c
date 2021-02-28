@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:59:33 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 23:02:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ double		intersect_pl(t_ray *ray, t_plane *pl)
 	if (!ray || !pl)
 		return (INFINITY);
 	denom = v_dot(ray->dir, pl->normal);
-	if (fabs(denom) < EPSILON)
+	if (fabs(denom) == 0.0)
 		return (INFINITY);
 	tmp = v_minus(pl->pos, ray->pos);
 	res = v_dot(tmp, pl->normal) / denom;
@@ -62,8 +62,12 @@ double		intersect_pl(t_ray *ray, t_plane *pl)
 
 t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plane *pl)
 {
-	(void)ray;
+	double	dot;
+
 	(void)hit;
+	dot = v_dot(ray->dir, pl->normal);
+	if (dot > 0)
+		return (v_mult(-1, pl->normal));
 	return (dup_vect(pl->normal));
 }
 

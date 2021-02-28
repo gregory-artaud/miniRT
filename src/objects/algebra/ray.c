@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 18:15:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 19:02:55 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 22:05:20 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,22 @@ int		is_ray_blocked(t_ray *ray, t_list *lst, t_light *l)
 	if (!obj)
 		return (0);
 	return (t + EPSILON < to_light);
+}
+
+t_ray	*get_reflect(t_ray *r, t_vect *hit, t_object *obj)
+{
+	t_vect	*normal;
+	t_ray	*reflect;
+	t_vect	*tmp;
+	double	dot;
+
+	normal = get_normal(r, hit, obj);
+	translate(hit, EPSILON, normal);
+	dot = -2 * v_dot(normal, r->dir);
+	tmp = v_mult(dot, normal);
+	reflect = init_ray(dup_vect(hit), v_add(tmp, r->dir));
+	free(normal);
+	free(tmp);
+	normalize(reflect->dir);
+	return (reflect);
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 16:51:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 23:55:13 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # endif
 # define KEY_ESC 65307
 # define KEY_NEXT_CAM 99
+# define MIRROR_DEPTH 1
 
 typedef struct	s_mlx
 {

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 17:55:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 18:51:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/25 19:29:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ typedef struct	s_circle
 	t_plane		*pl;
 	double		radius;
 }				t_circle;
+
+typedef struct	s_cylinder
+{
+	t_vect		*pos;
+	t_vect		*ori;
+	double		diameter;
+	double		height;
+	t_vect		*color;
+}				t_cylinder;
 
 typedef struct	s_triangle
 {

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 18:54:57 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 23:31:59 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include "libft.h"
 # include "objects_def.h"
 
-# define EPSILON 1e-6
-# define K_A 0.1
+# define EPSILON 1e-7
+# define K_A 0.25
 # define K_D 1.5
-# define K_S 0.9
-# define N_S 30
+# define K_S 0.4
+# define N_S 20
 
 t_object		*init_object(void);
 void			free_object(void *ptr);
@@ -44,6 +44,7 @@ int				is_light(t_object *obj);
 int				is_ray_blocked(t_ray *ray, t_list *lst, t_light *l);
 t_ray			*init_ray(t_vect *pos, t_vect *dir);
 void			free_ray(t_ray *ray);
+t_ray			*get_reflect(t_ray *r, t_vect *hit, t_object *obj);
 /*
 ** Camera
 */
@@ -83,6 +84,14 @@ t_vect			*get_normal_ci(t_ray *ray, t_vect *hit, t_circle *ci);
 int				is_circle(t_object *obj);
 void			free_ci(t_circle *ci);
 /*
+** Cylinder
+*/
+double			intersect_cy(t_ray *ray, t_cylinder *cy);
+t_cylinder		*init_cy(t_ray *pos_and_ori, double diameter, double height, t_vect *color);
+t_vect			*get_normal_cy(t_ray *ray, t_vect *hit, t_cylinder *cy);
+int				is_cylinder(t_object *obj);
+void			free_cy(t_cylinder *cy);
+/*
 ** Triangle
 */
 double			intersect_tr(t_ray *ray, t_triangle *tr);
@@ -117,4 +126,5 @@ double			v_dot(t_vect *u, t_vect *v);
 t_vect			*v_mult(double k, t_vect *u);
 t_vect			*v_add(t_vect *u, t_vect *v);
 t_vect			*v_prod(t_vect *u, t_vect *v);
+t_vect			*v_fmult(double k, t_vect *u);
 #endif

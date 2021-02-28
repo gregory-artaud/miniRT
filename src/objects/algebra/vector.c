@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_vect.c                                        :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:38:33 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/05 20:03:38 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 23:31:49 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,14 @@ t_vect			*init_vect(double x, double y, double z)
 	v->y = y;
 	v->z = z;
 	return (v);
+}
+
+t_vect			*v_fmult(double k, t_vect *u)
+{
+	if (!u)
+		return (NULL);
+	u->x *= k;
+	u->y *= k;
+	u->z *= k;
+	return (u);
 }

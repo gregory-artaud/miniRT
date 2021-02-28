@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 18:58:38 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/01 00:19:43 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,17 @@ int				fill_scene(t_scene *scene, char *file)
 	obj = init_object();
 	obj->id = ft_strdup("sq");
 	v1 = init_vect(1, 1, -2);
-	v2 = init_vect(0.5, 0, 0);
+	v2 = init_vect(0.5, -0.2, -0.2);
 	v3 = init_vect(255, 255, 0);
-	obj->obj = init_sq(v1, v2, 0.4, v3);
+	obj->obj = init_sq(v1, v2, 0.7, v3);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// cylinder 1
+	obj = init_object();
+	obj->id = ft_strdup("cy");
+	v1 = init_vect(0, 1, -2);
+	v2 = init_vect(0, 0, 0);
+	v3 = init_vect(0, 255, 0);
+	obj->obj = init_cy(init_ray(v1, v2), 0.4, 1, v3);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// triangle 1
 	obj = init_object();
@@ -87,27 +95,39 @@ int				fill_scene(t_scene *scene, char *file)
 	// plan 1
 	obj = init_object();
 	obj->id = ft_strdup("pl");
-	v1 = init_vect(0, 1.0, 0);
+	v1 = init_vect(0, -1, 0);
 	v2 = init_vect(0, 0, 0);
-	v3 = init_vect(0, 255, 0);
+	v3 = init_vect(255, 255, 255);
 	obj->obj = init_pl(v1, v2, v3);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// plan 2
+	/*
 	obj = init_object();
 	obj->id = ft_strdup("pl");
 	v1 = init_vect(0, 0, -5);
 	v2 = init_vect(0.5, 0, 0);
-	v3 = init_vect(0, 255, 128);
+	v3 = init_vect(255, 255, 255);
 	obj->obj = init_pl(v1, v2, v3);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	*/
 	// plan 3
 	obj = init_object();
 	obj->id = ft_strdup("pl");
 	v1 = init_vect(-5, 0, 0);
-	v2 = init_vect(0, 0, 0.5);
-	v3 = init_vect(0, 255, 128);
+	v2 = init_vect(0.75, 0, 0.5);
+	v3 = init_vect(60, 255, 100);
 	obj->obj = init_pl(v1, v2, v3);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// plan 4
+	/*
+	obj = init_object();
+	obj->id = ft_strdup("pl");
+	v1 = init_vect(0, 3, 0);
+	v2 = init_vect(0, 0, 0);
+	v3 = init_vect(0, 255, 0);
+	obj->obj = init_pl(v1, v2, v3);
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	*/
 	// camera 1
 	obj = init_object();
 	obj->id = ft_strdup("c");
@@ -122,7 +142,7 @@ int				fill_scene(t_scene *scene, char *file)
 	v1 = init_vect(0, 0.2, 0);
 	v2 = init_vect(0, 0, 0);
 	obj->obj = init_c(v1, v2, 90);
-	((t_camera *)obj->obj)->is_used = 1;
+	((t_camera *)obj->obj)->is_used = 0;
 	scene->current_cam = obj->obj;
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// camera 3
@@ -133,20 +153,31 @@ int				fill_scene(t_scene *scene, char *file)
 	obj->obj = init_c(v1, v2, 90);
 	((t_camera *)obj->obj)->is_used = 0;
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	// camera 4
+	obj = init_object();
+	obj->id = ft_strdup("c");
+	v1 = init_vect(0, -3, 0);
+	v2 = init_vect(0.25, 0, 0);
+	obj->obj = init_c(v1, v2, 90);
+	((t_camera *)obj->obj)->is_used = 0;
+	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
 	// light 1
+	/*
 	obj = init_object();
 	obj->id = ft_strdup("l");
 	v1 = init_vect(0, 4, -1);
 	v2 = init_vect(255, 255, 255);
 	obj->obj = init_l(v1, 0.9, v2);
 	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	*/
 	// light 2
+	/*
 	obj = init_object();
 	obj->id = ft_strdup("l");
 	v1 = init_vect(-1.5, 1.5, -1);
 	v2 = init_vect(255, 255, 255);
 	obj->obj = init_l(v1, 0.8, v2);
-	ft_lstadd_front(&(scene->obj), ft_lstnew(obj));
+	*/
 	// light 3
 	obj = init_object();
 	obj->id = ft_strdup("l");

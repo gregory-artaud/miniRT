@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:56:00 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/02/28 23:29:21 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,36 @@ static t_vect	*shade(t_ray *r, t_vect *hit, t_object *obj, t_scene *scene)
 	translate(hit, EPSILON, normal);
 	l = parse_lights(r, hit, normal, scene);
 	c = v_vmult(tmp, l);
-	put_in_range(c, 0, 255);
 	free(tmp);
 	free(l);
 	free(normal);
 	return (c);
 }
 
-static t_vect	*trace(t_ray *r, t_scene *scene)
+static t_vect	*trace(t_ray *r, t_scene *scene, int depth)
 {
 	t_vect		*c;
 	t_vect		*hit;
+	t_ray		*reflect;
 	double		t;
 	t_object	*obj;
 
-	if (!r)
+	if (!r || depth < 0)
 		return (init_vect(0, 0, 0));
+	obj = NULL;
 	t = intersect(r, scene->obj, &obj);
+	if (t == INFINITY)
+		return (init_vect(0, 0, 0));
 	hit = dup_vect(r->pos);
 	v_fadd(hit, v_mult(t, r->dir));
-	if (!hit)
-		return (init_vect(0, 0, 0));
+	reflect = NULL;
+	if (depth)
+		reflect = get_reflect(r, hit, obj);
 	c = shade(r, hit, obj, scene);
+	v_fadd(c, v_fmult(K_S, trace(reflect, scene, depth - 1)));
 	free(hit);
+	free_ray(reflect);
+	put_in_range(c, 0, 255);
 	return (c);
 }
 
@@ -103,7 +110,7 @@ int				render(t_data *data)
 		while (x-- > 0)
 		{
 			r = gen_primary_ray(x, y, data);
-			c = trace(r, data->scene);
+			c = trace(r, data->scene, MIRROR_DEPTH);
 			draw(data, x, y, c);
 			free_ray(r);
 		}
