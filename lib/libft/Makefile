@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/28 13:46:16 by gartaud           #+#    #+#              #
-#    Updated: 2021/01/14 18:12:16 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/03/03 13:10:23 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ FILES		=	ft_memset.c \
 				ft_strjoin.c \
 				ft_strtrim.c \
 				ft_split.c \
+				ft_cs_split.c \
 				ft_itoa.c \
 				ft_strmapi.c \
 				ft_putchar_fd.c \
