@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 21:52:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/23 22:37:52 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 17:27:50 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void			print_obj(void *ptr)
 		return ;
 	printf("\t\tobj->id = %s\n", obj->id);
 	printf("\t\tobj->obj = %p\n", obj->obj);
-	if (!ft_strncmp(obj->id, "sp", 2))
+	if (is_sphere(obj))
 		print_sp(obj->obj);
-	else if (!ft_strncmp(obj->id, "c", 1))
+	else if (is_camera(obj))
 		print_c(obj->obj);
-	else if (!ft_strncmp(obj->id, "l", 1))
+	else if (is_light(obj))
 		print_l(obj->obj);
 	return ;
 }

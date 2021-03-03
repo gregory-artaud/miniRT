@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/28 20:23:19 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 14:19:07 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/03/03 15:45:10 by gartaud           #+#    #+#             */
+/*   Updated: 2021/03/03 17:41:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+double		ft_atof(char *s)
 {
-	unsigned int i;
+	double	floor;
+	double	decimal;
+	double	m;
+	char	*start;
 
-	i = 0;
+	start = s;
+	floor = (double)ft_atoi(s);
+	s = ft_strchr(s, '.');
 	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
+		return (floor);
+	s++;
+	if (*s && !ft_isdigit(*s))
+		return (floor);
+	m = 1.0 / 10.0;
+	decimal = 0.0;
+	while (*s && ft_isdigit(*s))
+	{
+		decimal += (*s++ - '0') * m;
+		m /= 10.0;
+	}
+	if (*start == '-')
+		return (floor - decimal);
+	return (floor + decimal);
 }

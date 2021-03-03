@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:59:57 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 17:57:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@ void		error(char *s)
 {
 	printf("%s", s);
 	exit(EXIT_FAILURE);
-}
-
-void		print_matrix(double m[3][3])
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < 3)
-	{
-		printf("[ ");
-		j = -1;
-		while (++j < 3)
-			printf("%3.1lf ", m[i][j]);
-		printf("]\n");
-	}
 }
 
 static void	run(int save, char *file)

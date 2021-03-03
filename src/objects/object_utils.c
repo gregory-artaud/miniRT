@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/28 22:00:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 15:43:09 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,27 @@ void	put_in_range(t_vect *u, double min, double max)
 	u->y = floor(fmax(fmin(u->y, max), min));
 	u->z = floor(fmax(fmin(u->z, max), min));
 	return ;
+}
+
+t_vect	*extract_vect(char *s)
+{
+	char	**values;
+	int		length;
+	t_vect	*u;
+
+	if (!s)
+		return (NULL);
+	values = ft_split(s, ',');
+	length = ft_arrlen(values);
+	if (length != 3)
+	{
+		ft_free_strarray(values);
+		return (NULL);
+	}
+	u = init_vect(0, 0, 0);
+	u->x = ft_atof(values[0]);
+	u->y = ft_atof(values[1]);
+	u->z = ft_atof(values[2]);
+	ft_free_strarray(values);
+	return (u);
 }

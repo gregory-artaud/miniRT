@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/28 23:55:13 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 14:45:44 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <X11/X.h>
+# include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
 # include "objects.h"
@@ -25,6 +26,7 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
+# define NB_ID 10
 # define KEY_ESC 65307
 # define KEY_NEXT_CAM 99
 # define MIRROR_DEPTH 1
@@ -49,7 +51,7 @@ t_data			*init_data(char *file, int save);
 void			free_data(t_data *data);
 void			set_hooks(t_data *vars);
 int				key_pressed(int keycode, t_data *data);
-int				fill_scene(t_scene *scene, char *file);
+int				parse_file(t_scene *scene, char *file);
 int				exit_prog(t_data *data);
 t_ray			*gen_primary_ray(int x, int y, t_data *data);
 t_ray			*gen_shadow_ray(t_vect *pos, t_vect *target);

@@ -6,10 +6,11 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:25 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/09 15:26:09 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 16:53:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "objects.h"
 #include "scene.h"
 
 t_scene			*init_scene(void)
@@ -18,8 +19,8 @@ t_scene			*init_scene(void)
 
 	if (!(scene = (t_scene *)malloc(sizeof(t_scene))))
 		return (NULL);
-	scene->r_w = 0;
-	scene->r_h = 0;
+	scene->r_w = -1;
+	scene->r_h = -1;
 	scene->current_cam = NULL;
 	scene->ambiant = NULL;
 	scene->obj = ft_lstnew(NULL);
@@ -34,5 +35,16 @@ void			free_scene(t_scene *scene, void (*del)(void *))
 		free_l(scene->ambiant);
 	ft_lstclear(&(scene->obj), del);
 	free(scene);
+	return ;
+}
+
+void			push_obj(char *id, void *obj, t_scene *scene)
+{
+	t_object	*new;
+
+	new = init_object();
+	new->id = id;
+	new->obj = obj;
+	ft_lstadd_front(&(scene->obj), ft_lstnew(new));
 	return ;
 }

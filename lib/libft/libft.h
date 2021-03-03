@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:57:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/01/14 18:14:32 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 15:44:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "ft_printf/includes/ft_printf.h"
 # define LFT_LEFT 0
 # define LFT_RIGHT 1
+# define SPACES " \n\t\r\v\f"
 
 typedef struct		s_list
 {
@@ -89,5 +90,9 @@ char				*ft_itoa_base(long long nbr, char *base);
 void				ft_strinsert(char **s, int i, char c);
 void				ft_strmcat(char **s1, char *s2);
 void				ft_strpad(char **dest, int side, int min_size, char c);
+char				**ft_cs_split(char const *s, char *charset);
+void				ft_free_strarray(char **array);
+int					ft_arrlen(char **array);
+double				ft_atof(char *s);
 
 #endif

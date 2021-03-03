@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/28 23:31:59 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 16:14:07 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 t_object		*init_object(void);
 void			free_object(void *ptr);
 t_vect			*obj_get_color(t_object *obj);
+t_vect			*extract_vect(char *s);
 int				c_to_hex(t_vect *c);
 int				solve_quadratic(double a, double b, double c, double *sol);
 t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj);

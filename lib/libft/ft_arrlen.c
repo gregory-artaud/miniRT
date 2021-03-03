@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_arrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/28 20:23:19 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 14:19:07 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/03/03 15:22:47 by gartaud           #+#    #+#             */
+/*   Updated: 2021/03/03 15:23:56 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int		ft_arrlen(char **array)
 {
-	unsigned int i;
+	int		i;
 
-	i = 0;
-	if (!s)
+	if (!array)
 		return (0);
-	while (s[i])
+	i = 0;
+	while (array[i])
 		i++;
 	return (i);
 }
