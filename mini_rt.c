@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 17:57:24 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:18:14 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	run(int save, char *file)
 
 	if (!(data = init_data(file, save)))
 		error("Error at initialization.\n");
+	print_scene(data->scene);
 	set_hooks(data);
 	printf("Rendering...\n");
 	if (render(data))

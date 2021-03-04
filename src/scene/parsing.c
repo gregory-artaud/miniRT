@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 17:52:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 15:40:34 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int				fill_scene(t_scene *scene, char *line)
 	char	**s_line;
 	int		index;
 
-	printf("=== FILL_SCENE ===\n");
 	if (!line)
 		return (EXIT_FAILURE);
 	if (!*line || !ft_memcmp(line, "//", 2))
@@ -95,6 +94,12 @@ int				parse_file(t_scene *scene, char *file)
 			}
 			free(line);
 		}
+	if (gnl != -1 && fill_scene(scene, line))
+	{
+		free(line);
+		return (EXIT_FAILURE);
+	}
+	free(line);
 	close(fd);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 16:49:51 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:12:00 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		add_cylinder(t_scene *scene, char **infos)
 	diameter = ft_atof(infos[3]);
 	height = ft_atof(infos[4]);
 	color = extract_vect(infos[5]);
+	put_in_range(color, 0, 255);
 	cy = init_cy(pos_and_ori, diameter, height, color);
 	push_obj("cy", cy, scene);
 	ft_free_strarray(infos);

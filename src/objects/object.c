@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/28 23:45:55 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:06:09 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void			free_object(void *ptr)
 		free_ci(obj->obj);
 	else if (is_cylinder(obj))
 		free_cy(obj->obj);
-	free(obj->id);
 	free(obj);
 	return ;
 }

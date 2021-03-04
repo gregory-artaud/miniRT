@@ -5,80 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/02 16:39:41 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 13:14:41 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2020/09/14 13:08:01 by gartaud           #+#    #+#             */
+/*   Updated: 2021/03/04 17:15:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 
-static void		*my_memcpy(void *dest, const void *src, size_t n)
+int		ft_is_in_tab(char c, char *str)
 {
-	unsigned int	i;
-	char			*d;
-	char			*s;
+	int i;
 
-	d = (char *)dest;
-	s = (char *)src;
-	i = -1;
-	while (++i < n)
-		d[i] = s[i];
-	return (dest);
+	i = 0;
+	while (*str)
+	{
+		if (*str == c)
+			return (i);
+		i++;
+		str++;
+	}
+	return (-1);
 }
 
-static char		*my_strndup(char const *s, size_t n)
+int		ft_count_words(char *str, char *charset)
 {
-	char *res;
+	int	res;
+	int	i;
 
-	res = malloc(sizeof(char) * n + 1);
-	my_memcpy(res, s, n);
-	res[n] = 0;
+	res = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] && (ft_is_in_tab(str[i], charset) != -1))
+			i++;
+		if (str[i])
+			res++;
+		while (str[i] && (ft_is_in_tab(str[i], charset) == -1))
+			i++;
+	}
 	return (res);
 }
 
-static int		ft_count_words(char const *s, char *charset)
+char	*ft_strndup(char *str, int n)
 {
-	int				word_count;
-	unsigned int	i;
+	char	*res;
+	int		i;
 
+	res = malloc(sizeof(char) * (n + 1));
 	i = 0;
-	word_count = 0;
-	while (s[i])
+	while (i < n)
 	{
-		while (ft_strchr(charset, s[i]))
-			i++;
-		if (s[i])
-			word_count++;
-		while (s[i] && !ft_strchr(charset, s[i]))
-			i++;
+		res[i] = str[i];
+		i++;
 	}
-	return (word_count);
+	res[i] = 0;
+	return (res);
 }
 
-char			**ft_cs_split(char const *s, char *charset)
+char	**ft_cs_split(char *str, char *charset)
 {
-	char			**res;
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	word_start_i;
+	char	**res;
+	int		i;
+	int		j;
+	int		word_start_i;
 
-	if (!s)
-		return (0);
-	res = malloc(sizeof(char *) * ((ft_count_words(s, charset) + 1)));
+	res = malloc(sizeof(char *) * (ft_count_words(str, charset) + 1));
 	if (!res)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	word_start_i = 0;
-	while (s[i])
+	while (str[i])
 	{
-		while (ft_strchr(charset, s[i]))
+		while (ft_is_in_tab(str[i], charset) != -1)
 			i++;
 		word_start_i = i;
-		while (s[i] && !ft_strchr(charset, s[i]))
+		while ((str[i]) && (ft_is_in_tab(str[i], charset) == -1))
 			i++;
 		if (i > word_start_i)
-			res[j++] = my_strndup(s + word_start_i, i - word_start_i);
+			res[j++] = ft_strndup(str + word_start_i, i - word_start_i);
 	}
 	res[j] = NULL;
 	return (res);

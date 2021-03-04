@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 16:28:12 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:12:19 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		add_sphere(t_scene *scene, char **infos)
 	pos = extract_vect(infos[1]);
 	diameter = ft_atof(infos[2]);
 	color = extract_vect(infos[3]);
+	put_in_range(color, 0, 255);
 	sp = init_sp(pos, diameter, color);
 	push_obj("sp", sp, scene);
 	ft_free_strarray(infos);

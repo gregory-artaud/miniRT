@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 16:19:02 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:12:26 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		add_triangle(t_scene *scene, char **infos)
 	p2 = extract_vect(infos[2]);
 	p3 = extract_vect(infos[3]);
 	color = extract_vect(infos[4]);
+	put_in_range(color, 0, 255);
 	tr = init_tr(p1, p2, p3, color);
 	push_obj("tr", tr, scene);
 	ft_free_strarray(infos);

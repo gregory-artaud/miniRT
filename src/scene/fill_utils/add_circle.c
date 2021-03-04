@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 17:00:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 16:11:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		add_circle(t_scene *scene, char **infos)
 	ori = extract_vect(infos[2]);
 	diameter = ft_atof(infos[3]);
 	color = extract_vect(infos[4]);
+	put_in_range(color, 0, 255);
 	ci = init_ci(pos, ori, diameter, color);
 	push_obj("ci", ci, scene);
 	ft_free_strarray(infos);

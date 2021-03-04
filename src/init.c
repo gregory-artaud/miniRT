@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 14:34:24 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/04 17:46:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,22 @@ void		free_data(t_data *data)
 	return ;
 }
 
+void		check_scene(t_data *data)
+{
+	int		w;
+	int		h;
+
+	mlx_get_screen_size(data->mlx->mlx, &w, &h);
+	if (data->scene->r_h <= 0 || data->scene->r_w >= h)
+		data->scene->r_h = h;
+	if (data->scene->r_w <= 0 || data->scene->r_w >= w)
+		data->scene->r_w = w;
+	if (!data->scene->ambiant)
+		data->scene->ambiant = init_l(init_vect(0, 0, 0), 0.0,
+										init_vect(0, 0, 0));
+	return ;
+}
+
 t_data		*init_data(char *file, int save)
 {
 	t_data	*data;
@@ -84,5 +100,6 @@ t_data		*init_data(char *file, int save)
 			free_data(data);
 			return (NULL);
 		}
+	check_scene(data);
 	return (data);
 }
