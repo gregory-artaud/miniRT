@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/28 13:46:16 by gartaud           #+#    #+#              #
-#    Updated: 2021/03/03 15:45:02 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/03/07 14:12:51 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,9 @@ FILES		=	ft_memset.c \
 				ft_free_strarray.c \
 				ft_arrlen.c \
 				ft_atof.c \
+				ft_isspace.c \
+				ft_is_int.c \
+				ft_is_double.c \
 				gnl/get_next_line.c \
 				gnl/get_next_line_utils.c
 OBJ			= $(FILES:%.c=%.o)

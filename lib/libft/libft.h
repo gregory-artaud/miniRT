@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:57:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 15:44:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 14:16:11 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,7 @@ char				**ft_cs_split(char const *s, char *charset);
 void				ft_free_strarray(char **array);
 int					ft_arrlen(char **array);
 double				ft_atof(char *s);
-
+int					ft_isspace(char c);
+int					ft_is_int(char *s);
+int					ft_is_double(char *s);
 #endif

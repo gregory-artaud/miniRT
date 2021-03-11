@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/04 17:54:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 17:34:59 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct	s_data
 
 void			print_c(t_camera *c);
 void			print_sp(t_sphere *sp);
-void			error(char *s);
+void			error(char *s, t_data *data);
 t_data			*init_data(char *file, int save);
 void			free_data(t_data *data);
 void			set_hooks(t_data *vars);

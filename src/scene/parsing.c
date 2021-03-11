@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/04 15:40:34 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 14:07:18 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,39 @@ int				id_to_int(char	*id)
 int				fill_scene(t_scene *scene, char *line)
 {
 	int		(*f[NB_ID])(t_scene *, char **);
-	char	**s_line;
 	int		index;
+	int		err;
+	char	**array;
 
 	if (!line)
 		return (EXIT_FAILURE);
 	if (!*line || !ft_memcmp(line, "//", 2))
 		return (EXIT_SUCCESS);
+	if (ft_strlen(line) < 3)
+		return (EXIT_FAILURE);
+	array = ft_cs_split(line, SPACES);
+	if (!array || !ft_arrlen(array))
+	{
+		ft_free_strarray(array);
+		return (EXIT_FAILURE);
+	}
+	printf("%s, (length: %ld)\n", line, ft_strlen(line));
 	init_ft_array(f);
-	s_line = ft_cs_split(line, SPACES);
-	index = id_to_int(s_line[0]);
+	index = id_to_int(*array);
+	printf("index: %d\n", index);
+	err = 1;
 	if (index > -1)
-		return (f[index](scene, s_line));
-	ft_free_strarray(s_line);
+		err = (f[index](scene, array));
+	printf("err: %d\n", err);
+	ft_free_strarray(array);
+	return (err);
+}
+
+int				cancel_parsing(char *line, int fd)
+{
+	close(fd);
+	if (line)
+		free(line);
 	return (EXIT_FAILURE);
 }
 
@@ -84,21 +104,15 @@ int				parse_file(t_scene *scene, char *file)
 		return (EXIT_FAILURE);
 	while ((gnl = get_next_line(fd, &line)))
 		if (gnl == -1)
-			return (EXIT_FAILURE);
+			return (cancel_parsing(line, fd));
 		else
 		{
 			if (fill_scene(scene, line))
-			{
-				free(line);
-				return (EXIT_FAILURE);
-			}
+				return (cancel_parsing(line, fd));
 			free(line);
 		}
 	if (gnl != -1 && fill_scene(scene, line))
-	{
-		free(line);
-		return (EXIT_FAILURE);
-	}
+		return (cancel_parsing(line, fd));
 	free(line);
 	close(fd);
 	return (EXIT_SUCCESS);

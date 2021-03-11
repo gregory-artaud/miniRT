@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 16:18:47 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 13:51:26 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include "objects.h"
 # include "libft.h"
+# include "parser_def.h"
 
 typedef struct	s_scene
 {
@@ -32,16 +33,16 @@ void			push_obj(char *id, void *obj, t_scene *scene);
 /*
 ** Fill utils
 */
-int		set_resolution(t_scene *scene, char **infos);
-int		set_ambiant(t_scene *scene, char **infos);
-int		add_camera(t_scene *scene, char **infos);
-int		add_light(t_scene *scene, char **infos);
-int		add_sphere(t_scene *scene, char **infos);
-int		add_plane(t_scene *scene, char **infos);
-int		add_square(t_scene *scene, char **infos);
-int		add_cylinder(t_scene *scene, char **infos);
-int		add_triangle(t_scene *scene, char **infos);
-int		add_circle(t_scene *scene, char **infos);
+int				set_resolution(t_scene *scene, char **infos);
+int				set_ambiant(t_scene *scene, char **infos);
+int				add_camera(t_scene *scene, char **infos);
+int				add_light(t_scene *scene, char **infos);
+int				add_sphere(t_scene *scene, char **infos);
+int				add_plane(t_scene *scene, char **infos);
+int				add_square(t_scene *scene, char **infos);
+int				add_cylinder(t_scene *scene, char **infos);
+int				add_triangle(t_scene *scene, char **infos);
+int				add_circle(t_scene *scene, char **infos);
 /*
 ** TO REMOVE !!
 */

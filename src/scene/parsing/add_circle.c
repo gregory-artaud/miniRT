@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_cylinder.c                                     :+:      :+:    :+:   */
+/*   add_circle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/04 16:12:00 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/07 13:55:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-int		add_cylinder(t_scene *scene, char **infos)
+int		add_circle(t_scene *scene, char **infos)
 {
-	t_cylinder		*cy;
-	t_ray			*pos_and_ori;
-	double			diameter;
-	double			height;
-	t_vect			*color;
-
-	if (!scene || !infos)
-		return (EXIT_FAILURE);
-	if (ft_arrlen(infos) != 6)
-	{
-		ft_free_strarray(infos);
-		return (EXIT_FAILURE);
-	}
-	pos_and_ori = init_ray(extract_vect(infos[1]), extract_vect(infos[2]));
-	diameter = ft_atof(infos[3]);
-	height = ft_atof(infos[4]);
-	color = extract_vect(infos[5]);
-	put_in_range(color, 0, 255);
-	cy = init_cy(pos_and_ori, diameter, height, color);
-	push_obj("cy", cy, scene);
-	ft_free_strarray(infos);
+	(void)scene;
+	(void)infos;
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:40:30 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 16:56:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/06 17:35:58 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				next_cam(t_data *data)
 	data->scene->current_cam = cam;
 	printf("Camera switched !\nRendering...\n");
 	if (render(data))
-		error("Error during rendering.\n");
+		error("Error during rendering.\n", data);
 	printf("Image rendered !\n");
 	return ;
 }
