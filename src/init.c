@@ -6,13 +6,34 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/04 17:46:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 15:07:22 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static void	free_mlx(t_mlx *mlx)
+int				check_scene(t_data *data)
+{
+	int		w;
+	int		h;
+
+	w = 900;
+	h = 600;
+	if (data->scene->r_w <= 0 || data->scene->r_h <= 0)
+		return (EXIT_FAILURE);
+	mlx_get_screen_size(data->mlx->mlx, &w, &h);
+	if (data->scene->r_h >= h || data->scene->r_w >= w)
+	{
+		data->scene->r_h = h;
+		data->scene->r_w = w;
+	}
+	if (!data->scene->ambiant)
+		data->scene->ambiant = init_l(init_vect(0, 0, 0), 0.0,
+										init_vect(0, 0, 0));
+	return (EXIT_SUCCESS);
+}
+
+static void		free_mlx(t_mlx *mlx)
 {
 	if (!mlx)
 		return ;
@@ -27,20 +48,24 @@ static void	free_mlx(t_mlx *mlx)
 	return ;
 }
 
-static void	*init_mlx(t_scene *scene, int save)
+static void		*init_mlx(t_data *data, int save)
 {
 	t_mlx	*mlx;
 
-	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))))
+	mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	if (!mlx)
 		return (NULL);
-	if (!(mlx->mlx = mlx_init()))
+	data->mlx = mlx;
+	mlx->mlx = mlx_init();
+	if (!mlx->mlx || check_scene(data))
 	{
 		free_mlx(mlx);
 		return (NULL);
 	}
 	mlx->win = NULL;
 	if (!save)
-		mlx->win = mlx_new_window(mlx->mlx, scene->r_w, scene->r_h, "miniRT");
+		mlx->win = mlx_new_window(mlx->mlx, data->scene->r_w,
+									data->scene->r_h, "miniRT");
 	if (!save && !mlx->win)
 	{
 		free(mlx);
@@ -50,7 +75,7 @@ static void	*init_mlx(t_scene *scene, int save)
 	return (mlx);
 }
 
-void		free_data(t_data *data)
+void			free_data(t_data *data)
 {
 	if (!data)
 		return ;
@@ -64,42 +89,35 @@ void		free_data(t_data *data)
 	return ;
 }
 
-void		check_scene(t_data *data)
+static t_data	*failure(t_data *data)
 {
-	int		w;
-	int		h;
-
-	mlx_get_screen_size(data->mlx->mlx, &w, &h);
-	if (data->scene->r_h <= 0 || data->scene->r_w >= h)
-		data->scene->r_h = h;
-	if (data->scene->r_w <= 0 || data->scene->r_w >= w)
-		data->scene->r_w = w;
-	if (!data->scene->ambiant)
-		data->scene->ambiant = init_l(init_vect(0, 0, 0), 0.0,
-										init_vect(0, 0, 0));
-	return ;
+	free_data(data);
+	return (NULL);
 }
 
-t_data		*init_data(char *file, int save)
+t_data			*init_data(char *file, int save)
 {
 	t_data	*data;
+	t_mlx	*mlx;
+	t_scene	*scene;
 
 	if (!(data = (t_data*)ft_calloc(1, sizeof(t_data))))
 		return (NULL);
-	if (!(data->scene = init_scene()) ||
-		parse_file(data->scene, file) ||
-		!(data->mlx = init_mlx(data->scene, save)))
-	{
-		free_data(data);
-		return (NULL);
-	}
+	scene = init_scene();
+	data->scene = scene;
+	printf("test0\n");
+	if (!scene || parse_file(data->scene, file))
+		return (failure(data));
+	printf("test1\n");
+	mlx = init_mlx(data, save);
+	data->mlx = mlx;
+	if (!mlx)
+		return (failure(data));
+	printf("test2\n");
 	data->bmp = NULL;
 	if (save)
 		if (!(data->bmp = init_bmp(data->scene)))
-		{
-			free_data(data);
-			return (NULL);
-		}
-	check_scene(data);
+			return (failure(data));
+	printf("test\n");
 	return (data);
 }

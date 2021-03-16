@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/07 13:51:26 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 15:07:45 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_scene			*init_scene(void);
 void			free_scene(t_scene *scene, void (*del)(void *));
 void			push_obj(char *id, void *obj, t_scene *scene);
 /*
-** Fill utils
+** Parsing
 */
 int				set_resolution(t_scene *scene, char **infos);
 int				set_ambiant(t_scene *scene, char **infos);
@@ -43,6 +43,10 @@ int				add_square(t_scene *scene, char **infos);
 int				add_cylinder(t_scene *scene, char **infos);
 int				add_triangle(t_scene *scene, char **infos);
 int				add_circle(t_scene *scene, char **infos);
+/*
+** Parsing utils
+*/
+int				is_color(char **s);
 /*
 ** TO REMOVE !!
 */
