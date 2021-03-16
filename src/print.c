@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 21:52:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 17:27:50 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:28:28 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void			print_scene(t_scene *scene)
 	printf("\tscene->r_w = %d\n", scene->r_w);
 	printf("\tscene->r_h = %d\n", scene->r_h);
 	printf("\tscene->obj = %p\n", scene->obj);
+	printf("\tscene->ambiant = %p\n", scene->ambiant);
+	print_l(scene->ambiant);
 	ft_lstiter(scene->obj, print_obj);
 }

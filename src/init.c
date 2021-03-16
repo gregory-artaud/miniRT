@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/16 15:07:22 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:26:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,15 @@ t_data			*init_data(char *file, int save)
 		return (NULL);
 	scene = init_scene();
 	data->scene = scene;
-	printf("test0\n");
 	if (!scene || parse_file(data->scene, file))
 		return (failure(data));
-	printf("test1\n");
 	mlx = init_mlx(data, save);
 	data->mlx = mlx;
 	if (!mlx)
 		return (failure(data));
-	printf("test2\n");
 	data->bmp = NULL;
 	if (save)
 		if (!(data->bmp = init_bmp(data->scene)))
 			return (failure(data));
-	printf("test\n");
 	return (data);
 }

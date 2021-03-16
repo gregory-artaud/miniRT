@@ -6,12 +6,22 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/07 14:19:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:19:31 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_DEF_H
 # define PARSER_DEF_H
+
+# define SEPARATORS ", \n\t\v\f\r"
+
+/*
+** Color
+*/
+# define LENGTH_COLOR 3
+# define R 0
+# define G 1
+# define B 2
 
 /*
 ** Resolution
@@ -29,7 +39,7 @@
 /*
 ** Ambiant light
 */
-# define LENGTH_A_INFOS 7
+# define LENGTH_A_INFOS 5
 # define OFFSET_A_INTENSITY 1
 # define OFFSET_A_COLOR 2
 /*

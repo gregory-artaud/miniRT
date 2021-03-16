@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/07 14:07:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:09:02 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				fill_scene(t_scene *scene, char *line)
 		return (EXIT_SUCCESS);
 	if (ft_strlen(line) < 3)
 		return (EXIT_FAILURE);
-	array = ft_cs_split(line, SPACES);
+	array = ft_cs_split(line, SEPARATORS);
 	if (!array || !ft_arrlen(array))
 	{
 		ft_free_strarray(array);

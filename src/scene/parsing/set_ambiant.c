@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/07 14:28:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/16 16:35:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int				set_ambiant(t_scene *scene, char **infos)
 	t_light	*l;
 
 	if (!scene || !infos ||
-		(ft_arrlen(infos) > LENGTH_A_INFOS) ||
+		(ft_arrlen(infos) != LENGTH_A_INFOS) ||
 		scene->ambiant)
 		return (EXIT_FAILURE);
 	if (!ft_is_double(infos[OFFSET_A_INTENSITY]))
 		return (EXIT_FAILURE);
 	lum = ft_atof(infos[OFFSET_A_INTENSITY]);
-	if (!is_color(infos + OFFSET_A_COLOR))
+	if (lum < 0 || lum > 1)
 		return (EXIT_FAILURE);
-	color = extract_vect(infos + OFFSET_A_COLOR);
+	color = extract_color(infos + OFFSET_A_COLOR);
 	if (!color)
 		return (failure(color, NULL));
 	l = init_l(init_vect(0, 0, 0), lum, color);
