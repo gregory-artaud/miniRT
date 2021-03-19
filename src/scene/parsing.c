@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:30:44 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 21:13:35 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void			init_ft_array(int (*f[NB_ID])(t_scene *, char **))
 
 int				id_to_int(char	*id)
 {
-	if (!ft_memcmp(id, "R", 2))
+	if (!ft_memcmp(id, R_ID, 2))
 		return (0);
-	else if (!ft_memcmp(id, "A", 2))
+	else if (!ft_memcmp(id, A_ID, 2))
 		return (1);
-	else if (!ft_memcmp(id, "c", 2))
+	else if (!ft_memcmp(id, C_ID, 2))
 		return (2);
-	else if (!ft_memcmp(id, "l", 2))
+	else if (!ft_memcmp(id, L_ID, 2))
 		return (3);
 	else if (!ft_memcmp(id, "sp", 3))
 		return (4);
@@ -45,7 +45,7 @@ int				id_to_int(char	*id)
 		return (6);
 	else if (!ft_memcmp(id, "cy", 3))
 		return (7);
-	else if (!ft_memcmp(id, "tr", 3))
+	else if (!ft_memcmp(id, TR_ID, 3))
 		return (8);
 	else if (!ft_memcmp(id, "ci", 3))
 		return (9);
@@ -61,7 +61,7 @@ int				fill_scene(t_scene *scene, char *line)
 
 	if (!line)
 		return (EXIT_FAILURE);
-	if (!*line || !ft_memcmp(line, "//", 2))
+	if (!*line || !ft_memcmp(line, SINGLE_LINE_COMMENT, 2))
 		return (EXIT_SUCCESS);
 	if (ft_strlen(line) < 3)
 		return (EXIT_FAILURE);

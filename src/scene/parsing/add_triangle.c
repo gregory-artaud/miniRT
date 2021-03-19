@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:56:05 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 21:01:12 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int				add_triangle(t_scene *scene, char **infos)
 	tr = init_tr(data->p1, data->p2, data->p3, data->color);
 	if (!tr)
 		return (quit(data));
-	push_obj(ft_strdup("tr"), tr, scene);
+	push_obj(ft_strdup(TR_ID), tr, scene);
 	free(data);
 	return (EXIT_SUCCESS);
 }

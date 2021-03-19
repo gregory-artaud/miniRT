@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:54:08 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 21:13:20 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # define SEPARATORS ", \n\t\v\f\r"
 
+/*
+** Global
+*/
+# define SINGLE_LINE_COMMENT "//"
 /*
 ** Color
 */
@@ -35,12 +39,14 @@
 /*
 ** Resolution
 */
+# define R_ID "R"
 # define LENGTH_R_INFOS 3
 # define OFFSET_R_W 1
 # define OFFSET_R_H 2
 /*
 ** Camera
 */
+# define C_ID "c"
 # define LENGTH_C_INFOS 8
 # define OFFSET_C_POS 1
 # define OFFSET_C_ORI 4
@@ -50,12 +56,22 @@
 /*
 ** Ambiant light
 */
+# define A_ID "A"
 # define LENGTH_A_INFOS 5
 # define OFFSET_A_INTENSITY 1
 # define OFFSET_A_COLOR 2
 /*
+** Light
+*/
+# define L_ID "l"
+# define LENGTH_L_INFOS 8
+# define OFFSET_L_POS 1
+# define OFFSET_L_INTENSITY 4
+# define OFFSET_L_COLOR 5
+/*
 ** Triangle
 */
+# define TR_ID "tr"
 # define LENGTH_TR_INFOS 13
 # define OFFSET_TR_P1 1
 # define OFFSET_TR_P2 4
