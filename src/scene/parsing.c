@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/16 16:09:02 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 20:30:44 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,11 @@ int				fill_scene(t_scene *scene, char *line)
 		ft_free_strarray(array);
 		return (EXIT_FAILURE);
 	}
-	printf("%s, (length: %ld)\n", line, ft_strlen(line));
 	init_ft_array(f);
 	index = id_to_int(*array);
-	printf("index: %d\n", index);
 	err = 1;
 	if (index > -1)
 		err = (f[index](scene, array));
-	printf("err: %d\n", err);
 	ft_free_strarray(array);
 	return (err);
 }

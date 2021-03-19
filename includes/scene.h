@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/16 16:29:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 19:48:20 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int				add_circle(t_scene *scene, char **infos);
 ** Parsing utils
 */
 t_vect			*extract_color(char **s);
+t_vect			*extract_vect(char **s);
 /*
 ** TO REMOVE !!
 */

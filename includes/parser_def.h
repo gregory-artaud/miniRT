@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/16 16:19:31 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 20:23:50 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,19 @@
 ** Color
 */
 # define LENGTH_COLOR 3
-# define R 0
-# define G 1
-# define B 2
+# define C_R 0
+# define C_G 1
+# define C_B 2
 
+/*
+** Vectors
+*/
+# define LENGTH_VECTOR 3
+# define V_X 0
+# define V_Y 1
+# define V_Z 2
+# define V_ORI_MIN -1.0
+# define V_ORI_MAX 1.0
 /*
 ** Resolution
 */
@@ -32,10 +41,12 @@
 /*
 ** Camera
 */
-# define LENGTH_C_INFOS 12
+# define LENGTH_C_INFOS 8
 # define OFFSET_C_POS 1
-# define OFFSET_C_ORI 6
-# define OFFSET_C_FOV 11
+# define OFFSET_C_ORI 4
+# define OFFSET_C_FOV 7
+# define C_FOV_MIN 0
+# define C_FOV_MAX 180
 /*
 ** Ambiant light
 */

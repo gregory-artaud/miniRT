@@ -6,14 +6,14 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/16 16:35:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 19:49:54 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 #include "scene.h"
 
-int				failure(t_vect *color, t_light *l)
+static int		failure(t_vect *color, t_light *l)
 {
 	if (l)
 	{

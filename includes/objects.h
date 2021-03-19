@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/05 15:04:40 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 19:48:04 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,4 @@ t_vect			*v_add(t_vect *u, t_vect *v);
 t_vect			*v_prod(t_vect *u, t_vect *v);
 t_vect			*v_fmult(double k, t_vect *u);
 int				is_in_range(t_vect *u, double a, double b);
-t_vect			*extract_vect(char **s);
 #endif
