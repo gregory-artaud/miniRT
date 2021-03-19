@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:23:50 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 20:54:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define C_B 2
 
 /*
-** Vectors
+** Vector
 */
 # define LENGTH_VECTOR 3
 # define V_X 0
@@ -56,10 +56,10 @@
 /*
 ** Triangle
 */
-# define LENGTH_TR_INFOS 21
+# define LENGTH_TR_INFOS 13
 # define OFFSET_TR_P1 1
-# define OFFSET_TR_P2 6
-# define OFFSET_TR_P3 11
-# define OFFSET_TR_COLOR 16
+# define OFFSET_TR_P2 4
+# define OFFSET_TR_P3 7
+# define OFFSET_TR_COLOR 10
 
 #endif

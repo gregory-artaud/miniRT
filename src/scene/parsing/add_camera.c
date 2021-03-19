@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:41:40 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 20:47:44 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int				add_camera(t_scene *scene, char **infos)
 	if (check_params(scene, infos))
 		return (EXIT_FAILURE);
 	data = get_data(infos);
-	printf("pos x,y,z: %lf,%lf,%lf\n", data->pos->x, data->pos->y, data->pos->z);
-	printf("ori x,y,z: %lf,%lf,%lf\n", data->ori->x, data->ori->y, data->ori->z);
 	if (check_data(data))
 		return (quit(data));
 	c = init_c(data->pos, data->ori, data->fov);
