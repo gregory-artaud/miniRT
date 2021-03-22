@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 11:16:07 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 11:28:12 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int		check_params(t_scene *scene, char **infos)
 		return (EXIT_FAILURE);
 	err = 0;
 	err += (ft_arrlen(infos) != LENGTH_SP_INFOS);
+	err += (!ft_is_double((infos[OFFSET_SP_DIAMETER])));
 	return (err);
 }
 
@@ -63,6 +64,7 @@ static int		check_data(t_sp *data)
 		return (EXIT_FAILURE);
 	err = 0;
 	err += (!data->pos);
+	err += (data->diameter < 0);
 	err += (!data->color);
 	return (err);
 }
