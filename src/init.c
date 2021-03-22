@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:02:46 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/16 16:26:08 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 18:13:41 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int				check_scene(t_data *data)
 		data->scene->r_w = w;
 	}
 	if (!data->scene->ambiant)
-		data->scene->ambiant = init_l(init_vect(0, 0, 0), 0.0,
-										init_vect(0, 0, 0));
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 

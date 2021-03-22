@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:27:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:26:38 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 15:32:08 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ t_vect		*extract_color(char **s)
 	res->x = (double)ft_atoi(s[C_R]);
 	res->y = (double)ft_atoi(s[C_G]);
 	res->z = (double)ft_atoi(s[C_B]);
-	if (res->x < 0 || res->y < 0 || res->z < 0)
-	{
-		free(res);
-		return (NULL);
-	}
 	return (res);
 }
 

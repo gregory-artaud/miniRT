@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 21:13:35 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 18:28:33 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ void			init_ft_array(int (*f[NB_ID])(t_scene *, char **))
 
 int				id_to_int(char	*id)
 {
-	if (!ft_memcmp(id, R_ID, 2))
+	if (!ft_memcmp(id, R_ID, R_ID_LN))
 		return (0);
-	else if (!ft_memcmp(id, A_ID, 2))
+	else if (!ft_memcmp(id, A_ID, A_ID_LN))
 		return (1);
-	else if (!ft_memcmp(id, C_ID, 2))
+	else if (!ft_memcmp(id, C_ID, C_ID_LN))
 		return (2);
-	else if (!ft_memcmp(id, L_ID, 2))
+	else if (!ft_memcmp(id, L_ID, L_ID_LN))
 		return (3);
-	else if (!ft_memcmp(id, "sp", 3))
+	else if (!ft_memcmp(id, SP_ID, SP_ID_LN))
 		return (4);
-	else if (!ft_memcmp(id, "pl", 3))
+	else if (!ft_memcmp(id, PL_ID, PL_ID_LN))
 		return (5);
-	else if (!ft_memcmp(id, "sq", 3))
+	else if (!ft_memcmp(id, SQ_ID, SQ_ID_LN))
 		return (6);
-	else if (!ft_memcmp(id, "cy", 3))
+	else if (!ft_memcmp(id, CY_ID, CY_ID_LN))
 		return (7);
-	else if (!ft_memcmp(id, TR_ID, 3))
+	else if (!ft_memcmp(id, TR_ID, TR_ID_LN))
 		return (8);
-	else if (!ft_memcmp(id, "ci", 3))
+	else if (!ft_memcmp(id, CI_ID, CI_ID_LN))
 		return (9);
 	return (-1);
 }

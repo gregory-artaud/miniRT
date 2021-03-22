@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 20:47:44 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 13:52:39 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ static int		check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
-	if (!scene || !infos)
+	if (!scene || !infos || (ft_arrlen(infos) != LENGTH_C_INFOS))
 		return (EXIT_FAILURE);
 	err = 0;
-	err += (ft_arrlen(infos) != LENGTH_C_INFOS);
 	err += (!ft_is_double(infos[OFFSET_C_FOV]));
 	return (err);
 }

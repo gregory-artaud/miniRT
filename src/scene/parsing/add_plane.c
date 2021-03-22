@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 11:04:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 17:04:57 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static int		check_data(t_pl *data)
 	err += (!data->pos);
 	err += (!data->ori);
 	err += (!is_in_range(data->ori, V_ORI_MIN, V_ORI_MAX));
+	err += (!is_in_range(data->color, COLOR_MIN, COLOR_MAX));
 	err += (!data->color);
 	return (err);
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 13:27:48 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 13:45:16 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		error(char *s, t_data *data)
 {
-	printf("%s", s);
+	ft_putstr_fd(s, STDERR_FILENO);
 	if (data)
 		free(data);
 	exit(EXIT_FAILURE);
