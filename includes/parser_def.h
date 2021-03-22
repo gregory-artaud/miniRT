@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 21:13:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 11:01:52 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define C_R 0
 # define C_G 1
 # define C_B 2
-
 /*
 ** Vector
 */
@@ -77,5 +76,12 @@
 # define OFFSET_TR_P2 4
 # define OFFSET_TR_P3 7
 # define OFFSET_TR_COLOR 10
-
+/*
+** Plane
+*/
+# define PL_ID "pl"
+# define LENGTH_PL_INFOS 10
+# define OFFSET_PL_POS 1
+# define OFFSET_PL_ORI 4
+# define OFFSET_PL_COLOR 7
 #endif
