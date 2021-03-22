@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 11:32:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 13:22:27 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,13 @@
 # define OFFSET_SQ_ORI 4
 # define OFFSET_SQ_SIZE 7
 # define OFFSET_SQ_COLOR 8
+/*
+** Circle
+*/
+# define CI_ID "ci"
+# define LENGTH_CI_INFOS 11
+# define OFFSET_CI_POS 1
+# define OFFSET_CI_ORI 4
+# define OFFSET_CI_DIAMETER 7
+# define OFFSET_CI_COLOR 8
 #endif

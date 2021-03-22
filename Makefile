@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/03/22 11:34:34 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/03/22 12:05:01 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,7 @@ MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= $(shell find src *.c -type f)
 OBJ 		= $(FILES:%.c=%.o)
-#DEFAULT		= scenes/default.rt
-DEFAULT		= scenes/sq_red.rt
+DEFAULT		= scenes/default.rt
 IMG			= image.bmp
 VFLAGS		= --leak-check=full --track-origins=yes
 
