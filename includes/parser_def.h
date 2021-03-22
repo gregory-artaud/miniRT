@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 11:01:52 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 11:17:25 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,12 @@
 # define OFFSET_PL_POS 1
 # define OFFSET_PL_ORI 4
 # define OFFSET_PL_COLOR 7
+/*
+** Sphere
+*/
+# define SP_ID "sp"
+# define LENGTH_SP_INFOS 8
+# define OFFSET_SP_POS 1
+# define OFFSET_SP_DIAMETER 4
+# define OFFSET_SP_COLOR 5
 #endif
