@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:15:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/26 00:35:36 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 16:07:03 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ double			intersect_cy(t_ray *ray, t_cylinder *cy)
 	do_intersect = solve_quadratic(a, b, c, &t);
 	if (!do_intersect)
 		return (INFINITY);
-	printf("intersect !\n");
+	//printf("intersect !\n");
 	return (t);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 18:27:29 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 16:22:11 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,10 @@
 */
 # define CY_ID "cy"
 # define CY_ID_LN 3
+# define LENGTH_CY_INFOS 12
+# define OFFSET_CY_POS 1
+# define OFFSET_CY_ORI 4
+# define OFFSET_CY_DIAMETER 7
+# define OFFSET_CY_HEIGHT 8
+# define OFFSET_CY_COLOR 9
 #endif
