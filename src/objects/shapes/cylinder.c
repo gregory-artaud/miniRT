@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:15:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/23 16:07:03 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 18:35:02 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,69 +44,56 @@ void			free_cy(t_cylinder *cy)
 
 int				is_cylinder(t_object *obj)
 {
-		return (!ft_memcmp(obj->id, "cy", 3));
+	return (!ft_memcmp(obj->id, "cy", 3));
 }
 
-t_vect			*calc_u(t_ray *ray, t_cylinder *cy)
+t_vect 			*cy_get_x(t_ray *ray, t_cylinder *cy)
 {
-	t_vect	*u;
+	t_vect	*x;
 	t_vect	*tmp;
-	double	dot;
 
-	dot = v_dot(ray->dir, cy->ori);
-	tmp = v_mult(dot, cy->ori);
-	u = v_minus(ray->dir, tmp);
+	tmp = v_mult(v_dot(ray->dir, cy->ori), cy->ori);
+	x = v_minus(ray->dir, tmp);
 	free(tmp);
-	return (u);
+	return (x);
 }
-
-t_vect			*calc_v(t_ray *ray, t_cylinder *cy)
+t_vect 			*cy_get_y(t_ray *ray, t_cylinder *cy)
 {
-	t_vect	*v;
+	t_vect	*y;
+	t_vect	*delta_p;
 	t_vect	*tmp;
-	t_vect	*diff;
-	double	dot;
 
-	diff = v_minus(ray->pos, cy->pos);
-	dot = v_dot(diff, cy->ori);
-	tmp = v_mult(dot, cy->ori);
-	v = v_minus(diff, tmp);
-	free(diff);
+	delta_p = v_minus(ray->pos, cy->pos);
+	tmp = v_mult(v_dot(delta_p, cy->ori), cy->ori);
+	y = v_minus(delta_p, tmp);
 	free(tmp);
-	return (v);
-}
-
-double			calc_abc(double *a, double *b, t_cylinder *cy, t_ray *ray)
-{
-	t_vect	*u;
-	t_vect	*v;
-	double	c;
-
-	u = calc_u(ray, cy);
-	v = calc_v(ray, cy);
-	*a = v_length(u) * v_length(u);
-	*b = 2 * v_dot(u, v);
-	c = v_length(v) * v_length(v) - ((cy->diameter * cy->diameter) / 4.0);
-	free(u);
-	free(v);
-	return (c);
+	free(delta_p);
+	return (y);
 }
 
 double			intersect_cy(t_ray *ray, t_cylinder *cy)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	t;
-	int		do_intersect;
+	double	res;
+	t_vect	*x;
+	t_vect	*y;
+	t_vect	*abc;
 
-	c = calc_abc(&a, &b, cy, ray);
-	t = INFINITY;
-	do_intersect = solve_quadratic(a, b, c, &t);
-	if (!do_intersect)
+	if (!ray || !cy)
 		return (INFINITY);
-	//printf("intersect !\n");
-	return (t);
+	abc = init_vect(0, 0, 0);
+	x = cy_get_x(ray, cy);
+	y = cy_get_y(ray, cy);
+	abc->x = v_dot(x, x);
+	abc->y = 2 * v_dot(x, y);
+	abc->z = v_dot(y, y) - (cy->diameter * cy->diameter) / 4.0;
+	//printf("test\n");
+	if (!solve_quadratic(abc->x, abc->y, abc->z, &res))
+		return (INFINITY);
+	free(abc);
+	free(x);
+	free(y);
+	//printf("intersect ! (%lf)\n", res);
+	return (res);
 }
 
 t_vect			*get_normal_cy(t_ray *ray, t_vect *hit, t_cylinder *cy)

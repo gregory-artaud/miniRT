@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/23 16:35:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 18:32:32 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static double	intersect_obj(t_ray *r, t_object *obj)
 		return (intersect_tr(r, (t_triangle *)obj->obj));
 	if (is_circle(obj))
 		return (intersect_ci(r, (t_circle *)obj->obj));
+	if (is_cylinder(obj))
+		return (intersect_cy(r, (t_cylinder *)obj->obj));
 	return (INFINITY);
 }
 
@@ -111,5 +113,7 @@ t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 		return (get_normal_tr(ray, hit, (t_triangle *)obj->obj));
 	if (is_circle(obj))
 		return (get_normal_ci(ray, hit, (t_circle *)obj->obj));
+	if (is_cylinder(obj))
+		return (get_normal_cy(ray, hit, (t_cylinder *)obj->obj));
 	return (NULL);
 }
