@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 15:03:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 19:47:38 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 08:42:03 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,11 @@ void	put_in_range(t_vect *u, double min, double max)
 	u->y = floor(fmax(fmin(u->y, max), min));
 	u->z = floor(fmax(fmin(u->z, max), min));
 	return ;
+}
+
+void	v_add_v(t_vect *u, t_vect *v)
+{
+	u->x += v->x;
+	u->y += v->y;
+	u->z += v->z;
 }

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/06 17:34:59 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 10:57:03 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define KEY_ESC 65307
 # define KEY_NEXT_CAM 99
 # define MIRROR_DEPTH 2
+# define ANTIALIASING 0
+# define SAMPLING 2
 
 typedef struct	s_mlx
 {
@@ -55,7 +57,11 @@ int				parse_file(t_scene *scene, char *file);
 int				exit_prog(t_data *data);
 t_ray			*gen_primary_ray(int x, int y, t_data *data);
 t_ray			*gen_shadow_ray(t_vect *pos, t_vect *target);
+void			print_progress(int x, int end);
+void			draw(t_data *data, int x, int y, t_vect *c);
+t_vect			*trace(t_ray *r, t_scene *scene, int depth);
 int				render(t_data *data);
+int				antialiasing(t_data *data);
 void			next_cam(t_data *data);
 t_vect			*parse_lights(t_ray *ray, t_vect *hit, t_vect *normal,
 								t_scene *scene);

@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/28 23:29:21 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 08:47:04 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-static void		print_progress(int x, int end)
+void		print_progress(int x, int end)
 {
 	double	old;
 	double	progress;
@@ -55,7 +55,7 @@ static t_vect	*shade(t_ray *r, t_vect *hit, t_object *obj, t_scene *scene)
 	return (c);
 }
 
-static t_vect	*trace(t_ray *r, t_scene *scene, int depth)
+t_vect	*trace(t_ray *r, t_scene *scene, int depth)
 {
 	t_vect		*c;
 	t_vect		*hit;
@@ -82,7 +82,7 @@ static t_vect	*trace(t_ray *r, t_scene *scene, int depth)
 	return (c);
 }
 
-static void		draw(t_data *data, int x, int y, t_vect *c)
+void		draw(t_data *data, int x, int y, t_vect *c)
 {
 	if (!c)
 		return ;
@@ -101,6 +101,8 @@ int				render(t_data *data)
 	t_ray	*r;
 	t_vect	*c;
 
+	if (ANTIALIASING)
+		return (antialiasing(data));
 	if (!data)
 		return (EXIT_FAILURE);
 	y = -1;

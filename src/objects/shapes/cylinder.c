@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:15:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/23 18:35:02 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 10:09:49 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,14 @@ double			intersect_cy(t_ray *ray, t_cylinder *cy)
 	abc->x = v_dot(x, x);
 	abc->y = 2 * v_dot(x, y);
 	abc->z = v_dot(y, y) - (cy->diameter * cy->diameter) / 4.0;
-	//printf("test\n");
-	if (!solve_quadratic(abc->x, abc->y, abc->z, &res))
-		return (INFINITY);
-	free(abc);
 	free(x);
 	free(y);
-	//printf("intersect ! (%lf)\n", res);
+	if (!solve_quadratic(abc->x, abc->y, abc->z, &res))
+	{
+		free(abc);
+		return (INFINITY);
+	}
+	free(abc);
 	return (res);
 }
 
