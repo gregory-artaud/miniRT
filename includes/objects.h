@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 08:42:27 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 11:29:05 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define EPSILON 1e-7
 # define K_A 0.25
-# define K_D 1.5
+# define K_D 3.0
 # define K_S 0.4
 # define N_S 20
 

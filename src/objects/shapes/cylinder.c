@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:15:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 10:09:49 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 11:16:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,20 @@ double			intersect_cy(t_ray *ray, t_cylinder *cy)
 
 t_vect			*get_normal_cy(t_ray *ray, t_vect *hit, t_cylinder *cy)
 {
-	(void)ray;
-	(void)hit;
-	(void)cy;
-	return (init_vect(0, 0, 0));
+	t_vect	*u;
+	t_vect	*v;
+	t_vect	*normal;
+	double	t;
+
+	v = v_minus(hit, cy->ori);
+	t = v_dot(cy->ori, v);
+	u = v_mult(t, cy->ori);
+	v_add_v(u, cy->pos);
+	normal = v_minus(hit, u);
+	free(u);
+	free(v);
+	normalize(normal);
+	if (v_dot(normal, ray->dir) > 0)
+		(void)v_fmult(-1, normal);
+	return (normal);
 }
