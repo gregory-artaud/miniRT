@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 10:57:03 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:03:28 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define NB_ID 10
 # define KEY_ESC 65307
 # define KEY_NEXT_CAM 99
-# define MIRROR_DEPTH 2
+# define MIRROR_DEPTH 1
 # define ANTIALIASING 0
 # define SAMPLING 2
 

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:03:03 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 10:55:43 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 13:49:27 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,20 @@ void			free_px(t_vect ***px, t_data *data)
 	return ;
 }
 
-t_vect			*average(t_vect ***px, int x, int y, t_data *data)
+t_vect			*average(t_vect ***px, int x, int y)
 {
 	t_vect	*sum;
 	t_vect	*res;
 	int		i;
 	int		j;
 
-	(void)data;
 	sum = init_vect(0, 0, 0);
 	i = -1;
 	while (++i < SAMPLING)
 	{
 		j = -1;
 		while (++j < SAMPLING)
-			v_add_v(sum, px[x + i][y + j]);
+			v_add_v(sum, px[x * SAMPLING + i][y * SAMPLING + j]);
 	}
 	res = v_mult(1.0 / (SAMPLING * SAMPLING), sum);
 	free(sum);
@@ -89,7 +88,7 @@ void			draw_pixels(t_vect ***px, t_data *data)
 		x = s_w;
 		while (x-- > 0)
 		{
-			c = average(px, x, y, data);
+			c = average(px, x, y);
 			draw(data, x, y, c);
 		}
 		y++;

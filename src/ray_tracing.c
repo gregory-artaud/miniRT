@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:16:18 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 16:55:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 13:38:14 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ static t_vect	*primary_ray_dir(t_scene *scene, t_camera *c, int x, int y)
 
 	h = (double)scene->r_h;
 	w = (double)scene->r_w;
+	if (ANTIALIASING)
+	{
+		h *= SAMPLING;
+		w *= SAMPLING;
+	}
 	fov = tan(c->fov * M_PI / 360.0);
 	tmp = init_vect(0, 0, 0);
 	tmp->x = fov * (w / h) *
