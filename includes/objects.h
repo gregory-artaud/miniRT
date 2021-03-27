@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 11:29:05 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:39:43 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "libft.h"
 # include "objects_def.h"
 
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 # define EPSILON 1e-7
 # define K_A 0.25
 # define K_D 3.0
@@ -38,6 +41,8 @@ double			intersect(t_ray *ray, t_list *lst, t_object **obj);
 t_light			*init_l(t_vect *pos, double lum, t_vect *color);
 void			free_l(t_light *l);
 int				is_light(t_object *obj);
+t_vect			*parse_lights(t_ray *ray, t_vect *hit, t_vect *normal,
+					t_scene *scene);
 /*
 ** Ray
 */
@@ -79,7 +84,8 @@ void			free_sq(t_square *sq);
 ** Circle
 */
 double			intersect_ci(t_ray *ray, t_circle *ci);
-t_circle		*init_ci(t_vect *pos, t_vect *ori, double radius, t_vect *color);
+t_circle		*init_ci(t_vect *pos, t_vect *ori,
+					double radius, t_vect *color);
 t_vect			*get_normal_ci(t_ray *ray, t_vect *hit, t_circle *ci);
 int				is_circle(t_object *obj);
 void			free_ci(t_circle *ci);
@@ -87,10 +93,13 @@ void			free_ci(t_circle *ci);
 ** Cylinder
 */
 double			intersect_cy(t_ray *ray, t_cylinder *cy);
-t_cylinder		*init_cy(t_ray *pos_and_ori, double diameter, double height, t_vect *color);
+t_cylinder		*init_cy(t_ray *pos_and_ori, double diameter,
+					double height, t_vect *color);
 t_vect			*get_normal_cy(t_ray *ray, t_vect *hit, t_cylinder *cy);
 int				is_cylinder(t_object *obj);
 void			free_cy(t_cylinder *cy);
+t_vect			*cy_get_x(t_ray *ray, t_cylinder *cy);
+t_vect			*cy_get_y(t_ray *ray, t_cylinder *cy);
 /*
 ** Triangle
 */

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 16:18:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/23 16:22:11 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:56:33 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 # define PARSER_DEF_H
 
 # define SEPARATORS ", \n\t\v\f\r"
-
 /*
 ** Global
 */
-# define SINGLE_LINE_COMMENT "//"
+# define SINGLE_LINE_COMMENT "#"
 /*
 ** Color
 */
@@ -56,6 +55,13 @@
 # define OFFSET_C_FOV 7
 # define C_FOV_MIN 0
 # define C_FOV_MAX 180
+
+typedef struct s_cam
+{
+	t_vect		*pos;
+	t_vect		*ori;
+	double		fov;
+}				t_cam;
 /*
 ** Ambiant light
 */
@@ -64,6 +70,12 @@
 # define LENGTH_A_INFOS 5
 # define OFFSET_A_INTENSITY 1
 # define OFFSET_A_COLOR 2
+
+typedef struct s_ambiant
+{
+	double			lum;
+	t_vect			*color;
+}					t_ambiant;
 /*
 ** Light
 */
@@ -73,6 +85,13 @@
 # define OFFSET_L_POS 1
 # define OFFSET_L_INTENSITY 4
 # define OFFSET_L_COLOR 5
+
+typedef struct s_l
+{
+	t_vect		*pos;
+	double		lum;
+	t_vect		*color;
+}				t_l;
 /*
 ** Triangle
 */
@@ -83,6 +102,14 @@
 # define OFFSET_TR_P2 4
 # define OFFSET_TR_P3 7
 # define OFFSET_TR_COLOR 10
+
+typedef struct s_tr
+{
+	t_vect		*p1;
+	t_vect		*p2;
+	t_vect		*p3;
+	t_vect		*color;
+}				t_tr;
 /*
 ** Plane
 */
@@ -92,6 +119,13 @@
 # define OFFSET_PL_POS 1
 # define OFFSET_PL_ORI 4
 # define OFFSET_PL_COLOR 7
+
+typedef struct s_pl
+{
+	t_vect		*pos;
+	t_vect		*ori;
+	t_vect		*color;
+}				t_pl;
 /*
 ** Sphere
 */
@@ -101,6 +135,13 @@
 # define OFFSET_SP_POS 1
 # define OFFSET_SP_DIAMETER 4
 # define OFFSET_SP_COLOR 5
+
+typedef struct s_sp
+{
+	t_vect		*pos;
+	double		diameter;
+	t_vect		*color;
+}				t_sp;
 /*
 ** Square
 */
@@ -111,6 +152,14 @@
 # define OFFSET_SQ_ORI 4
 # define OFFSET_SQ_SIZE 7
 # define OFFSET_SQ_COLOR 8
+
+typedef struct s_sq
+{
+	t_vect		*pos;
+	t_vect		*ori;
+	double		size;
+	t_vect		*color;
+}				t_sq;
 /*
 ** Circle
 */
@@ -121,6 +170,14 @@
 # define OFFSET_CI_ORI 4
 # define OFFSET_CI_DIAMETER 7
 # define OFFSET_CI_COLOR 8
+
+typedef struct s_ci
+{
+	t_vect		*pos;
+	t_vect		*ori;
+	double		diameter;
+	t_vect		*color;
+}				t_ci;
 /*
 ** Cylinder
 */
@@ -132,4 +189,12 @@
 # define OFFSET_CY_DIAMETER 7
 # define OFFSET_CY_HEIGHT 8
 # define OFFSET_CY_COLOR 9
+
+typedef struct s_cy
+{
+	t_ray		*pos_and_ori;
+	double		diameter;
+	double		height;
+	t_vect		*color;
+}				t_cy;
 #endif

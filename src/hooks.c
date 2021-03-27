@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:06:24 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 13:46:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:52:47 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_hooks(t_data *data)
 	return ;
 }
 
-int		key_pressed(int keycode, t_data *data)
+int	key_pressed(int keycode, t_data *data)
 {
 	if (keycode == KEY_ESC)
 		exit_prog(data);
@@ -30,7 +30,7 @@ int		key_pressed(int keycode, t_data *data)
 	return (0);
 }
 
-int		exit_prog(t_data *data)
+int	exit_prog(t_data *data)
 {
 	if (data)
 		free_data(data);

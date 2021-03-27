@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:38:20 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 14:54:56 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:58:21 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_bfh	*init_bfh(t_scene *scene)
 	t_bfh	*bfh;
 	int		pad;
 
-	if (!(bfh = malloc(sizeof(t_bfh))))
+	bfh = malloc(sizeof(t_bfh));
+	if (!bfh)
 		return (NULL);
 	bfh->type = ft_strdup("BM");
 	if (scene->r_w * 3 % 4)
@@ -34,7 +35,8 @@ t_bih	*init_bih(t_scene *scene)
 {
 	t_bih	*bih;
 
-	if (!(bih = malloc(sizeof(t_bih))))
+	bih = malloc(sizeof(t_bih));
+	if (!bih)
 		return (NULL);
 	bih->size = 40;
 	bih->planes = 1;

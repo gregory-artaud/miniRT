@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 23:06:49 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 11:28:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:15:47 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_vect	*parse_lights(t_ray *ray, t_vect *hit, t_vect *normal, t_scene *scene)
 			shad_ray = gen_shadow_ray(hit, ((t_light *)current->obj)->pos);
 			if (!is_ray_blocked(shad_ray, scene->obj, (t_light *)current->obj))
 				tmp = calc_diff_spec(ray, shad_ray, normal,
-									(t_light *)current->obj);
+						(t_light *)current->obj);
 			free_ray(shad_ray);
 		}
 		v_fadd(l, tmp);

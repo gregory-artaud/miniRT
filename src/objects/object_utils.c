@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:10:29 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/23 18:57:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:14:52 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ t_vect	*obj_get_color(t_object *obj)
 	return (dup_vect(tmp));
 }
 
-int		c_to_hex(t_vect *c)
+int	c_to_hex(t_vect *c)
 {
 	int		hex;
 
 	if (!c)
 		return (0);
-	if (c->x < 0 || c->x > 255 ||
-		c->y < 0 || c->y > 255 ||
-		c->z < 0 || c->z > 255)
+	if (c->x < 0 || c->x > 255
+		|| c->y < 0 || c->y > 255
+		|| c->z < 0 || c->z > 255)
 		return (0x0);
 	hex = (int)floor(c->x);
 	hex = hex << 8;
@@ -52,9 +52,9 @@ int		c_to_hex(t_vect *c)
 	return (hex);
 }
 
-int		solve_quadratic(double a, double b, double c, double *sol)
+int	solve_quadratic(double a, double b, double c, double *sol)
 {
-	double d;
+	double	d;
 
 	d = b * b - 4 * a * c;
 	if (d < 0)

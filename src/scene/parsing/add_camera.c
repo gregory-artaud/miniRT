@@ -6,21 +6,14 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 13:52:39 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:53:31 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 #include "scene.h"
 
-typedef struct	s_cam
-{
-	t_vect		*pos;
-	t_vect		*ori;
-	double		fov;
-}				t_cam;
-
-static int		quit(t_cam *data)
+static int	quit(t_cam *data)
 {
 	if (!data)
 		return (EXIT_FAILURE);
@@ -32,7 +25,7 @@ static int		quit(t_cam *data)
 	return (EXIT_FAILURE);
 }
 
-static int		check_params(t_scene *scene, char **infos)
+static int	check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
@@ -56,7 +49,7 @@ static t_cam	*get_data(char **infos)
 	return (data);
 }
 
-static int		check_data(t_cam *data)
+static int	check_data(t_cam *data)
 {
 	int		err;
 
@@ -70,7 +63,7 @@ static int		check_data(t_cam *data)
 	return (err);
 }
 
-int				add_camera(t_scene *scene, char **infos)
+int	add_camera(t_scene *scene, char **infos)
 {
 	t_cam		*data;
 	t_camera	*c;

@@ -6,21 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 18:08:54 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:55:55 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-typedef struct	s_sq
-{
-	t_vect		*pos;
-	t_vect		*ori;
-	double		size;
-	t_vect		*color;
-}				t_sq;
-
-static int		quit(t_sq *data)
+static int	quit(t_sq *data)
 {
 	if (!data)
 		return (EXIT_FAILURE);
@@ -34,7 +26,7 @@ static int		quit(t_sq *data)
 	return (EXIT_FAILURE);
 }
 
-static int		check_params(t_scene *scene, char **infos)
+static int	check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
@@ -45,7 +37,7 @@ static int		check_params(t_scene *scene, char **infos)
 	return (err);
 }
 
-static t_sq		*get_data(char **infos)
+static t_sq	*get_data(char **infos)
 {
 	t_sq	*data;
 
@@ -59,7 +51,7 @@ static t_sq		*get_data(char **infos)
 	return (data);
 }
 
-static int		check_data(t_sq *data)
+static int	check_data(t_sq *data)
 {
 	int		err;
 
@@ -75,7 +67,7 @@ static int		check_data(t_sq *data)
 	return (err);
 }
 
-int		add_square(t_scene *scene, char **infos)
+int	add_square(t_scene *scene, char **infos)
 {
 	t_sq		*data;
 	t_square	*obj;

@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.c                                            :+:      :+:    :+:   */
+/*   cylinder_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 22:04:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 15:16:12 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/03/27 15:30:50 by gartaud           #+#    #+#             */
+/*   Updated: 2021/03/27 15:31:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_light	*init_l(t_vect *pos, double lum, t_vect *color)
+t_vect	*cy_get_x(t_ray *ray, t_cylinder *cy)
 {
-	t_light		*l;
+	t_vect	*x;
+	t_vect	*tmp;
 
-	l = (t_light *)malloc(sizeof(t_light));
-	if (!l)
-		return (NULL);
-	l->pos = pos;
-	l->lum = lum;
-	l->color = color;
-	return (l);
+	tmp = v_mult(v_dot(ray->dir, cy->ori), cy->ori);
+	x = v_minus(ray->dir, tmp);
+	free(tmp);
+	return (x);
 }
 
-void	free_l(t_light *l)
+t_vect	*cy_get_y(t_ray *ray, t_cylinder *cy)
 {
-	free(l->pos);
-	free(l->color);
-	free(l);
-	return ;
-}
+	t_vect	*y;
+	t_vect	*delta_p;
+	t_vect	*tmp;
 
-int	is_light(t_object *obj)
-{
-	return (!ft_memcmp(obj->id, "l", 2));
+	delta_p = v_minus(ray->pos, cy->pos);
+	tmp = v_mult(v_dot(delta_p, cy->ori), cy->ori);
+	y = v_minus(delta_p, tmp);
+	free(tmp);
+	free(delta_p);
+	return (y);
 }

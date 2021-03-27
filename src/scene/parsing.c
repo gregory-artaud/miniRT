@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 18:28:33 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:06:29 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "mini_rt.h"
+#include "mini_rt.h"
 
-void			init_ft_array(int (*f[NB_ID])(t_scene *, char **))
+void	init_ft_array(int (*f[NB_ID])(t_scene *, char **))
 {
 	f[0] = set_resolution;
 	f[1] = set_ambiant;
@@ -27,7 +27,7 @@ void			init_ft_array(int (*f[NB_ID])(t_scene *, char **))
 	return ;
 }
 
-int				id_to_int(char	*id)
+int	id_to_int(char	*id)
 {
 	if (!ft_memcmp(id, R_ID, R_ID_LN))
 		return (0);
@@ -52,7 +52,7 @@ int				id_to_int(char	*id)
 	return (-1);
 }
 
-int				fill_scene(t_scene *scene, char *line)
+int	fill_scene(t_scene *scene, char *line)
 {
 	int		(*f[NB_ID])(t_scene *, char **);
 	int		index;
@@ -80,7 +80,7 @@ int				fill_scene(t_scene *scene, char *line)
 	return (err);
 }
 
-int				cancel_parsing(char *line, int fd)
+int	cancel_parsing(char *line, int fd)
 {
 	close(fd);
 	if (line)
@@ -88,18 +88,18 @@ int				cancel_parsing(char *line, int fd)
 	return (EXIT_FAILURE);
 }
 
-int				parse_file(t_scene *scene, char *file)
+int	parse_file(t_scene *scene, char *file)
 {
 	int		fd;
 	char	*line;
 	int		gnl;
 
-	line = NULL;
-	gnl = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (EXIT_FAILURE);
-	while ((gnl = get_next_line(fd, &line)))
+	gnl = get_next_line(fd, &line);
+	while (gnl)
+	{
 		if (gnl == -1)
 			return (cancel_parsing(line, fd));
 		else
@@ -108,6 +108,8 @@ int				parse_file(t_scene *scene, char *file)
 				return (cancel_parsing(line, fd));
 			free(line);
 		}
+		gnl = get_next_line(fd, &line);
+	}
 	if (gnl != -1 && fill_scene(scene, line))
 		return (cancel_parsing(line, fd));
 	free(line);

@@ -6,24 +6,25 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:02:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/23 18:32:32 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:14:15 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_object		*init_object(void)
+t_object	*init_object(void)
 {
 	t_object	*obj;
 
-	if (!(obj = (t_object *)malloc(sizeof(t_object))))
+	obj = (t_object *)malloc(sizeof(t_object));
+	if (!obj)
 		return (NULL);
 	obj->id = NULL;
 	obj->obj = NULL;
 	return (obj);
 }
 
-void			free_object(void *ptr)
+void	free_object(void *ptr)
 {
 	t_object	*obj;
 
@@ -70,7 +71,7 @@ static double	intersect_obj(t_ray *r, t_object *obj)
 	return (INFINITY);
 }
 
-double			intersect(t_ray *ray, t_list *lst, t_object **obj)
+double	intersect(t_ray *ray, t_list *lst, t_object **obj)
 {
 	double		t;
 	double		t_min;
@@ -99,7 +100,7 @@ double			intersect(t_ray *ray, t_list *lst, t_object **obj)
 	return (t_min);
 }
 
-t_vect			*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
+t_vect	*get_normal(t_ray *ray, t_vect *hit, t_object *obj)
 {
 	if (!obj)
 		return (NULL);

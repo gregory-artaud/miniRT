@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:27:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 15:32:08 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:07:25 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-t_vect		*extract_color(char **s)
+t_vect	*extract_color(char **s)
 {
 	int		len;
 	t_vect	*res;
@@ -31,7 +31,7 @@ t_vect		*extract_color(char **s)
 	return (res);
 }
 
-t_vect		*extract_vect(char **s)
+t_vect	*extract_vect(char **s)
 {
 	int		len;
 	t_vect	*res;

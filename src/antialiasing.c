@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:03:03 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 13:49:27 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:53:10 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-t_vect			***init_pixels(t_data *data)
+t_vect	***init_pixels(t_data *data)
 {
 	t_vect	***p;
 	int		i;
@@ -30,7 +30,7 @@ t_vect			***init_pixels(t_data *data)
 	return (p);
 }
 
-void			free_px(t_vect ***px, t_data *data)
+void	free_px(t_vect ***px, t_data *data)
 {
 	int		s_w;
 	int		s_h;
@@ -52,7 +52,7 @@ void			free_px(t_vect ***px, t_data *data)
 	return ;
 }
 
-t_vect			*average(t_vect ***px, int x, int y)
+t_vect	*average(t_vect ***px, int x, int y)
 {
 	t_vect	*sum;
 	t_vect	*res;
@@ -72,7 +72,7 @@ t_vect			*average(t_vect ***px, int x, int y)
 	return (res);
 }
 
-void			draw_pixels(t_vect ***px, t_data *data)
+void	draw_pixels(t_vect ***px, t_data *data)
 {
 	t_vect	*c;
 	int		x;
@@ -95,7 +95,7 @@ void			draw_pixels(t_vect ***px, t_data *data)
 	}
 }
 
-int				antialiasing(t_data *data)
+int	antialiasing(t_data *data)
 {
 	int		x;
 	int		y;

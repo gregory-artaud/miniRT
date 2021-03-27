@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:52:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:05:57 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:57:21 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	bmp_pixel_put(t_bmp *bmp, int c)
 	t_list	*new;
 	int		*pxl;
 
-	if (!(pxl = malloc(sizeof(int))))
+	pxl = malloc(sizeof(int));
+	if (!pxl)
 		return ;
 	*pxl = c;
 	new = ft_lstnew(pxl);

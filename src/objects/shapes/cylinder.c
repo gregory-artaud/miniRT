@@ -6,18 +6,20 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:15:55 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/24 11:54:36 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:31:40 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_cylinder		*init_cy(t_ray *pos_and_ori, double diameter, double height, t_vect *color)
+t_cylinder	*init_cy(t_ray *pos_and_ori, double diameter,
+				double height, t_vect *color)
 {
 	t_cylinder	*cy;
 	double		matrix[3][3];
 
-	if (!(cy = malloc(sizeof(t_cylinder))))
+	cy = malloc(sizeof(t_cylinder));
+	if (!cy)
 		return (NULL);
 	cy->pos = dup_vect(pos_and_ori->pos);
 	calc_rot(matrix, pos_and_ori->dir);
@@ -31,7 +33,7 @@ t_cylinder		*init_cy(t_ray *pos_and_ori, double diameter, double height, t_vect 
 	return (cy);
 }
 
-void			free_cy(t_cylinder *cy)
+void	free_cy(t_cylinder *cy)
 {
 	if (!cy)
 		return ;
@@ -42,36 +44,12 @@ void			free_cy(t_cylinder *cy)
 	return ;
 }
 
-int				is_cylinder(t_object *obj)
+int	is_cylinder(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "cy", 3));
 }
 
-t_vect 			*cy_get_x(t_ray *ray, t_cylinder *cy)
-{
-	t_vect	*x;
-	t_vect	*tmp;
-
-	tmp = v_mult(v_dot(ray->dir, cy->ori), cy->ori);
-	x = v_minus(ray->dir, tmp);
-	free(tmp);
-	return (x);
-}
-t_vect 			*cy_get_y(t_ray *ray, t_cylinder *cy)
-{
-	t_vect	*y;
-	t_vect	*delta_p;
-	t_vect	*tmp;
-
-	delta_p = v_minus(ray->pos, cy->pos);
-	tmp = v_mult(v_dot(delta_p, cy->ori), cy->ori);
-	y = v_minus(delta_p, tmp);
-	free(tmp);
-	free(delta_p);
-	return (y);
-}
-
-double			intersect_cy(t_ray *ray, t_cylinder *cy)
+double	intersect_cy(t_ray *ray, t_cylinder *cy)
 {
 	double	res;
 	t_vect	*x;
@@ -97,7 +75,7 @@ double			intersect_cy(t_ray *ray, t_cylinder *cy)
 	return (res);
 }
 
-t_vect			*get_normal_cy(t_ray *ray, t_vect *hit, t_cylinder *cy)
+t_vect	*get_normal_cy(t_ray *ray, t_vect *hit, t_cylinder *cy)
 {
 	t_vect	*p;
 	t_vect	*v;

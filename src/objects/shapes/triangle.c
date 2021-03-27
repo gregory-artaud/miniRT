@@ -6,17 +6,18 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 19:06:13 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 01:52:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:16:45 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_triangle		*init_tr(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *color)
+t_triangle	*init_tr(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *color)
 {
 	t_triangle	*tr;
 
-	if (!(tr = (t_triangle *)malloc(sizeof(t_triangle))))
+	tr = (t_triangle *)malloc(sizeof(t_triangle));
+	if (!tr)
 		return (NULL);
 	tr->p1 = p1;
 	tr->p2 = p2;
@@ -25,7 +26,7 @@ t_triangle		*init_tr(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *color)
 	return (tr);
 }
 
-void			free_tr(t_triangle *tr)
+void	free_tr(t_triangle *tr)
 {
 	if (!tr)
 		return ;
@@ -37,7 +38,7 @@ void			free_tr(t_triangle *tr)
 	return ;
 }
 
-double			intersect_tr(t_ray *ray, t_triangle *tr)
+double	intersect_tr(t_ray *ray, t_triangle *tr)
 {
 	t_vect	*hit;
 	int		is_out;
@@ -56,12 +57,12 @@ double			intersect_tr(t_ray *ray, t_triangle *tr)
 	return (t);
 }
 
-t_vect			*get_normal_tr(t_ray *ray, t_vect *hit, t_triangle *tr)
+t_vect	*get_normal_tr(t_ray *ray, t_vect *hit, t_triangle *tr)
 {
 	return (get_normal_pl(ray, hit, tr->plan));
 }
 
-int				is_triangle(t_object *obj)
+int	is_triangle(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "tr", 3));
 }

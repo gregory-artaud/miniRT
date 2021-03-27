@@ -6,20 +6,14 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 17:58:59 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:56:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 #include "scene.h"
 
-typedef struct		s_ambiant
-{
-	double			lum;
-	t_vect			*color;
-}					t_ambiant;
-
-static int			quit(t_ambiant *data)
+static int	quit(t_ambiant *data)
 {
 	if (!data)
 		return (EXIT_FAILURE);
@@ -29,7 +23,7 @@ static int			quit(t_ambiant *data)
 	return (EXIT_FAILURE);
 }
 
-static int			check_params(t_scene *scene, char **infos)
+static int	check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
@@ -53,7 +47,7 @@ static t_ambiant	*get_data(char **infos)
 	return (data);
 }
 
-static int		check_data(t_ambiant *data)
+static int	check_data(t_ambiant *data)
 {
 	int		err;
 
@@ -66,7 +60,7 @@ static int		check_data(t_ambiant *data)
 	return (err);
 }
 
-int				set_ambiant(t_scene *scene, char **infos)
+int	set_ambiant(t_scene *scene, char **infos)
 {
 	t_ambiant	*data;
 	t_light		*ambiant;
@@ -76,7 +70,7 @@ int				set_ambiant(t_scene *scene, char **infos)
 	data = get_data(infos);
 	if (check_data(data))
 		return (quit(data));
-	ambiant = init_l(init_vect(0,0,0), data->lum, data->color);
+	ambiant = init_l(init_vect(0, 0, 0), data->lum, data->color);
 	if (!ambiant)
 		return (quit(data));
 	scene->ambiant = ambiant;

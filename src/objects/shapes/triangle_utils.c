@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 01:52:02 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 18:22:00 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:16:57 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_plane	*find_plane(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *color)
 	return (pl);
 }
 
-int		is_outside(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *hit)
+int	is_outside(t_vect *p1, t_vect *p2, t_vect *p3, t_vect *hit)
 {
 	t_vect	*v1;
 	t_vect	*v2;

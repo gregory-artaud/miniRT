@@ -6,18 +6,19 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 16:39:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/28 23:02:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:19:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_plane		*init_pl(t_vect *pos, t_vect *ori, t_vect *color)
+t_plane	*init_pl(t_vect *pos, t_vect *ori, t_vect *color)
 {
 	t_plane	*pl;
 	double	matrix[3][3];
 
-	if (!(pl = malloc(sizeof(t_plane))))
+	pl = malloc(sizeof(t_plane));
+	if (!pl)
 		return (NULL);
 	pl->pos = pos;
 	pl->color = color;
@@ -30,7 +31,7 @@ t_plane		*init_pl(t_vect *pos, t_vect *ori, t_vect *color)
 	return (pl);
 }
 
-void		free_pl(t_plane *pl)
+void	free_pl(t_plane *pl)
 {
 	if (!pl)
 		return ;
@@ -41,7 +42,7 @@ void		free_pl(t_plane *pl)
 	return ;
 }
 
-double		intersect_pl(t_ray *ray, t_plane *pl)
+double	intersect_pl(t_ray *ray, t_plane *pl)
 {
 	double	denom;
 	double	res;
@@ -60,7 +61,7 @@ double		intersect_pl(t_ray *ray, t_plane *pl)
 	return (res);
 }
 
-t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plane *pl)
+t_vect	*get_normal_pl(t_ray *ray, t_vect *hit, t_plane *pl)
 {
 	double	dot;
 
@@ -71,7 +72,7 @@ t_vect		*get_normal_pl(t_ray *ray, t_vect *hit, t_plane *pl)
 	return (dup_vect(pl->normal));
 }
 
-int			is_plane(t_object *obj)
+int	is_plane(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "pl", 3));
 }

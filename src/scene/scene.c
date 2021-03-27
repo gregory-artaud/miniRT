@@ -6,18 +6,19 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:25 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/04 16:35:55 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:00:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 #include "scene.h"
 
-t_scene			*init_scene(void)
+t_scene	*init_scene(void)
 {
 	t_scene		*scene;
 
-	if (!(scene = (t_scene *)malloc(sizeof(t_scene))))
+	scene = (t_scene *)malloc(sizeof(t_scene));
+	if (!scene)
 		return (NULL);
 	scene->r_w = -1;
 	scene->r_h = -1;
@@ -27,7 +28,7 @@ t_scene			*init_scene(void)
 	return (scene);
 }
 
-void			free_scene(t_scene *scene, void (*del)(void *))
+void	free_scene(t_scene *scene, void (*del)(void *))
 {
 	if (!scene)
 		return ;
@@ -38,7 +39,7 @@ void			free_scene(t_scene *scene, void (*del)(void *))
 	return ;
 }
 
-void			push_obj(char *id, void *obj, t_scene *scene)
+void	push_obj(char *id, void *obj, t_scene *scene)
 {
 	t_object	*new;
 

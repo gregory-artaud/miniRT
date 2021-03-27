@@ -6,21 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 14:06:30 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:56:07 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-typedef struct	s_tr
-{
-	t_vect		*p1;
-	t_vect		*p2;
-	t_vect		*p3;
-	t_vect		*color;
-}				t_tr;
-
-static int		quit(t_tr *data)
+static int	quit(t_tr *data)
 {
 	if (!data)
 		return (EXIT_FAILURE);
@@ -36,7 +28,7 @@ static int		quit(t_tr *data)
 	return (EXIT_FAILURE);
 }
 
-static int		check_params(t_scene *scene, char **infos)
+static int	check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
@@ -47,7 +39,7 @@ static int		check_params(t_scene *scene, char **infos)
 	return (err);
 }
 
-static t_tr		*get_data(char **infos)
+static t_tr	*get_data(char **infos)
 {
 	t_tr	*data;
 
@@ -61,7 +53,7 @@ static t_tr		*get_data(char **infos)
 	return (data);
 }
 
-static int		check_data(t_tr *data)
+static int	check_data(t_tr *data)
 {
 	int		err;
 
@@ -76,7 +68,7 @@ static int		check_data(t_tr *data)
 	return (err);
 }
 
-int				add_triangle(t_scene *scene, char **infos)
+int	add_triangle(t_scene *scene, char **infos)
 {
 	t_tr		*data;
 	t_triangle	*tr;

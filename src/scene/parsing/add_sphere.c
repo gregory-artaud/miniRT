@@ -6,20 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 17:37:33 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:55:40 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-typedef struct	s_sp
-{
-	t_vect		*pos;
-	double		diameter;
-	t_vect		*color;
-}				t_sp;
-
-static int		quit(t_sp *data)
+static int	quit(t_sp *data)
 {
 	if (!data)
 		return (EXIT_FAILURE);
@@ -31,7 +24,7 @@ static int		quit(t_sp *data)
 	return (EXIT_FAILURE);
 }
 
-static int		check_params(t_scene *scene, char **infos)
+static int	check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
@@ -42,7 +35,7 @@ static int		check_params(t_scene *scene, char **infos)
 	return (err);
 }
 
-static t_sp		*get_data(char **infos)
+static t_sp	*get_data(char **infos)
 {
 	t_sp	*data;
 
@@ -55,7 +48,7 @@ static t_sp		*get_data(char **infos)
 	return (data);
 }
 
-static int		check_data(t_sp *data)
+static int	check_data(t_sp *data)
 {
 	int		err;
 
@@ -69,7 +62,7 @@ static int		check_data(t_sp *data)
 	return (err);
 }
 
-int		add_sphere(t_scene *scene, char **infos)
+int	add_sphere(t_scene *scene, char **infos)
 {
 	t_sp		*data;
 	t_sphere	*obj;

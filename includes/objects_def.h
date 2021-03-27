@@ -6,59 +6,59 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 17:55:08 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 19:29:08 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:54:51 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_DEF_H
 # define OBJECTS_DEF_H
 
-typedef struct	s_object
+typedef struct s_object
 {
 	char		*id;
 	void		*obj;
 }				t_object;
 
-typedef struct	s_vect
+typedef struct s_vect
 {
 	double		x;
 	double		y;
 	double		z;
 }				t_vect;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_vect		*pos;
 	t_vect		*dir;
 }				t_ray;
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_vect		*pos;
 	t_vect		*color;
 	double		diameter;
 }				t_sphere;
 
-typedef struct	s_plan
+typedef struct s_plan
 {
 	t_vect		*pos;
 	t_vect		*normal;
 	t_vect		*color;
 }				t_plane;
 
-typedef struct	s_square
+typedef struct s_square
 {
 	t_plane		*pl;
 	double		size;
 }				t_square;
 
-typedef struct	s_circle
+typedef struct s_circle
 {
 	t_plane		*pl;
 	double		radius;
 }				t_circle;
 
-typedef struct	s_cylinder
+typedef struct s_cylinder
 {
 	t_vect		*pos;
 	t_vect		*ori;
@@ -67,7 +67,7 @@ typedef struct	s_cylinder
 	t_vect		*color;
 }				t_cylinder;
 
-typedef struct	s_triangle
+typedef struct s_triangle
 {
 	t_plane		*plan;
 	t_vect		*p1;
@@ -75,14 +75,14 @@ typedef struct	s_triangle
 	t_vect		*p3;
 }				t_triangle;
 
-typedef struct	s_light
+typedef struct s_light
 {
 	t_vect		*pos;
 	t_vect		*color;
 	double		lum;
 }				t_light;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_vect		*pos;
 	t_vect		*ori;

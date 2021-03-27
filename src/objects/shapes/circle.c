@@ -6,17 +6,18 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 18:22:16 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 18:35:03 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:32:19 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_circle		*init_ci(t_vect *pos, t_vect *ori, double radius, t_vect *color)
+t_circle	*init_ci(t_vect *pos, t_vect *ori, double radius, t_vect *color)
 {
 	t_circle	*ci;
 
-	if (!(ci = malloc(sizeof(t_circle))))
+	ci = malloc(sizeof(t_circle));
+	if (!ci)
 		return (NULL);
 	ci->pl = init_pl(pos, ori, color);
 	if (!(ci->pl))
@@ -28,7 +29,7 @@ t_circle		*init_ci(t_vect *pos, t_vect *ori, double radius, t_vect *color)
 	return (ci);
 }
 
-void			free_ci(t_circle *ci)
+void	free_ci(t_circle *ci)
 {
 	if (!ci)
 		return ;
@@ -37,7 +38,7 @@ void			free_ci(t_circle *ci)
 	return ;
 }
 
-double			intersect_ci(t_ray *ray, t_circle *ci)
+double	intersect_ci(t_ray *ray, t_circle *ci)
 {
 	double	t;
 	double	d;
@@ -58,12 +59,12 @@ double			intersect_ci(t_ray *ray, t_circle *ci)
 	return (INFINITY);
 }
 
-t_vect			*get_normal_ci(t_ray *ray, t_vect *hit, t_circle *ci)
+t_vect	*get_normal_ci(t_ray *ray, t_vect *hit, t_circle *ci)
 {
 	return (get_normal_pl(ray, hit, ci->pl));
 }
 
-int				is_circle(t_object *obj)
+int	is_circle(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "ci", 3));
 }

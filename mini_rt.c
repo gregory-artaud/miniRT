@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 13:45:16 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:37:18 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
 
-void		error(char *s, t_data *data)
+void	error(char *s, t_data *data)
 {
 	ft_putstr_fd(s, STDERR_FILENO);
 	if (data)
@@ -24,7 +24,8 @@ static void	run(int save, char *file)
 {
 	t_data	*data;
 
-	if (!(data = init_data(file, save)))
+	data = init_data(file, save);
+	if (!data)
 		error("Error at initialization.\n", NULL);
 	set_hooks(data);
 	printf("Rendering...\n");
@@ -38,7 +39,7 @@ static void	run(int save, char *file)
 	return ;
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		save;
 
@@ -48,8 +49,11 @@ int			main(int argc, char **argv)
 	if (argc > 3)
 		error("Too many arguments.\n", NULL);
 	if (argc == 3)
-		if (!(save = !ft_memcmp("--save", argv[2], 7)))
+	{
+		save = !ft_memcmp("--save", argv[2], 7);
+		if (!save)
 			error("Second argument can only be '--save'.\n", NULL);
+	}
 	if (ft_memcmp(argv[1] + ft_strlen(argv[1]) - 3, ".rt", 4))
 		error("First argument must be a valid .rt file.\n", NULL);
 	run(save, argv[1]);

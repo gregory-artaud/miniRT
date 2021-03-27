@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_sp.c                                          :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:40:38 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/23 19:15:51 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:18:59 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_sphere		*init_sp(t_vect *pos, double diameter, t_vect *color)
+t_sphere	*init_sp(t_vect *pos, double diameter, t_vect *color)
 {
 	t_sphere	*sp;
 
-	if (!(sp = (t_sphere *)malloc(sizeof(t_sphere))))
+	sp = (t_sphere *)malloc(sizeof(t_sphere));
+	if (!sp)
 		return (NULL);
 	sp->pos = pos;
 	sp->diameter = diameter;
@@ -24,7 +25,7 @@ t_sphere		*init_sp(t_vect *pos, double diameter, t_vect *color)
 	return (sp);
 }
 
-void			free_sp(t_sphere *sp)
+void	free_sp(t_sphere *sp)
 {
 	free(sp->pos);
 	free(sp->color);
@@ -32,7 +33,7 @@ void			free_sp(t_sphere *sp)
 	return ;
 }
 
-double			intersect_sp(t_ray *ray, t_sphere *sp)
+double	intersect_sp(t_ray *ray, t_sphere *sp)
 {
 	double	b;
 	double	c;
@@ -56,7 +57,7 @@ double			intersect_sp(t_ray *ray, t_sphere *sp)
 	return (i);
 }
 
-t_vect			*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp)
+t_vect	*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp)
 {
 	t_vect	*n;
 	t_vect	*to_center;
@@ -74,7 +75,7 @@ t_vect			*get_normal_sp(t_ray *ray, t_vect *hit, t_sphere *sp)
 	return (n);
 }
 
-int				is_sphere(t_object *obj)
+int	is_sphere(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "sp", 3));
 }

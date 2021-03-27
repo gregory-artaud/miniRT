@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 11:37:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/18 13:48:05 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:59:05 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_bmp	*init_bmp(t_scene *scene)
 {
 	t_bmp	*bmp;
 
-	if (!(bmp = malloc(sizeof(t_bmp))))
+	bmp = malloc(sizeof(t_bmp));
+	if (!bmp)
 		return (NULL);
 	bmp->bfh = init_bfh(scene);
 	bmp->bih = init_bih(scene);
@@ -35,7 +36,7 @@ void	free_bmp(t_bmp *bmp)
 	return ;
 }
 
-int		save_img(t_bmp *bmp)
+int	save_img(t_bmp *bmp)
 {
 	int		fd;
 

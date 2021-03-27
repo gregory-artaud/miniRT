@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 17:57:54 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/19 19:48:20 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:40:06 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 # include "parser_def.h"
 
-typedef struct	s_scene
+typedef struct s_scene
 {
 	int			r_w;
 	int			r_h;
@@ -33,6 +33,7 @@ void			push_obj(char *id, void *obj, t_scene *scene);
 /*
 ** Parsing
 */
+int				parse_file(t_scene *scene, char *file);
 int				set_resolution(t_scene *scene, char **infos);
 int				set_ambiant(t_scene *scene, char **infos);
 int				add_camera(t_scene *scene, char **infos);
@@ -48,9 +49,4 @@ int				add_circle(t_scene *scene, char **infos);
 */
 t_vect			*extract_color(char **s);
 t_vect			*extract_vect(char **s);
-/*
-** TO REMOVE !!
-*/
-void			print_scene(t_scene *scene);
-void			print_obj(void *ptr);
 #endif

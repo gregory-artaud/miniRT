@@ -6,18 +6,19 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 12:17:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/24 15:51:01 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 14:56:52 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bmp.h"
 
-int		write_header(int fd, t_bmp *bmp)
+int	write_header(int fd, t_bmp *bmp)
 {
 	int		err;
 	char	*zeros;
 
-	if (!(zeros = malloc(sizeof(char) * 24)))
+	zeros = malloc(sizeof(char) * 24);
+	if (!zeros)
 		return (EXIT_FAILURE);
 	ft_bzero(zeros, 24);
 	err = 0;
@@ -49,7 +50,7 @@ void	fill_row(unsigned char *map, long int *i, t_bmp *bmp)
 	return ;
 }
 
-int		write_image(int fd, t_bmp *bmp)
+int	write_image(int fd, t_bmp *bmp)
 {
 	int				nb_bytes;
 	t_list			*node;
@@ -58,7 +59,8 @@ int		write_image(int fd, t_bmp *bmp)
 	unsigned char	*map;
 
 	nb_bytes = bmp->bfh->size - 54;
-	if (!(map = ft_calloc(nb_bytes, sizeof(unsigned char))))
+	map = ft_calloc(nb_bytes, sizeof(unsigned char));
+	if (!map)
 		return (EXIT_FAILURE);
 	i = 0;
 	node = bmp->pxl;
@@ -76,7 +78,7 @@ int		write_image(int fd, t_bmp *bmp)
 	return (i == -1);
 }
 
-int		export(int fd, t_bmp *bmp)
+int	export(int fd, t_bmp *bmp)
 {
 	int	err;
 

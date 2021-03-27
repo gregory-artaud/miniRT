@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_c.c                                           :+:      :+:    :+:   */
+/*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 19:20:31 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/15 16:45:55 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:15:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_camera		*init_c(t_vect *pos, t_vect *ori, double fov)
+t_camera	*init_c(t_vect *pos, t_vect *ori, double fov)
 {
 	t_camera	*c;
 
-	if (!(c = (t_camera *)malloc(sizeof(t_camera))))
+	c = (t_camera *)malloc(sizeof(t_camera));
+	if (!c)
 		return (NULL);
 	c->pos = pos;
 	c->ori = ori;
@@ -26,7 +27,7 @@ t_camera		*init_c(t_vect *pos, t_vect *ori, double fov)
 	return (c);
 }
 
-void			free_c(t_camera *c)
+void	free_c(t_camera *c)
 {
 	free(c->pos);
 	free(c->ori);
@@ -34,7 +35,7 @@ void			free_c(t_camera *c)
 	return ;
 }
 
-int				is_camera(t_object *obj)
+int	is_camera(t_object *obj)
 {
 	if (!obj)
 		return (0);

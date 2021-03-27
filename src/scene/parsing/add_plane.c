@@ -6,20 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:10:58 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 17:04:57 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:55:30 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-typedef struct	s_pl
-{
-	t_vect		*pos;
-	t_vect		*ori;
-	t_vect		*color;
-}				t_pl;
-
-static int		quit(t_pl *data)
+static int	quit(t_pl *data)
 {
 	if (!data)
 		return (EXIT_FAILURE);
@@ -33,7 +26,7 @@ static int		quit(t_pl *data)
 	return (EXIT_FAILURE);
 }
 
-static int		check_params(t_scene *scene, char **infos)
+static int	check_params(t_scene *scene, char **infos)
 {
 	int		err;
 
@@ -44,7 +37,7 @@ static int		check_params(t_scene *scene, char **infos)
 	return (err);
 }
 
-static t_pl		*get_data(char **infos)
+static t_pl	*get_data(char **infos)
 {
 	t_pl	*data;
 
@@ -57,7 +50,7 @@ static t_pl		*get_data(char **infos)
 	return (data);
 }
 
-static int		check_data(t_pl *data)
+static int	check_data(t_pl *data)
 {
 	int		err;
 
@@ -72,7 +65,7 @@ static int		check_data(t_pl *data)
 	return (err);
 }
 
-int		add_plane(t_scene *scene, char **infos)
+int	add_plane(t_scene *scene, char **infos)
 {
 	t_pl		*data;
 	t_plane		*pl;

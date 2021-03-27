@@ -6,19 +6,21 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 18:13:40 by gartaud           #+#    #+#             */
-/*   Updated: 2021/02/25 00:35:41 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/27 15:18:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "objects.h"
 
-t_square		*init_sq(t_vect *pos, t_vect *ori, double size, t_vect *color)
+t_square	*init_sq(t_vect *pos, t_vect *ori, double size, t_vect *color)
 {
 	t_square	*sq;
 
-	if (!(sq = (t_square *)malloc(sizeof(t_square))))
+	sq = (t_square *)malloc(sizeof(t_square));
+	if (!sq)
 		return (NULL);
-	if (!(sq->pl = init_pl(pos, ori, color)))
+	sq->pl = init_pl(pos, ori, color);
+	if (!sq->pl)
 	{
 		free(sq);
 		return (NULL);
@@ -27,7 +29,7 @@ t_square		*init_sq(t_vect *pos, t_vect *ori, double size, t_vect *color)
 	return (sq);
 }
 
-void			free_sq(t_square *sq)
+void	free_sq(t_square *sq)
 {
 	if (!sq)
 		return ;
@@ -36,7 +38,7 @@ void			free_sq(t_square *sq)
 	return ;
 }
 
-double			intersect_sq(t_ray *ray, t_square *sq)
+double	intersect_sq(t_ray *ray, t_square *sq)
 {
 	double	t;
 	t_vect	*tmp;
@@ -58,12 +60,12 @@ double			intersect_sq(t_ray *ray, t_square *sq)
 	return (INFINITY);
 }
 
-t_vect			*get_normal_sq(t_ray *ray, t_vect *hit, t_square *sq)
+t_vect	*get_normal_sq(t_ray *ray, t_vect *hit, t_square *sq)
 {
 	return (get_normal_pl(ray, hit, sq->pl));
 }
 
-int				is_square(t_object *obj)
+int	is_square(t_object *obj)
 {
 	return (!ft_memcmp(obj->id, "sq", 3));
 }
