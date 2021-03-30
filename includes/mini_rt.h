@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 11:04:37 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 13:19:41 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 #  define M_PI 3.14159265358979323846
 # endif
 # define X11_KEY_PRESSED 2
-# define X11_KEY_PRESSED_MASK 1L << 0
+# define X11_KEY_PRESSED_MASK 1L
 # define X11_CLIENT_MSG 17
-# define X11_BTN_RELEASE_MASK 1L << 17
+# define X11_BTN_RELEASE_MASK 131072
 # define NB_ID 10
 //# define KEY_ESC 65307 linux
 # define KEY_ESC 53
