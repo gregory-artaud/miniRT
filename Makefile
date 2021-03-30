@@ -6,11 +6,11 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/03/27 14:33:35 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/03/30 10:54:07 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-OS			= linux
+OS			= macos
 NAME		= miniRT
 NORME		= ~/.norminette/norminette.rb
 DEPS_DIR	= includes
@@ -21,10 +21,12 @@ ifeq ($(OS), linux)
 	MLX_DIR		= $(LIB_DIR)/mlx_linux
 	LFLAGS		= -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd
 	NORME		= ~/.local/bin/norminette
+	MLX			= $(MLX_DIR)/libmlx.a
 else
-	LFLAGS		= -L$(LIB_DIR) -lft -lmlx  -lm -framework OpenGL -framework AppKit
+	LFLAGS		= -L$(LIB_DIR) -lm -framework OpenGL -framework AppKit
 	MLX_DIR		=	$(LIB_DIR)/mlx_macos
 	NORME		= norminette
+	MLX			= $(MLX_DIR)/libmlx.dylib
 endif
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -O3 \
@@ -33,7 +35,6 @@ DEPS		= $(shell find includes *.h -type f 2> /dev/null)
 DEPS		+= $(addprefix $(LIB_DIR)/, \
 					libft/libft.h \
 					mlx_linux/mlx.h)
-MLX			= $(MLX_DIR)/libmlx.a
 SRC_DIR		= src/
 FILES		= $(shell find src *.c -type f)
 OBJ 		= $(FILES:%.c=%.o)
@@ -64,6 +65,7 @@ $(NAME): $(OBJ)
 
 $(MLX):
 	make -sC $(MLX_DIR)
+	cp $@ .
 
 $(LIBFT):
 	make -sC $(LIBFT_DIR)
@@ -78,7 +80,7 @@ clean:
 	make -sC $(MLX_DIR) clean
 
 fclean: clean
-	rm -f $(NAME) $(LIB_DIR)/$(LIBFT) $(LIB_DIR)/$(MLX)
+	rm -f $(NAME) libmlx.dylib $(LIB_DIR)/$(LIBFT) $(LIB_DIR)/$(MLX)
 	make -sC $(LIBFT_DIR) fclean
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 15:40:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 11:04:37 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdio.h>
 # include <math.h>
-# include <X11/X.h>
 # include <fcntl.h>
 # include "mlx.h"
 # include "libft.h"
@@ -26,9 +25,15 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
+# define X11_KEY_PRESSED 2
+# define X11_KEY_PRESSED_MASK 1L << 0
+# define X11_CLIENT_MSG 17
+# define X11_BTN_RELEASE_MASK 1L << 17
 # define NB_ID 10
-# define KEY_ESC 65307
-# define KEY_NEXT_CAM 99
+//# define KEY_ESC 65307 linux
+# define KEY_ESC 53
+//# define KEY_NEXT_CAM 99 linux
+# define KEY_NEXT_CAM 8
 # define MIRROR_DEPTH 1
 # define ANTIALIASING 0
 # define SAMPLING 2
@@ -87,4 +92,6 @@ int				antialiasing(t_data *data);
 ** next_cam.c
 */
 void			next_cam(t_data *data);
+t_vect			*parse_lights(t_ray *ray, t_vect *hit, t_vect *normal,
+					t_scene *scene);
 #endif

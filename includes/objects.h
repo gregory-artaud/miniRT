@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 18:32:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 15:39:43 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 06:56:29 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ double			intersect(t_ray *ray, t_list *lst, t_object **obj);
 t_light			*init_l(t_vect *pos, double lum, t_vect *color);
 void			free_l(t_light *l);
 int				is_light(t_object *obj);
-t_vect			*parse_lights(t_ray *ray, t_vect *hit, t_vect *normal,
-					t_scene *scene);
 /*
 ** Ray
 */

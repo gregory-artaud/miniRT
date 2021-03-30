@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:47:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 14:52:35 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 11:34:28 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ int	check_scene(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
+void	mlx_del(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+}
+
 void	free_mlx(t_mlx *mlx)
 {
 	if (!mlx)
@@ -39,10 +45,7 @@ void	free_mlx(t_mlx *mlx)
 	if (mlx->win)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (mlx->mlx)
-	{
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-	}
+		mlx_del(mlx->mlx);
 	free(mlx);
 	return ;
 }
