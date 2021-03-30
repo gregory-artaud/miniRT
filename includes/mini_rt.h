@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 13:19:41 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 17:22:15 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+# include <pthread.h>
+# include <math.h>
 # include "mlx.h"
 # include "libft.h"
 # include "objects.h"
@@ -35,8 +37,9 @@
 //# define KEY_NEXT_CAM 99 linux
 # define KEY_NEXT_CAM 8
 # define MIRROR_DEPTH 1
-# define ANTIALIASING 0
-# define SAMPLING 2
+# define ANTIALIASING 1
+# define SAMPLING 4
+# define NUM_THREAD 4
 
 typedef struct s_mlx
 {

@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 14:38:19 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 17:16:03 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_vect	*trace(t_ray *r, t_scene *scene, int depth)
 void	draw(t_data *data, int x, int y, t_vect *c)
 {
 	if (!c)
-		return ;
+		c = init_vect(0, 0, 255);
 	if (!data->mlx->save)
 		mlx_pixel_put(data->mlx->mlx, data->mlx->win, x, y, c_to_hex(c));
 	else

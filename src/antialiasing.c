@@ -6,11 +6,19 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 19:03:03 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 14:53:10 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 17:21:09 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
+
+typedef struct s_render
+{
+	t_data		*data;
+	t_vect		***px;
+	int			start;
+	int			end;
+}				t_render;
 
 t_vect	***init_pixels(t_data *data)
 {
@@ -95,31 +103,78 @@ void	draw_pixels(t_vect ***px, t_data *data)
 	}
 }
 
+void	init_arg(t_render *arg[NUM_THREAD], t_data *data)
+{
+	int 	i;
+	int		start;
+	int		end;
+	int		interval;
+	t_vect	***px;
+
+	px = init_pixels(data);
+	interval = data->scene->r_w * SAMPLING / (NUM_THREAD - 1);
+	start = 0;
+	end = interval;
+	i = 0;
+	while (i < NUM_THREAD)
+	{
+		arg[i]->px = px;
+		arg[i]->data = data;
+		arg[i]->start = start;
+		arg[i]->end = end;
+		start = end;
+		end = ft_min(data->scene->r_w * SAMPLING, end + interval);
+		i++;
+	}
+}
+
+void	*render_image(void *arg)
+{
+	int 		x;
+	int			y;
+	t_ray		*r;
+	t_vect		*c;
+	t_render	*rend;
+
+	rend = (t_render *)arg;
+	y = -1;
+	while (++y < rend->data->scene->r_h * SAMPLING)
+	{
+		x = rend->end;
+		while (x-- > rend->start)
+		{
+			r = gen_primary_ray(x, y, rend->data);
+			c = trace(r, rend->data->scene, MIRROR_DEPTH);
+			rend->px[x][y] = c;
+			free_ray(r);
+		}
+	}
+	return (NULL);
+}
+
 int	antialiasing(t_data *data)
 {
-	int		x;
-	int		y;
-	t_ray	*r;
-	t_vect	*c;
-	t_vect	***pixels;
+	t_render	**arg;
+	pthread_t	id[NUM_THREAD];
+	int			i;
 
 	if (!data || SAMPLING <= 0)
 		return (EXIT_FAILURE);
-	pixels = init_pixels(data);
-	y = -1;
-	while (++y < data->scene->r_h * SAMPLING)
-	{
-		x = data->scene->r_w * SAMPLING;
-		while (x-- > 0)
-		{
-			r = gen_primary_ray(x, y, data);
-			c = trace(r, data->scene, MIRROR_DEPTH);
-			pixels[x][y] = c;
-			free_ray(r);
-		}
-		print_progress(y, data->scene->r_h);
-	}
-	draw_pixels(pixels, data);
-	free_px(pixels, data);
+	arg = malloc(sizeof(t_render *) * NUM_THREAD);
+	if (!arg)
+		return (EXIT_FAILURE);
+	i = -1;
+	while (++i < NUM_THREAD)
+		arg[i] = malloc(sizeof(t_render));
+	init_arg(arg, data);
+	i = -1;
+	while (++i < NUM_THREAD)
+		pthread_create(id + i, NULL, render_image, arg[i]);
+	i = -1;
+	while (++i < NUM_THREAD)
+		pthread_join(id[i], NULL);
+	draw_pixels(arg[0]->px, data);
+	free_px(arg[0]->px, data);
+	free(arg);
 	return (EXIT_SUCCESS);
 }

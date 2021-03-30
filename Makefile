@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 22:19:13 by gartaud           #+#    #+#              #
-#    Updated: 2021/03/30 10:54:07 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/03/30 17:12:54 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ LIBFT_DIR	= $(LIB_DIR)/libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 ifeq ($(OS), linux)
 	MLX_DIR		= $(LIB_DIR)/mlx_linux
-	LFLAGS		= -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd
+	LFLAGS		= -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm -lbsd - lpthread
 	NORME		= ~/.local/bin/norminette
 	MLX			= $(MLX_DIR)/libmlx.a
 else
-	LFLAGS		= -L$(LIB_DIR) -lm -framework OpenGL -framework AppKit
+	LFLAGS		= -L$(LIB_DIR) -lpthread -lm -framework OpenGL -framework AppKit
 	MLX_DIR		=	$(LIB_DIR)/mlx_macos
 	NORME		= norminette
 	MLX			= $(MLX_DIR)/libmlx.dylib

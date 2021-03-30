@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:57:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/07 14:16:11 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/03/30 16:24:15 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ double				ft_atof(char *s);
 int					ft_isspace(char c);
 int					ft_is_int(char *s);
 int					ft_is_double(char *s);
+int					ft_min(int a, int b);
 #endif
