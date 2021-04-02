@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 17:22:15 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 07:38:18 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@
 # define X11_CLIENT_MSG 17
 # define X11_BTN_RELEASE_MASK 131072
 # define NB_ID 10
-//# define KEY_ESC 65307 linux
 # define KEY_ESC 53
-//# define KEY_NEXT_CAM 99 linux
 # define KEY_NEXT_CAM 8
-# define MIRROR_DEPTH 1
-# define ANTIALIASING 1
-# define SAMPLING 4
+/*
+** OPTIONS
+*/
+# define MIRROR_DEPTH 2
+# define SAMPLING 2
 # define NUM_THREAD 4
 
 typedef struct s_mlx
@@ -53,6 +53,13 @@ typedef struct s_data
 	t_scene		*scene;
 	t_bmp		*bmp;
 }				t_data;
+typedef struct s_ssaa
+{
+	t_data		*data;
+	t_vect		***px;
+	int			start;
+	int			end;
+}				t_ssaa;
 
 /*
 ** mini_rt.c
@@ -88,9 +95,12 @@ void			draw(t_data *data, int x, int y, t_vect *c);
 t_vect			*trace(t_ray *r, t_scene *scene, int depth);
 int				render(t_data *data);
 /*
-** antialiasing.c
+** ssaa.c and ssaa_utils.c
 */
-int				antialiasing(t_data *data);
+void			free_px(t_vect ***px, t_data *data);
+void			draw_pixels(t_vect ***px, t_data *data);
+void			init_arg(t_ssaa *arg[NUM_THREAD], t_data *data);
+int				render_ssaa(t_data *data);
 /*
 ** next_cam.c
 */

@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   antialiasing.c                                     :+:      :+:    :+:   */
+/*   ssaa_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/23 19:03:03 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 17:21:09 by gartaud          ###   ########lyon.fr   */
+/*   Created: 2021/04/02 07:32:44 by gartaud           #+#    #+#             */
+/*   Updated: 2021/04/02 07:33:42 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_rt.h"
-
-typedef struct s_render
-{
-	t_data		*data;
-	t_vect		***px;
-	int			start;
-	int			end;
-}				t_render;
 
 t_vect	***init_pixels(t_data *data)
 {
@@ -103,9 +95,9 @@ void	draw_pixels(t_vect ***px, t_data *data)
 	}
 }
 
-void	init_arg(t_render *arg[NUM_THREAD], t_data *data)
+void	init_arg(t_ssaa *arg[NUM_THREAD], t_data *data)
 {
-	int 	i;
+	int		i;
 	int		start;
 	int		end;
 	int		interval;
@@ -126,55 +118,4 @@ void	init_arg(t_render *arg[NUM_THREAD], t_data *data)
 		end = ft_min(data->scene->r_w * SAMPLING, end + interval);
 		i++;
 	}
-}
-
-void	*render_image(void *arg)
-{
-	int 		x;
-	int			y;
-	t_ray		*r;
-	t_vect		*c;
-	t_render	*rend;
-
-	rend = (t_render *)arg;
-	y = -1;
-	while (++y < rend->data->scene->r_h * SAMPLING)
-	{
-		x = rend->end;
-		while (x-- > rend->start)
-		{
-			r = gen_primary_ray(x, y, rend->data);
-			c = trace(r, rend->data->scene, MIRROR_DEPTH);
-			rend->px[x][y] = c;
-			free_ray(r);
-		}
-	}
-	return (NULL);
-}
-
-int	antialiasing(t_data *data)
-{
-	t_render	**arg;
-	pthread_t	id[NUM_THREAD];
-	int			i;
-
-	if (!data || SAMPLING <= 0)
-		return (EXIT_FAILURE);
-	arg = malloc(sizeof(t_render *) * NUM_THREAD);
-	if (!arg)
-		return (EXIT_FAILURE);
-	i = -1;
-	while (++i < NUM_THREAD)
-		arg[i] = malloc(sizeof(t_render));
-	init_arg(arg, data);
-	i = -1;
-	while (++i < NUM_THREAD)
-		pthread_create(id + i, NULL, render_image, arg[i]);
-	i = -1;
-	while (++i < NUM_THREAD)
-		pthread_join(id[i], NULL);
-	draw_pixels(arg[0]->px, data);
-	free_px(arg[0]->px, data);
-	free(arg);
-	return (EXIT_SUCCESS);
 }

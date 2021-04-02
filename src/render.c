@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 22:06:42 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 17:16:03 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 06:58:18 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ int	render(t_data *data)
 	t_ray	*r;
 	t_vect	*c;
 
-	if (ANTIALIASING)
-		return (antialiasing(data));
+	if (BONUS)
+		return (render_ssaa(data));
 	if (!data)
 		return (EXIT_FAILURE);
 	y = -1;
