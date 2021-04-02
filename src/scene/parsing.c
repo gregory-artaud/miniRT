@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 15:06:29 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:28:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	parse_file(t_scene *scene, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (EXIT_FAILURE);
+	line = NULL;
 	gnl = get_next_line(fd, &line);
 	while (gnl)
 	{

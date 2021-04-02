@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/04/02 09:05:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:13:35 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <math.h>
 # include <fcntl.h>
 # include <pthread.h>
-# include <math.h>
 # include "mlx.h"
 # include "libft.h"
 # include "objects.h"
