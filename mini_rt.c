@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 22:16:22 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/27 14:37:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:02:06 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	run(int save, char *file)
 	printf("Image rendered !\n");
 	if (data->mlx->save && save_img(data->bmp))
 		error("Error while saving image.\n", data);
-	mlx_loop(data->mlx->mlx);
+	else if (!data->mlx->save)
+		mlx_loop(data->mlx->mlx);
 	free_data(data);
 	return ;
 }
