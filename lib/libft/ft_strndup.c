@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:30:51 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:03:56 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:51:53 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strndup(char const *s, size_t n)
 {
-	char *res;
+	char	*res;
 
 	res = malloc(sizeof(char) * n + 1);
 	if (!res)

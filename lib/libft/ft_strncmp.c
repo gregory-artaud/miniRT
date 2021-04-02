@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 23:27:50 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:04:01 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:52:09 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (s1[i] && (s1[i] == s2[i]) && (i < n - 1))

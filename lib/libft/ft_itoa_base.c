@@ -6,17 +6,17 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 11:13:39 by gartaud           #+#    #+#             */
-/*   Updated: 2020/12/04 17:52:04 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:03:37 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				checkbase(char *base)
+int	checkbase(char *base)
 {
-	int b_ln;
-	int i;
-	int j;
+	int	b_ln;
+	int	i;
+	int	j;
 
 	b_ln = ft_strlen(base);
 	if (b_ln <= 1)
@@ -35,17 +35,20 @@ int				checkbase(char *base)
 	return (1);
 }
 
-int				count_digits_base(long long nbr, int base)
+int	count_digits_base(long long nbr, int base)
 {
-	int res;
+	int	res;
 
 	res = 1;
-	while ((nbr /= base))
+	while (nbr >= base)
+	{
+		nbr /= base;
 		res++;
+	}
 	return (res);
 }
 
-char			*ft_itoa_base(long long nbr, char *base)
+char	*ft_itoa_base(long long nbr, char *base)
 {
 	char	*res;
 	int		is_neg;
@@ -56,13 +59,14 @@ char			*ft_itoa_base(long long nbr, char *base)
 		return (NULL);
 	b_ln = ft_strlen(base);
 	res_ln = count_digits_base(nbr, b_ln);
-	if ((is_neg = (nbr < 0)))
+	is_neg = (nbr < 0);
+	if (is_neg)
 		res_ln++;
-	if (!(res = ft_calloc(res_ln + 1, 1)))
+	res = ft_calloc(res_ln-- + 1, 1);
+	if (!res)
 		return (NULL);
 	if (is_neg)
 		*res = '-';
-	res_ln--;
 	while (res_ln >= is_neg)
 	{
 		if (nbr % b_ln < 0)

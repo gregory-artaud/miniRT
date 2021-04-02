@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/16 10:18:54 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/23 11:17:44 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:04:16 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		count_digits(int n)
+static int	count_digits(int n)
 {
 	unsigned int	i;
 
@@ -27,7 +27,7 @@ static int		count_digits(int n)
 	return (i);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*res;
 	int		is_neg;

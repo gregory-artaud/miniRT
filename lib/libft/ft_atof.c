@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:45:10 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/03 17:41:23 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:32:12 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double		ft_atof(char *s)
+double	ft_atof(char *s)
 {
 	double	floor;
 	double	decimal;

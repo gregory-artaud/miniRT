@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/23 20:12:27 by gartaud           #+#    #+#             */
-/*   Updated: 2021/04/02 09:28:53 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:35:52 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ int	fill_scene(t_scene *scene, char *line)
 	return (err);
 }
 
-int	cancel_parsing(char *line, int fd)
+int	exit_parsing(char *line, int fd, int status)
 {
 	close(fd);
 	if (line)
 		free(line);
-	return (EXIT_FAILURE);
+	return (status);
 }
 
 int	parse_file(t_scene *scene, char *file)
@@ -102,18 +102,16 @@ int	parse_file(t_scene *scene, char *file)
 	while (gnl)
 	{
 		if (gnl == -1)
-			return (cancel_parsing(line, fd));
+			return (exit_parsing(line, fd, EXIT_FAILURE));
 		else
 		{
 			if (fill_scene(scene, line))
-				return (cancel_parsing(line, fd));
+				return (exit_parsing(line, fd, EXIT_FAILURE));
 			free(line);
 		}
 		gnl = get_next_line(fd, &line);
 	}
 	if (gnl != -1 && fill_scene(scene, line))
-		return (cancel_parsing(line, fd));
-	free(line);
-	close(fd);
-	return (EXIT_SUCCESS);
+		return (exit_parsing(line, fd, EXIT_FAILURE));
+	return (exit_parsing(line, fd, EXIT_SUCCESS));
 }

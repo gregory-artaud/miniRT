@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 23:15:59 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:03:42 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:50:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	my_strlen(const char *s)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (s[i])
@@ -22,7 +22,7 @@ static size_t	my_strlen(const char *s)
 	return (i);
 }
 
-char			*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	unsigned int	i;
 	int				last_occurrence;

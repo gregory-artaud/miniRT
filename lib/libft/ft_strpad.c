@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 08:14:11 by gartaud           #+#    #+#             */
-/*   Updated: 2020/12/04 17:52:25 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:51:31 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_strpad(char **dest, int side, int min_size, char c)
 
 	dlen = ft_strlen(*dest);
 	pad_ln = min_size - dlen;
-	if (pad_ln < 0 || !(pad = ft_calloc(pad_ln + 1, 1)))
+	if (pad_ln < 0)
+		return ;
+	pad = ft_calloc(pad_ln + 1, 1);
+	if (!pad)
 		return ;
 	if (side == LFT_LEFT)
 	{

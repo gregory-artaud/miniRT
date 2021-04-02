@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 11:51:42 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:05:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 10:47:15 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	ft_lstsize(t_list *lst)
 
 	if (!lst)
 		return (0);
-	current = lst;
+	current = lst->next;
 	i = 0;
-	while ((current = current->next))
+	while (current)
+	{
+		current = current->next;
 		i++;
+	}
 	return (i + 1);
 }

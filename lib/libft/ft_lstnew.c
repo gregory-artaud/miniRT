@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/17 11:17:18 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:05:21 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 10:47:32 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list *new;
+	t_list	*new;
 
 	new = malloc(sizeof(t_list));
 	if (!new)

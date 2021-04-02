@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 14:34:17 by gregory           #+#    #+#             */
-/*   Updated: 2021/01/14 13:11:17 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:36:12 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	*ft_remainder(char *str)
 		free(str);
 		return (0);
 	}
-	if (!(res = malloc(sizeof(char) * (ft_strlen(str) - i + 1))))
+	res = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	if (!res)
 		return (0);
 	j = -1;
 	while (str[i + ++j])
@@ -40,7 +41,7 @@ char	*ft_remainder(char *str)
 	return (res);
 }
 
-int		ft_is_in(char *str, char c)
+int	ft_is_in(char *str, char c)
 {
 	int		i;
 
@@ -64,7 +65,8 @@ char	*ft_strcdup(char *s, char c)
 	res_ln = ft_is_in(s, c);
 	if (res_ln == -1)
 		res_ln = ft_strlen(s);
-	if (!(res = malloc(sizeof(char) * (res_ln + 1))))
+	res = malloc(sizeof(char) * (res_ln + 1));
+	if (!res)
 		return (0);
 	i = -1;
 	while (++i < res_ln)
@@ -84,14 +86,17 @@ char	*ft_append(char *s1, char *s2)
 		return (0);
 	s1_ln = ft_strlen(s1);
 	res_ln = s1_ln + ft_strlen(s2);
-	if (!(res = malloc(sizeof(char) * (res_ln + 1))))
+	res = malloc(sizeof(char) * (res_ln + 1));
+	if (!res)
 		return (0);
 	i = -1;
 	while (++i < res_ln)
+	{
 		if (i < s1_ln)
 			res[i] = s1[i];
 		else
 			res[i] = s2[i - s1_ln];
+	}
 	res[i] = 0;
 	free(s1);
 	return (res);

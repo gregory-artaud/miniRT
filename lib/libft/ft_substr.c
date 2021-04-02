@@ -6,23 +6,20 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 07:48:25 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:03:29 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:44:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	my_strlen(const char *s)
+static int	ft_minimum(int a, int b)
 {
-	unsigned int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (a < b)
+		return (a);
+	return (b);
 }
 
-char			*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*substr;
 	unsigned int	slen;
@@ -31,10 +28,10 @@ char			*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (0);
-	slen = my_strlen(s);
+	slen = ft_strlen(s);
 	if (start >= slen)
 		start = slen;
-	sublen = (slen < len) ? slen : len;
+	sublen = ft_minimum(slen, len);
 	substr = (char *)malloc(sizeof(char) * (sublen + 1));
 	if (!substr)
 		return (0);

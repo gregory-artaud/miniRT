@@ -6,15 +6,15 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 13:08:01 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/04 17:15:24 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:05:56 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_is_in_tab(char c, char *str)
+int	ft_is_in_tab(char c, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (*str)
@@ -27,7 +27,7 @@ int		ft_is_in_tab(char c, char *str)
 	return (-1);
 }
 
-int		ft_count_words(char *str, char *charset)
+int	ft_count_words(char *str, char *charset)
 {
 	int	res;
 	int	i;

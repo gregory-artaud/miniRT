@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/18 11:59:13 by gartaud           #+#    #+#             */
-/*   Updated: 2020/11/18 17:05:43 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 10:53:46 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list *current;
+	t_list	*current;
 
 	current = lst;
 	while (current)

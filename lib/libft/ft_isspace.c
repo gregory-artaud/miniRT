@@ -6,13 +6,13 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 18:05:45 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/06 18:07:29 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:04:33 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	return (!!ft_memchr(SPACES, c, ft_strlen(SPACES)));
 }

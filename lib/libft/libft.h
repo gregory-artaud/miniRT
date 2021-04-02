@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:57:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 16:24:15 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:53:24 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "gnl/get_next_line.h"
-# include "ft_printf/includes/ft_printf.h"
 # define LFT_LEFT 0
 # define LFT_RIGHT 1
 # define SPACES " \n\t\r\v\f"
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -51,7 +50,7 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strnstr(const char *big, const char *little,
-								size_t len);
+						size_t len);
 int					ft_atoi(const char *nptr);
 void				*ft_calloc(size_t nmemb, size_t size);
 char				*ft_strdup(const char *s);
@@ -81,14 +80,13 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-										void (*del)(void *));
+						void (*del)(void *));
 /*
 ** Personal fucntions
 */
 unsigned long long	ft_abs(long long x);
 char				*ft_itoa_base(long long nbr, char *base);
 void				ft_strinsert(char **s, int i, char c);
-void				ft_strmcat(char **s1, char *s2);
 void				ft_strpad(char **dest, int side, int min_size, char c);
 char				**ft_cs_split(char const *s, char *charset);
 void				ft_free_strarray(char **array);

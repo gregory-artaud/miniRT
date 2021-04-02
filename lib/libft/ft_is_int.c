@@ -6,15 +6,15 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:04:15 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/22 15:26:22 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 11:05:28 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_is_int(char *s)
+int	ft_is_int(char *s)
 {
-	if (!s ||!*s)
+	if (!s || !*s)
 		return (0);
 	if (*s == '-')
 		s++;
