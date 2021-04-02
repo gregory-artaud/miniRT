@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/17 19:03:52 by gartaud           #+#    #+#             */
-/*   Updated: 2021/04/02 07:38:18 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:05:23 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 /*
 ** OPTIONS
 */
+# define DEFAULT_W 900
+# define DEFAULT_H 600
 # define MIRROR_DEPTH 2
 # define SAMPLING 2
 # define NUM_THREAD 4

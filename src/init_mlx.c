@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:47:11 by gartaud           #+#    #+#             */
-/*   Updated: 2021/03/30 13:12:59 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/02 09:09:13 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	check_scene(t_data *data)
 	int		w;
 	int		h;
 
-	w = 900;
-	h = 600;
+	w = DEFAULT_W;
+	h = DEFAULT_H;
 	if (data->scene->r_w <= 0 || data->scene->r_h <= 0)
 		return (EXIT_FAILURE);
 	mlx_get_screen_size(data->mlx->mlx, &w, &h);
@@ -50,13 +50,13 @@ void	*init_mlx(t_data *data, int save)
 	if (!mlx)
 		return (NULL);
 	data->mlx = mlx;
+	mlx->win = NULL;
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx || check_scene(data))
 	{
 		free_mlx(mlx);
 		return (NULL);
 	}
-	mlx->win = NULL;
 	if (!save)
 		mlx->win = mlx_new_window(mlx->mlx, data->scene->r_w,
 				data->scene->r_h, "miniRT");
