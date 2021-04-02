@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/28 13:46:16 by gartaud           #+#    #+#              #
-#    Updated: 2021/04/02 11:36:25 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/04/02 14:50:42 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BUFFER_SIZE	= 256
 CFLAGS		= -Wall -Werror -Wextra
 CC			= gcc
 DEPS		= 	libft.h \
-				gnl/get_next_line.h \
+				gnl/get_next_line.h
 FILES		=	ft_memset.c \
 				ft_memmove.c \
 				ft_memcpy.c \
