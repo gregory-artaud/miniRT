@@ -6,7 +6,7 @@
 #    By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/28 13:46:16 by gartaud           #+#    #+#              #
-#    Updated: 2021/04/02 14:50:42 by gartaud          ###   ########lyon.fr    #
+#    Updated: 2021/04/05 09:02:35 by gartaud          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ FILES		=	ft_memset.c \
 				ft_abs.c \
 				ft_strinsert.c \
 				ft_itoa_base.c \
-				ft_strpad.c \
 				ft_lstnew.c \
 				ft_lstadd_front.c \
 				ft_lstsize.c \

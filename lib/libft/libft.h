@@ -6,7 +6,7 @@
 /*   By: gartaud <gartaud@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/28 13:57:05 by gartaud           #+#    #+#             */
-/*   Updated: 2021/04/02 09:53:24 by gartaud          ###   ########lyon.fr   */
+/*   Updated: 2021/04/05 09:02:28 by gartaud          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 unsigned long long	ft_abs(long long x);
 char				*ft_itoa_base(long long nbr, char *base);
 void				ft_strinsert(char **s, int i, char c);
-void				ft_strpad(char **dest, int side, int min_size, char c);
 char				**ft_cs_split(char const *s, char *charset);
 void				ft_free_strarray(char **array);
 int					ft_arrlen(char **array);
